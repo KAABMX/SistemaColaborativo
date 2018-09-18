@@ -25,7 +25,7 @@ import org.springframework.web.servlet.ModelAndView;
  * @author hectorsama
  */
 @Controller
-public class ControladorUsuario {
+public class ControladorAlumno {
 
     @Autowired
     private UsuarioDAO usuario_bd;
@@ -33,23 +33,6 @@ public class ControladorUsuario {
     private AlumnoDAO alumno_bd;
     @Autowired
     private InteresAcademicoDAO interes_bd;
-
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String index() {
-        return "index";
-
-    }
-    
-    @RequestMapping(value = "/opcion", method = RequestMethod.GET)
-    public String opcion() {
-        return "opcion";
-
-    }
-
-    @RequestMapping(value = "/registrarAlumno", method = RequestMethod.GET)
-    public String alumno() {
-        return "registerAlumno";
-    }
 
     @RequestMapping(value = "/registra", method = RequestMethod.POST)
     public ModelAndView peticion(HttpServletRequest request, ModelMap model) {
@@ -71,47 +54,6 @@ public class ControladorUsuario {
             usuario_bd.guardar(usuario);
             //hasta aqui se crea el usuario
             //agregar a la ase
-            /*int opt = Integer.parseInt(request.getParameter("opt"));
-            if (opt == 0) {
-                Profesor p = new Profesor();
-                p.setCostoXHora(request.getParameter("costo"));
-                p.setFkIdUsuario(usuario);
-                /*
-                InputStream ident = new FileInputStream(request.getParameter("foto"));
-                String costo = reques.getParameter("foto");
-                p.set...
-             */
- /*p.setHabilidades(request.getParameter("habilidades"));
-                p.setNivelesEducativos(request.getParameter("niveles"));
-                //agregar a la base
-                Curriculum cv = new Curriculum();
-                cv.setFkIdProfesor(p);
-                cv.setLugarDeNacimiento(request.getParameter("nacimiento"));
-                //agregar a la base
-                Experiencia exp = new Experiencia();
-                exp.setEmpresa(request.getParameter("empresa"));
-                //exp.setFechaFin(fechaFin);
-                //exp.setFechaInicio(fechaInicio);
-                exp.setFkIdCv(cv);
-                exp.setFuncionTrabajo(request.getParameter("trabajo"));
-                exp.setTareaTrabajo(request.getParameter("tarea"));
-                //agregar a la base
-                Estudio es = new Estudio();
-                es.setEstudio(request.getParameter("estudio"));
-                //es.getFechaFin(fin);
-                //es.getFechaInicio(inicio);
-                es.setFkIdCv(cv);
-                es.setUniversidad(request.getParameter("universidad"));
-                //agregar a la base
-                Complementario com = new Complementario();
-                com.setCentro(request.getParameter("centro"));
-                com.setEstudio(request.getParameter("estudiob"));
-                //com.setFechaFin(fechaFin);
-                //com.setFechaInicio(fechaInicio);
-                com.setFkIdCv(cv);
-                com.setLugar(request.getParameter("lugar"));
-                //agregar a la base
-            } else {*/
             Alumno al = new Alumno();
             al.setUltimo_nivel_educativo(request.getParameter("nivel"));
             //agregar a la base
