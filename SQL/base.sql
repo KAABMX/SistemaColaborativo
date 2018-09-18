@@ -8,7 +8,8 @@ apellido_materno VARCHAR(120),
 correo VARCHAR(90),
 foto MEDIUMBLOB,
 telefono VARCHAR (50),
-sexo VARCHAR(90)
+sexo VARCHAR(90),
+contrasenia VARCHAR(90)
 );
 
 CREATE TABLE Alumno(
