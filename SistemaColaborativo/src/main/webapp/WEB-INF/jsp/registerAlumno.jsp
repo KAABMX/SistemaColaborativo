@@ -26,7 +26,7 @@ Author     : hectorsama
                                         <div class="input-group-addon">
                                             <i class="glyphicon glyphicon-user"></i>
                                         </div>
-                                        <input type="text" placeholder="Nombre" name="txtfname" class="form-control" required>
+                                        <input type="text" placeholder="Nombre" name="nombre" id="nombre" class="form-control" required>
 
                                     </div>
                                 </div>
@@ -40,7 +40,7 @@ Author     : hectorsama
                                         <div class="input-group-addon">
                                             <i class="glyphicon glyphicon-user"></i>
                                         </div>
-                                        <input type="text" placeholder="Apellido Paterno" name="txtlname" class="form-control" required>
+                                        <input type="text" placeholder="Apellido Paterno" name="paterno" id="paterno" class="form-control" required>
                                     </div>
                                 </div>
                             </div>
@@ -53,7 +53,7 @@ Author     : hectorsama
                                         <div class="input-group-addon">
                                             <i class="glyphicon glyphicon-user"></i>
                                         </div>
-                                        <input type="text" placeholder="Apellido Materno" name="txtlname" class="form-control" required>
+                                        <input type="text" placeholder="Apellido Materno" name="materno"  id="materno" class="form-control" required>
                                     </div>
                                 </div>
                             </div>
@@ -71,6 +71,33 @@ Author     : hectorsama
                                 </div>
                             </div>
                         </div>
+                        
+                                                <div class="row">
+                            <div class="col-md-12 col-xs-12 col-sm-12">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="	glyphicon glyphicon-warning-sign"></i>
+                                        </div>
+                                        <input type="password" class="form-control"  name="contrasenya" id="contrasenya"  placeholder="Contraseña" required/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
+                                                                        <div class="row">
+                            <div class="col-md-12 col-xs-12 col-sm-12">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="	glyphicon glyphicon-warning-sign"></i>
+                                        </div>
+                                        <input type="password" class="form-control"  name="confirm" id="confirm"  placeholder=" Repetir Contraseña" required/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
                         <div class="row">
                             <div class="col-md-12 col-xs-12 col-sm-12">
@@ -79,7 +106,7 @@ Author     : hectorsama
                                         <div class="input-group-addon">
                                             <i class="glyphicon glyphicon-phone"></i>
                                         </div>
-                                        <input type="number" minlength="10" maxlength="12" class="form-control" name="txtmobile" placeholder="Celular">
+                                        <input type="number" minlength="10" maxlength="12" class="form-control" name="telefono" id="telefono" placeholder="Celular">
                                     </div>
                                 </div>
                             </div>
@@ -110,7 +137,7 @@ Author     : hectorsama
                                             <i class="glyphicon glyphicon-user"></i>
                                         </div>
                                         <label for="nivel">Nivel Academico:</label>
-                                        <select class="form-control" id="sexo" name="nivel">
+                                        <select class="form-control" id="nivel" name="nivel">
                                             <option>Primaria</option>
                                             <option>Secundaria</option>
                                             <option>Bachillerato</option>
@@ -127,18 +154,18 @@ Author     : hectorsama
                                         </div>
                        
                          <div class="checkbox">
-                            <label><input type="checkbox"  name="musica">Matemáticas</label>
+                            <label><input type="checkbox"  name="matematicas" id="matematicas">Matemáticas</label>
                         </div>
 
                         <div class="checkbox">
-                            <label><input type="checkbox" name="libros">Español</label>
+                            <label><input type="checkbox" name="espanol" id="espanol">Español</label>
                         </div>
 
                         <div class="checkbox">
-                            <label><input type="checkbox" name="peliculas">Geografía</label>
+                            <label><input type="checkbox" name="geografia" id="geografia">Geografía</label>
                         </div>
                                               <div class="checkbox">
-                            <label><input type="checkbox" name="video">Historia</label>
+                                                  <label><input type="checkbox" name="historia" id="historia">Historia</label>
                           </div>
 
                         <div class="row widget">

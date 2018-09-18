@@ -36,6 +36,17 @@ public class Usuario {
  private String  telefono;
  @Column(name="sexo")
  private String sexo;
+ @Column(name="contrasenia")
+ private String contrasenia;
+
+    public String getContrasenia() {
+        return contrasenia;
+    }
+
+    public void setContrasenia(String contrasenia) {
+        this.contrasenia = contrasenia;
+    }
+ 
 
     public int getPk_id_usuario() {
         return pk_id_usuario;
