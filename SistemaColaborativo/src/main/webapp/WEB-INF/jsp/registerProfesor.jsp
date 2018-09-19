@@ -7,20 +7,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
-    <head>
-        <link rel="stylesheet" type="text/css" href="<c:url value="/css/register.css"/>"> 
-        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Inicio</title>
-    </head>
-    <body>
-
-        <!------ Include the above in your HEAD tag ---------->
-
+<jsp:include page='header.jsp'>
+    <jsp:param name="title" value="Registro de alumno"/>
+</jsp:include>
         <form action="${pageContext.request.contextPath}/registraProfesor" name="myForm" method="post" onsubmit="return(validate());">
             <div class="container-fluid">
                 <div class="row">
@@ -184,5 +173,4 @@
                 </div>
             </div>
         </form>
-    </body>
-</html>
+<%@include file='footer.jsp'%>
