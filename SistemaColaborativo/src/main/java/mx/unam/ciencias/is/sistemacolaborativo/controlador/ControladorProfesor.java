@@ -6,7 +6,11 @@
 package mx.unam.ciencias.is.sistemacolaborativo.controlador;
 
 import javax.servlet.http.HttpServletRequest;
+import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Curriculum;
+import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Profesor;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Usuario;
+import mx.unam.ciencias.is.sistemacolaborativo.modelo.CurriculumDAO;
+import mx.unam.ciencias.is.sistemacolaborativo.modelo.ProfesorDAO;
 import mx.unam.ciencias.is.sistemacolaborativo.modelo.UsuarioDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -23,8 +27,12 @@ public class ControladorProfesor {
 
     @Autowired
     private UsuarioDAO usuario_bd;
+     @Autowired
+    private ProfesorDAO profesor_bd;
+    @Autowired
+    private CurriculumDAO cv_bd;
 
-    @RequestMapping(value = "/registraProfesor", method = RequestMethod.POST)
+    @RequestMapping(value = "/registraProfesores", method = RequestMethod.POST)
     public ModelAndView peticion(HttpServletRequest request, ModelMap model) {
         try {
             Usuario usuario = new Usuario();
@@ -42,20 +50,24 @@ public class ControladorProfesor {
             //convertir la foto a bytes y agregarlo al usuario
             usuario.setSexo(request.getParameter("sexo"));
             usuario_bd.guardar(usuario);
-          /*  Profesor p = new Profesor();
-                p.setCostoXHora(request.getParameter("costo"));
-                p.setFkIdUsuario(usuario);
+                Profesor p = new Profesor();
+                p.setCosto_x_hora(request.getParameter("costo"));
+                p.setFk_id_usuario(usuario.getPk_id_usuario());
                 /*
                 InputStream ident = new FileInputStream(request.getParameter("foto"));
                 String costo = reques.getParameter("foto");
-                p.set...
-             
-                p.setHabilidades(request.getParameter("habilidades"));
-                p.setNivelesEducativos(request.getParameter("niveles"));
+                p.set...*/
+                p.setHabilidades(request.getParameter("habilidades"));  
+                p.setNiveles_educativos(request.getParameter("niveles"));
                 //agregar a la base
+                profesor_bd.guardar(p);
+                
                 Curriculum cv = new Curriculum();
-                cv.setFkIdProfesor(p);
-                cv.setLugarDeNacimiento(request.getParameter("nacimiento"));
+                cv.setFk_id_profesor(p.getPk_id_profesor());
+                cv.setLugar_de_nacimiento(request.getParameter("nacimiento"));
+                cv_bd.guardar(cv);
+                
+                /*
                 //agregar a la base
                 Experiencia exp = new Experiencia();
                 exp.setEmpresa(request.getParameter("empresa"));

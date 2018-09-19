@@ -32,4 +32,9 @@ public class ControladorInicio {
         return "registerAlumno";
     }
     
+        @RequestMapping(value = "/registrarProfesor", method = RequestMethod.GET)
+    public String profesors() {
+        return "registerProfesor";
+    }
+    
 }
