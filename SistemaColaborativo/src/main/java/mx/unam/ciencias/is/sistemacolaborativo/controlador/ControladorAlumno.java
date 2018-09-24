@@ -55,6 +55,7 @@ public class ControladorAlumno {
             //hasta aqui se crea el usuario
             //agregar a la ase
             Alumno al = new Alumno();
+            al.getFk_id_usuario();
             al.setUltimo_nivel_educativo(request.getParameter("nivel"));
             //agregar a la base
             alumno_bd.guardar(al);
