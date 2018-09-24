@@ -52,7 +52,7 @@ public class ControladorProfesor {
             usuario_bd.guardar(usuario);
                 Profesor p = new Profesor();
                 p.setCosto_x_hora(request.getParameter("costo"));
-                p.setFk_id_usuario(usuario.getPk_id_usuario());
+                p.setUsuario(usuario);
                 /*
                 InputStream ident = new FileInputStream(request.getParameter("foto"));
                 String costo = reques.getParameter("foto");

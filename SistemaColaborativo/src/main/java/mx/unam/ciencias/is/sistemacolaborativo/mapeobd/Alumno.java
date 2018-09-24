@@ -10,6 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -18,21 +20,21 @@ import javax.persistence.Table;
  */
 @Entity
 @Table (name="Alumno")
-public class Alumno {
-@Id@GeneratedValue(strategy =GenerationType.IDENTITY )
-@Column(name="fk_id_usuario")
- private int fk_id_usuario;
+public class Alumno implements java.io.Serializable{
+@Id
+@OneToOne
+@JoinColumn(name="fk_id_usuario")
+private Usuario usuario;
 @Column(name="pk_id_alumno")
  private int pk_id_alumno;
  @Column (name="ultimo_nivel_educativo")
  private String ultimo_nivel_educativo;
 
-    public int getFk_id_usuario() {
-        return fk_id_usuario;
+    public Usuario getUsuario(){
+        return this.usuario;
     }
-
-    public void setFk_id_usuario(int fk_id_usuario) {
-        this.fk_id_usuario = fk_id_usuario;
+    public void setUsuario(Usuario user){
+       this.usuario = user; 
     }
 
     public int getPk_id_alumno() {

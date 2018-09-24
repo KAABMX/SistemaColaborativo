@@ -22,10 +22,10 @@ import javax.persistence.Table;
 @Entity
 @Table (name="Profesor")
 public class Profesor {
-@Id@OneToOne
+@Id
+@OneToOne
 @JoinColumn(name="fk_id_usuario")
 private Usuario usuario;
- private int fk_id_usuario;
 @Column(name="pk_id_profesor")
  private int pk_id_profesor;
 @Column(name="costo_x_hora")
@@ -41,15 +41,14 @@ private Usuario usuario;
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
-    }
+    }/*
     public int getFk_id_usuario() {
         return fk_id_usuario;
     }
 
     public void setFk_id_usuario(int fk_id_usuario) {
         this.fk_id_usuario = fk_id_usuario;
-    }
-
+    }*/
     public int getPk_id_profesor() {
         return pk_id_profesor;
     }
