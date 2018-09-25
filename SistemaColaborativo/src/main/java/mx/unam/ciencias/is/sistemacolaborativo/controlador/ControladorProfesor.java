@@ -61,6 +61,9 @@ public class ControladorProfesor {
                 p.setNiveles_educativos(request.getParameter("niveles"));
                 //agregar a la base
                 profesor_bd.guardar(p);
+                 int id = Integer.parseInt(request.getParameter("fk_id_alumno"));
+            System.out.println(id);
+            Profesor us = profesor_bd.getProfesor(id);
                 
                 Curriculum cv = new Curriculum();
                 cv.setFk_id_profesor(p.getPk_id_profesor());

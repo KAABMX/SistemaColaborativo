@@ -44,7 +44,7 @@ public class ControladorAlumno {
             usuario.setApellido_m(request.getParameter("materno"));
             usuario.setTelefono(request.getParameter("telefono"));
             BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-            String contrasenya = request.getParameter("contrasenya");
+            String contrasenya = request.getParameter("confirm");
             String hashedPassword = passwordEncoder.encode(contrasenya);
             System.out.println(hashedPassword);
             String contrasenaConf = request.getParameter("confirm");
@@ -53,7 +53,7 @@ public class ControladorAlumno {
             usuario.setSexo(request.getParameter("sexo"));
             usuario_bd.guardar(usuario);
             //hasta aqui se crea el usuario
-            //agregar a la ase
+            //agregar a la base
             Alumno al = new Alumno();
             al.setUsuario(usuario);
             al.setUltimo_nivel_educativo(request.getParameter("nivel"));
