@@ -44,9 +44,7 @@ public class ControladorAlumno {
             usuario.setApellido_m(request.getParameter("materno"));
             usuario.setTelefono(request.getParameter("telefono"));
             BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-            String contrasenya = request.getParameter("confirm");
-            String hashedPassword = passwordEncoder.encode(contrasenya);
-            System.out.println(hashedPassword);
+            usuario.setContrasenia(passwordEncoder.encode(request.getParameter("contrasenya")));
             String contrasenaConf = request.getParameter("confirm");
             //InputStream foto = new FileInputStream(request.getParameter("foto"));
             //convertir la foto a bytes y agregarlo al usuario
@@ -60,9 +58,6 @@ public class ControladorAlumno {
             //agregar a la base
             alumno_bd.guardar(al);
 
-            int id = Integer.parseInt(request.getParameter("fk_id_alumno"));
-            System.out.println(id);
-            Alumno us = alumno_bd.getAlumno(id);
             String matematicas = request.getParameter("matematicas");
             String espanol = request.getParameter("espanol");
             String geografia = request.getParameter("geografia");
@@ -71,27 +66,27 @@ public class ControladorAlumno {
             if (matematicas != null && matematicas.equals("on")) {
                 InteresAcademico g = new InteresAcademico();
                 g.setInteres("Matematicas");
-                g.setFk_id_alumno(id);
+                g.setAlumno(al);
                 interes_bd.guardar(g);
             }
 
             if (espanol != null && espanol.equals("on")) {
                 InteresAcademico g = new InteresAcademico();
                 g.setInteres("Español");
-                g.setFk_id_alumno(id);
+                g.setAlumno(al);
                 interes_bd.guardar(g);
             }
 
             if (geografia != null && geografia.equals("on")) {
                 InteresAcademico g = new InteresAcademico();
                 g.setInteres("Geografía");
-                g.setFk_id_alumno(id);
+                g.setAlumno(al);
                 interes_bd.guardar(g);
             }
             if (historia != null && historia.equals("on")) {
                 InteresAcademico g = new InteresAcademico();
                 g.setInteres("Historia");
-                g.setFk_id_alumno(id);
+                g.setAlumno(al);
                 interes_bd.guardar(g);
             }
 

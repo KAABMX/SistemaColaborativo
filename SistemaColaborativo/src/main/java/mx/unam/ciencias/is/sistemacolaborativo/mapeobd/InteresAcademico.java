@@ -10,6 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -22,8 +24,9 @@ public class InteresAcademico {
 @Id@GeneratedValue(strategy =GenerationType.IDENTITY )
 @Column(name="pk_id_interes")
  private int pk_id_interes;
-@Column(name="fk_id_alumno")
- private int fk_id_alumno;
+@ManyToOne
+@JoinColumn(name="fk_id_alumno")
+ private Alumno alumno;
 @Column(name="interes")
  private String interes;
 
@@ -35,13 +38,14 @@ public class InteresAcademico {
         this.pk_id_interes = pk_id_interes;
     }
 
-    public int getFk_id_alumno() {
-        return fk_id_alumno;
+    public Alumno getAlumno() {
+        return alumno;
     }
 
-    public void setFk_id_alumno(int fk_id_alumno) {
-        this.fk_id_alumno = fk_id_alumno;
+    public void setAlumno(Alumno alumno) {
+        this.alumno = alumno;
     }
+
 
     public String getInteres() {
         return interes;
