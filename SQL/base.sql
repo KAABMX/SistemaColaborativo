@@ -9,7 +9,8 @@ correo VARCHAR(90),
 foto MEDIUMBLOB,
 telefono VARCHAR (50),
 sexo VARCHAR(90),
-contrasenia VARCHAR(90)
+contrasenia VARCHAR(90),
+rol varchar(25) null
 );
 
 CREATE TABLE Alumno(
