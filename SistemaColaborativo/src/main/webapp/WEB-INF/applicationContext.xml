@@ -24,7 +24,12 @@
             <list>   
                 <value>mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Usuario</value>
                 <value>mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Alumno</value>
+                <value>mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Profesor</value>
                 <value>mx.unam.ciencias.is.sistemacolaborativo.mapeobd.InteresAcademico</value>
+                <value>mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Curriculum</value>
+                <value>mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Estudios</value>
+                <value>mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Experiencia</value>
+                <value>mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Complementarios</value>
             </list>
         </property>
         <property name="hibernateProperties">

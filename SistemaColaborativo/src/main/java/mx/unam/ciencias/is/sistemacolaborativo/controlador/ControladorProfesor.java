@@ -28,7 +28,7 @@ public class ControladorProfesor {
 
     @Autowired
     private UsuarioDAO usuario_bd;
-     @Autowired
+    @Autowired
     private ProfesorDAO profesor_bd;
     @Autowired
     private CurriculumDAO cv_bd;
@@ -51,27 +51,24 @@ public class ControladorProfesor {
             //convertir la foto a bytes y agregarlo al usuario
             usuario.setSexo(request.getParameter("sexo"));
             usuario_bd.guardar(usuario);
-                Profesor p = new Profesor();
-                p.setCosto_x_hora(request.getParameter("costo"));
-                p.setUsuario(usuario);
-                /*
+            Profesor p = new Profesor();
+            p.setCosto_x_hora(request.getParameter("costo"));
+            p.setUsuario(usuario);
+            /*
                 InputStream ident = new FileInputStream(request.getParameter("foto"));
                 String costo = reques.getParameter("foto");
                 p.set...*/
-                p.setHabilidades(request.getParameter("habilidades"));  
-                p.setNiveles_educativos(request.getParameter("niveles"));
-                //agregar a la base
-                profesor_bd.guardar(p);
-                 int id = Integer.parseInt(request.getParameter("fk_id_alumno"));
-            System.out.println(id);
-            Profesor us = profesor_bd.getProfesor(id);
-                
-                Curriculum cv = new Curriculum();
-                cv.setFk_id_profesor(p.getPk_id_profesor());
-                cv.setLugar_de_nacimiento(request.getParameter("nacimiento"));
-                cv_bd.guardar(cv);
-                
-                /*
+            p.setHabilidades(request.getParameter("habilidades"));
+            p.setNiveles_educativos(request.getParameter("niveles"));
+            //agregar a la base
+            profesor_bd.guardar(p);
+
+            Curriculum cv = new Curriculum();
+            cv.setProfesor(p);
+            cv.setLugar_de_nacimiento(request.getParameter("nacimiento"));
+            cv_bd.guardar(cv);
+
+            /*
                 //agregar a la base
                 Experiencia exp = new Experiencia();
                 exp.setEmpresa(request.getParameter("empresa"));
@@ -96,11 +93,10 @@ public class ControladorProfesor {
                 com.setFkIdCv(cv);
                 com.setLugar(request.getParameter("lugar"));
                 //agregar a la base*/
-
         } catch (Exception e) {
 
         }
         return new ModelAndView("index", model);
     }
-    
+
 }
