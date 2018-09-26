@@ -24,7 +24,12 @@
             <list>   
                 <value>mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Usuario</value>
                 <value>mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Alumno</value>
+                <value>mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Profesor</value>
                 <value>mx.unam.ciencias.is.sistemacolaborativo.mapeobd.InteresAcademico</value>
+                <value>mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Curriculum</value>
+                <value>mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Estudios</value>
+                <value>mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Experiencia</value>
+                <value>mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Complementarios</value>
             </list>
         </property>
         <property name="hibernateProperties">
@@ -40,14 +45,19 @@
     en el paquete controlador, se esta haciendo uso de @Autowired-->
     <!--Ejemplo para configurar bean-->
     
-     <bean id="UsuarioDAO" class="mx.unam.ciencias.is.sistemacolaborativo.modelo.UsuarioDAO" p:sessionFactory-ref="hibernate4AnnotatedSessionFactory"/>
+    <bean id="UsuarioDAO" class="mx.unam.ciencias.is.sistemacolaborativo.modelo.UsuarioDAO" p:sessionFactory-ref="hibernate4AnnotatedSessionFactory"/>
     <bean id="AlumnoDAO" class="mx.unam.ciencias.is.sistemacolaborativo.modelo.AlumnoDAO" p:sessionFactory-ref="hibernate4AnnotatedSessionFactory"/>
     <bean id="InteresAcademicoDAO" class="mx.unam.ciencias.is.sistemacolaborativo.modelo.InteresAcademicoDAO" p:sessionFactory-ref="hibernate4AnnotatedSessionFactory"/>
-      <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:p="http://www.springframework.org/schema/p"
-       xmlns:security="http://www.springframework.org/schema/security"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    <bean id="ExperienciaDAO" class="mx.unam.ciencias.is.sistemacolaborativo.modelo.ExperienciaDAO" p:sessionFactory-ref="hibernate4AnnotatedSessionFactory"/>
+    <bean id="ComplementariosDAO" class="mx.unam.ciencias.is.sistemacolaborativo.modelo.ComplementariosDAO" p:sessionFactory-ref="hibernate4AnnotatedSessionFactory"/>
+    <bean id="EstudiosDAO" class="mx.unam.ciencias.is.sistemacolaborativo.modelo.EstudiosDAO" p:sessionFactory-ref="hibernate4AnnotatedSessionFactory"/>
+    <bean id="CurriculumDAO" class="mx.unam.ciencias.is.sistemacolaborativo.modelo.CurriculumDAO" p:sessionFactory-ref="hibernate4AnnotatedSessionFactory"/>
+    <bean id="ProfesorDAO" class="mx.unam.ciencias.is.sistemacolaborativo.modelo.ProfesorDAO" p:sessionFactory-ref="hibernate4AnnotatedSessionFactory"/>
+    <beans xmlns="http://www.springframework.org/schema/beans"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:p="http://www.springframework.org/schema/p"
+             xmlns:security="http://www.springframework.org/schema/security"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans
                            http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
                            http://www.springframework.org/schema/security
                            http://www.springframework.org/schema/security/spring-security-4.1.xsd">
@@ -55,7 +65,7 @@
 
  
     
-</beans>
+    </beans>
     
 </beans>
 

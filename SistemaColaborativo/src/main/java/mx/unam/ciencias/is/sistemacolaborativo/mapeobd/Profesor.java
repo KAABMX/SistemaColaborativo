@@ -10,18 +10,22 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
  *
  * @author hectorsama
  */
+
 @Entity
 @Table (name="Profesor")
 public class Profesor {
-@Id@GeneratedValue(strategy =GenerationType.IDENTITY )
-@Column(name="fk_id_usuario")
- private int fk_id_usuario;
+@Id
+@OneToOne
+@JoinColumn(name="fk_id_usuario")
+private Usuario usuario;
 @Column(name="pk_id_profesor")
  private int pk_id_profesor;
 @Column(name="costo_x_hora")
@@ -31,14 +35,20 @@ public class Profesor {
 @Column(name="habilidades")
  private String habilidades;
 
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }/*
     public int getFk_id_usuario() {
         return fk_id_usuario;
     }
 
     public void setFk_id_usuario(int fk_id_usuario) {
         this.fk_id_usuario = fk_id_usuario;
-    }
-
+    }*/
     public int getPk_id_profesor() {
         return pk_id_profesor;
     }

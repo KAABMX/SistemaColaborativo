@@ -15,6 +15,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -23,8 +25,9 @@ public class Curriculum {
 @Id@GeneratedValue(strategy =GenerationType.IDENTITY)
 @Column(name="pk_id_cv")
  private int pk_id_cv;
-@Column(name="fk_id_profesor")
- private int fk_id_profesor;
+@OneToOne
+@JoinColumn(name="fk_id_profesor")
+ private Profesor profesor;
 @Column(name="lugar_de_nacimiento")
  private String lugar_de_nacimiento;
 
@@ -36,12 +39,12 @@ public class Curriculum {
         this.pk_id_cv = pk_id_cv;
     }
 
-    public int getFk_id_profesor() {
-        return fk_id_profesor;
+    public Profesor getProfesor() {
+        return profesor;
     }
 
-    public void setFk_id_profesor(int fk_id_profesor) {
-        this.fk_id_profesor = fk_id_profesor;
+    public void setProfesor(Profesor profesor) {
+        this.profesor = profesor;
     }
 
     public String getLugar_de_nacimiento() {
@@ -51,7 +54,5 @@ public class Curriculum {
     public void setLugar_de_nacimiento(String lugar_de_nacimiento) {
         this.lugar_de_nacimiento = lugar_de_nacimiento;
     }
-
-
-    
+  
 }
