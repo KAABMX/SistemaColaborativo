@@ -81,12 +81,15 @@ Author     : hectorsama
                                         </div>
                                         <input type="password" class="form-control"  name="contrasenya" id="contrasenya"  placeholder="Contraseña" required/>
                                     </div>
+                                    <div align = "center">
+                                        <span id="8char" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span>(Mínimo 8 caracteres)<br>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         
                         
-                                                                        <div class="row">
+                        <div class="row">
                             <div class="col-md-12 col-xs-12 col-sm-12">
                                 <div class="form-group">
                                     <div class="input-group">
@@ -94,6 +97,9 @@ Author     : hectorsama
                                             <i class="	glyphicon glyphicon-warning-sign"></i>
                                         </div>
                                         <input type="password" class="form-control"  name="confirm" id="confirm"  placeholder=" Repetir Contraseña" required/>
+                                    </div>
+                                    <div align = "center">
+                                        <span id="pwmatch" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> ¿Coinciden?
                                     </div>
                                 </div>
                             </div>
@@ -132,11 +138,12 @@ Author     : hectorsama
                         <div class="row">
                             <div class="col-md-12 col-xs-12 col-sm-12">
                                 <div class="form-group">
+                                    <label for="nivel">Nivel Academico:</label>
                                     <div class="input-group">
+                                        
                                         <div class="input-group-addon">
                                             <i class="glyphicon glyphicon-user"></i>
-                                        </div>
-                                        <label for="nivel">Nivel Academico:</label>
+                                        </div> 
                                         <select class="form-control" id="nivel" name="nivel">
                                             <option>Primaria</option>
                                             <option>Secundaria</option>

@@ -18,22 +18,24 @@ import javax.persistence.Table;
  *
  * @author hectorsama
  */
-
 @Entity
-@Table (name="Profesor")
+@Table(name = "Profesor")
 public class Profesor {
-@Id
-@OneToOne
-@JoinColumn(name="fk_id_usuario")
-private Usuario usuario;
-@Column(name="pk_id_profesor")
- private int pk_id_profesor;
-@Column(name="costo_x_hora")
- private String costo_x_hora;
-@Column(name="niveles_educativos")
- private String niveles_educativos;
-@Column(name="habilidades")
- private String habilidades;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "pk_id_profesor")
+    private int pk_id_profesor;
+    @OneToOne
+    @JoinColumn(name = "fk_id_usuario")
+    private Usuario usuario;
+
+    @Column(name = "costo_x_hora")
+    private String costo_x_hora;
+    @Column(name = "niveles_educativos")
+    private String niveles_educativos;
+    @Column(name = "habilidades")
+    private String habilidades;
 
     public Usuario getUsuario() {
         return usuario;
@@ -81,6 +83,4 @@ private Usuario usuario;
         this.habilidades = habilidades;
     }
 
-
-    
 }

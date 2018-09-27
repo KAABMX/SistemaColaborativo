@@ -12,5 +12,29 @@
             </div>
         </div>
         <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+        <script>
+            $("input[type=password]").keyup(function(){
+	
+	if($("#contrasenya").val().length >= 8){
+		$("#8char").removeClass("glyphicon-remove");
+		$("#8char").addClass("glyphicon-ok");
+		$("#8char").css("color","#00A41E");
+	}else{
+		$("#8char").removeClass("glyphicon-ok");
+		$("#8char").addClass("glyphicon-remove");
+		$("#8char").css("color","#FF0004");
+	}
+		
+	if($("#contrasenya").val() == $("#confirm").val()){
+		$("#pwmatch").removeClass("glyphicon-remove");
+		$("#pwmatch").addClass("glyphicon-ok");
+		$("#pwmatch").css("color","#00A41E");
+	}else{
+		$("#pwmatch").removeClass("glyphicon-ok");
+		$("#pwmatch").addClass("glyphicon-remove");
+		$("#pwmatch").css("color","#FF0004");
+	}
+});
+        </script>
     </body>
 </html>
