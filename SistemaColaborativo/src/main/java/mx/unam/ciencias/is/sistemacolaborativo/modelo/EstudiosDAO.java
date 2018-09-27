@@ -110,7 +110,7 @@ public class EstudiosDAO {
      *
      * @return la lista que contiene a todos los usuarios de la base de datos
      */
-    public List<Estudios> getExperiencia() {
+    public List<Estudios> getEstudios() {
         List<Estudios> result = null;
         Session session = sessionFactory.openSession();
         Transaction tx = null;
@@ -131,7 +131,7 @@ public class EstudiosDAO {
         return result;
     }
 
-    public Estudios getExperiencia(int pk_id_estudios) {
+    public Estudios getEstudios(int pk_id_estudios) {
         Estudios result = null;
         Session s = sessionFactory.openSession();
         Transaction tx = null;

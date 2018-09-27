@@ -8,7 +8,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <jsp:include page='header.jsp'>
-    <jsp:param name="title" value="Registro de alumno"/>
+    <jsp:param name="title" value="Registro de profesor"/>
 </jsp:include>
         <form action="${pageContext.request.contextPath}/registraProfesor" name="myForm" method="post" onsubmit="return(validate());">
             <div class="container-fluid">

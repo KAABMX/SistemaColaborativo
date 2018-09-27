@@ -6,10 +6,16 @@
 package mx.unam.ciencias.is.sistemacolaborativo.controlador;
 
 import javax.servlet.http.HttpServletRequest;
+import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Complementarios;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Curriculum;
+import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Estudios;
+import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Experiencia;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Profesor;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Usuario;
+import mx.unam.ciencias.is.sistemacolaborativo.modelo.ComplementariosDAO;
 import mx.unam.ciencias.is.sistemacolaborativo.modelo.CurriculumDAO;
+import mx.unam.ciencias.is.sistemacolaborativo.modelo.EstudiosDAO;
+import mx.unam.ciencias.is.sistemacolaborativo.modelo.ExperienciaDAO;
 import mx.unam.ciencias.is.sistemacolaborativo.modelo.ProfesorDAO;
 import mx.unam.ciencias.is.sistemacolaborativo.modelo.UsuarioDAO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,8 +38,14 @@ public class ControladorProfesor {
     private ProfesorDAO profesor_bd;
     @Autowired
     private CurriculumDAO cv_bd;
+    @Autowired
+    private ComplementariosDAO complementarios_bd;
+    @Autowired
+    private ExperienciaDAO experiencia_bd;
+    @Autowired
+    private EstudiosDAO estudios_bd;
 
-    @RequestMapping(value = "/registraProfesores", method = RequestMethod.POST)
+    @RequestMapping(value = "/registraProfesor", method = RequestMethod.POST)
     public ModelAndView peticion(HttpServletRequest request, ModelMap model) {
         try {
             Usuario usuario = new Usuario();
@@ -45,8 +57,8 @@ public class ControladorProfesor {
             BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
             String contrasenya = request.getParameter("contrasenya");
             String hashedPassword = passwordEncoder.encode(contrasenya);
-            System.out.println(hashedPassword);
             String contrasenaConf = request.getParameter("confirm");
+            usuario.setContrasenia(hashedPassword);
             //InputStream foto = new FileInputStream(request.getParameter("foto"));
             //convertir la foto a bytes y agregarlo al usuario
             usuario.setSexo(request.getParameter("sexo"));
@@ -54,10 +66,6 @@ public class ControladorProfesor {
             Profesor p = new Profesor();
             p.setCosto_x_hora(request.getParameter("costo"));
             p.setUsuario(usuario);
-            /*
-                InputStream ident = new FileInputStream(request.getParameter("foto"));
-                String costo = reques.getParameter("foto");
-                p.set...*/
             p.setHabilidades(request.getParameter("habilidades"));
             p.setNiveles_educativos(request.getParameter("niveles"));
             //agregar a la base
@@ -67,32 +75,33 @@ public class ControladorProfesor {
             cv.setProfesor(p);
             cv.setLugar_de_nacimiento(request.getParameter("nacimiento"));
             cv_bd.guardar(cv);
+            //agregar a la base
+            Experiencia exp = new Experiencia();
+            exp.setEmpresa(request.getParameter("empresa"));
+            //exp.setFechaFin(fechaFin);
+            //exp.setFechaInicio(fechaInicio);
+            exp.setCurriculum(cv);
+            exp.setFuncion_trabajo(request.getParameter("trabajo"));
+            exp.setTarea_trabajo(request.getParameter("tarea"));
+            experiencia_bd.guardar(exp);
+            //agregar a la base
+            Estudios es = new Estudios();
+            es.setEstudio(request.getParameter("estudio"));
+            //es.getFechaFin(fin);
+            //es.getFechaInicio(inicio);
+            es.setCurriculum(cv);
+            es.setUniversidad(request.getParameter("universidad"));
+            estudios_bd.guardar(es);
 
-            /*
-                //agregar a la base
-                Experiencia exp = new Experiencia();
-                exp.setEmpresa(request.getParameter("empresa"));
-                //exp.setFechaFin(fechaFin);
-                //exp.setFechaInicio(fechaInicio);
-                exp.setFkIdCv(cv);
-                exp.setFuncionTrabajo(request.getParameter("trabajo"));
-                exp.setTareaTrabajo(request.getParameter("tarea"));
-                //agregar a la base
-                Estudio es = new Estudio();
-                es.setEstudio(request.getParameter("estudio"));
-                //es.getFechaFin(fin);
-                //es.getFechaInicio(inicio);
-                es.setFkIdCv(cv);
-                es.setUniversidad(request.getParameter("universidad"));
-                //agregar a la base
-                Complementario com = new Complementario();
-                com.setCentro(request.getParameter("centro"));
-                com.setEstudio(request.getParameter("estudiob"));
-                //com.setFechaFin(fechaFin);
-                //com.setFechaInicio(fechaInicio);
-                com.setFkIdCv(cv);
-                com.setLugar(request.getParameter("lugar"));
-                //agregar a la base*/
+            //agregar a la base
+            Complementarios com = new Complementarios();
+            com.setCentro(request.getParameter("centro"));
+            com.setEstudio(request.getParameter("estudiob"));
+            //com.setFechaFin(fechaFin);
+            //com.setFechaInicio(fechaInicio);
+            com.setCurriculum(cv);
+            com.setLugar(request.getParameter("lugar"));
+            complementarios_bd.guardar(com); //agregar a la base
         } catch (Exception e) {
 
         }
