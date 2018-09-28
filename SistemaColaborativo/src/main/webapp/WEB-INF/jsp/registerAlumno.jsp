@@ -79,7 +79,7 @@ Author     : hectorsama
                                         <div class="input-group-addon">
                                             <i class="	glyphicon glyphicon-warning-sign"></i>
                                         </div>
-                                        <input type="password" minlength = 8 class="form-control"  name="contrasenya" id="contrasenya"  placeholder="Contraseña" required/>
+                                        <input type="password" minlength = 8 class="form-control"  name="contrasenya" id="contrasenya"  placeholder="Contraseña (Mínimo 8 caracteres)" required/>
                                     </div>
                                 </div>
                             </div>
