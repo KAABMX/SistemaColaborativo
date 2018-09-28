@@ -15,12 +15,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 public class ControladorInicio {
-        @RequestMapping(value = "/", method = RequestMethod.GET)
+
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index() {
         return "index";
 
     }
-    
+
     @RequestMapping(value = "/opcion", method = RequestMethod.GET)
     public String opcion() {
         return "opcion";
@@ -31,10 +32,10 @@ public class ControladorInicio {
     public String alumno() {
         return "registerAlumno";
     }
-    
-        @RequestMapping(value = "/registrarProfesor", method = RequestMethod.GET)
+
+    @RequestMapping(value = "/registrarProfesor", method = RequestMethod.GET)
     public String profesors() {
         return "registerProfesor";
     }
-    
+
 }
