@@ -5,6 +5,8 @@
  */
 package mx.unam.ciencias.is.sistemacolaborativo.controlador;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Complementarios;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Curriculum;
@@ -28,7 +30,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 /**
  *
- * @author hectorsama
+ * @author hectorsama, luis
  */
 @Controller
 public class ControladorProfesor {
@@ -73,7 +75,7 @@ public class ControladorProfesor {
             String prim = request.getParameter("primaria");
             String sec = request.getParameter("secundaria");
             String bach = request.getParameter("bachillerato");
-            String uni = request.getParameter("universidadD");
+            String uni = request.getParameter("universidad");
             String hab = "";
             if (prim != null && prim.equals("on")) {
                 hab += "primaria,";
@@ -93,28 +95,38 @@ public class ControladorProfesor {
             p.setNiveles_educativos(hab);
             //agregar a la base
             profesor_bd.guardar(p);
-            /** borrar y ver como se guardan las fechas
+            //borrar y ver como se guardan las fechas
             Curriculum cv = new Curriculum();
             cv.setProfesor(p);
-            cv.setLugar_de_nacimiento(request.getParameter("nacimiento"));
+            cv.setLugar_de_nacimiento(request.getParameter("lugar"));
             cv_bd.guardar(cv);
             //agregar a la base
+            Estudios es = new Estudios();
+            String fecha_inicio = request.getParameter("fecha_inicio");
+            String fecha_fin = request.getParameter("fecha_fin");
+            String estudio=request.getParameter("estudios");
+            //Si no "dd/MM/yyyy"
+            Date startDate=new SimpleDateFormat("dd/MM/yyyy hh:mm:ss").parse(fecha_inicio);
+            Date finalDate=new SimpleDateFormat("dd/MM/yyyy hh:mm:ss").parse(fecha_fin);
+            es.setFecha_inicio(startDate);
+            es.setFecha_fin(finalDate);
+            es.setUniversidad(request.getParameter("universidad"));
+            estudios_bd.guardar(es);
+            
+
             Experiencia exp = new Experiencia();
             exp.setEmpresa(request.getParameter("empresa"));
-            //exp.setFechaFin(fechaFin);
-            //exp.setFechaInicio(fechaInicio);
+            String fecha_inicio_experiencia = request.getParameter("fecha_inicio");
+            String fecha_fin_experiencia = request.getParameter("fecha_fin");
+            Date startDateexp=new SimpleDateFormat("dd/MM/yyyy hh:mm:ss").parse(fecha_inicio_experiencia);
+            Date finalDateexp=new SimpleDateFormat("dd/MM/yyyy hh:mm:ss").parse(fecha_fin_experiencia);
+            exp.setFecha_inicio(startDateexp);
+            exp.setFecha_fin(finalDateexp);
             exp.setCurriculum(cv);
             exp.setFuncion_trabajo(request.getParameter("funcion_trabajo"));
             exp.setTarea_trabajo(request.getParameter("tarea_trabajo"));
             experiencia_bd.guardar(exp);
-            //agregar a la base
-            Estudios es = new Estudios();
-            es.setEstudio(request.getParameter("estudios"));
-            //es.getFechaFin(fin);
-            //es.getFechaInicio(inicio);
-            es.setCurriculum(cv);
-            es.setUniversidad(request.getParameter("universidad"));
-            estudios_bd.guardar(es);
+
             /*
             //agregar a la base/
             Complementarios com = new Complementarios();
