@@ -148,9 +148,9 @@
                         <div class="form-group">
                             <div class="input-group">
                                 <div class="input-group-addon">
-                                    <i class="glyphicon glyphicon-list-alt"></i>
+                                    <i class="glyphicon glyphicon-usd"></i>
                                 </div>
-                                <input type="number"  class="form-control" name="costo" required>
+                                <input type="number"  class="form-control" name="costo" placeholder="Costo"required>
                             </div>
                         </div>
                     </div>
@@ -165,14 +165,86 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="row">
                     <div class="col-md-12 col-xs-12 col-sm-12">
                         <div class="form-group">
                             <div class="input-group">
                                 <div class="input-group-addon">
-                                    <i class="glyphicon glyphicon-pencil"></i>
+                                    <i class="glyphicon glyphicon-user"></i>
                                 </div>
-                                <input type="text"  class="form-control" name="nacimiento" placeholder="Lugar de nacimiento">
+
+                                <select class="form-control" id="lugar" name="lugar">
+                                
+
+                                        <option value="Todo México">Todo México</option>
+
+                                        <option value="Aguascalientes">Aguascalientes</option>
+
+                                        <option value="Baja California">Baja California</option>
+
+                                        <option value="Baja California Sur">Baja California Sur</option>
+
+                                        <option value="Campeche">Campeche</option>
+
+                                        <option value="Coahuila de Zaragoza">Coahuila de Zaragoza</option>
+
+                                        <option value="Colima">Colima</option>
+
+                                        <option value="Chiapas">Chiapas</option>
+
+                                        <option value="Chihuahua">Chihuahua</option>
+
+                                        <option value="Distrito Federal">Distrito Federal</option>
+
+                                        <option value="Durango">Durango</option>
+
+                                        <option value="Guanajuato">Guanajuato</option>
+
+                                        <option value="Guerrero">Guerrero</option>
+
+                                        <option value="Hidalgo">Hidalgo</option>
+
+                                        <option value="Jalisco">Jalisco</option>
+
+                                        <option value="México">México</option>
+
+                                        <option value="Michoacán de Ocampo">Michoacán de Ocampo</option>
+
+                                        <option value="Morelos">Morelos</option>
+
+                                        <option value="Nayarit">Nayarit</option>
+
+                                        <option value="Nuevo León">Nuevo León</option>
+
+                                        <option value="Oaxaca">Oaxaca</option>
+
+                                        <option value="Puebla">Puebla</option>
+
+                                        <option value="Querétaro">Querétaro</option>
+
+                                        <option value="Quintana Roo">Quintana Roo</option>
+
+                                        <option value="San Luis Potosí">San Luis Potosí</option>
+
+                                        <option value="Sinaloa">Sinaloa</option>
+
+                                        <option value="Sonora">Sonora</option>
+
+                                        <option value="Tabasco">Tabasco</option>
+
+                                        <option value="Tamaulipas">Tamaulipas</option>
+
+                                        <option value="Tlaxcala">Tlaxcala</option>
+
+                                        <option value="Veracruz de Ignacio de la Llave">Veracruz de Ignacio de la Llave</option>
+
+                                        <option value="Yucatán">Yucatán</option>
+
+                                        <option value="Zacatecas">Zacatecas</option>
+
+          
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -213,8 +285,8 @@
                 <div class="row">
                     <div class="col-md-12 col-xs-12 col-sm-12">
                         <div class="form-group">
-                            <div class="input-group">
-                                <i>Fecha de inicio de estudios</i>
+                             <div class="input-group">
+                                <label> Fecha inicio: Estudios Licenciatura </label>
                             </div>
                         </div>
                     </div>
@@ -235,7 +307,7 @@
                     <div class="col-md-12 col-xs-12 col-sm-12">
                         <div class="form-group">
                             <div class="input-group">
-                                <i>Fecha de finalización de estudios</i>
+                               <label> Fecha fin: Estudios Licenciatura </label>
                             </div>
                         </div>
                     </div>
@@ -301,7 +373,7 @@
                     <div class="col-md-12 col-xs-12 col-sm-12">
                         <div class="form-group">
                             <div class="input-group">
-                                <i>Fecha de inicio de trabajo</i>
+                                <label>Fecha de inicio de trabajo</label>
                             </div>
                         </div>
                     </div>
@@ -322,7 +394,7 @@
                     <div class="col-md-12 col-xs-12 col-sm-12">
                         <div class="form-group">
                             <div class="input-group">
-                                <i>Fecha de finalización de trabajo</i>
+                                <label>Fecha de finalización de trabajoi</label>
                             </div>
                         </div>
                     </div>

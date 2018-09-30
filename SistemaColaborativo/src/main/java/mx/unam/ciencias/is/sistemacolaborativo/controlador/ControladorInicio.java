@@ -33,7 +33,7 @@ public class ControladorInicio {
     }
     
         @RequestMapping(value = "/registrarProfesor", method = RequestMethod.GET)
-    public String profesors() {
+    public String profesor() {
         return "registerProfesor";
     }
     
