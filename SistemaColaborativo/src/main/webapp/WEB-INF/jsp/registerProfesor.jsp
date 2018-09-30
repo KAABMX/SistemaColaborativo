@@ -1,7 +1,7 @@
 <%-- 
     Document   : registerProfesor
     Created on : 16/09/2018, 01:03:11 PM
-    Author     : hectorsama
+    Author     : hectorsama, luis
 --%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -265,7 +265,7 @@
                                 <div class="input-group-addon">
                                     <i class="glyphicon glyphicon-pencil"></i>
                                 </div>
-                                <input type="text"  class="form-control" name="estudios" placeholder="Estudios" required>
+                                <input type="text"  class="form-control" id="estudios"name="estudios" placeholder="Estudios" required>
                             </div>
                         </div>
                     </div>
