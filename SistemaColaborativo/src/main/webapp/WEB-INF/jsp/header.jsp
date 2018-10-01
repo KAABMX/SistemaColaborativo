@@ -56,6 +56,7 @@
                             <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Asesores</a>
                             <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Información</a>
                             <a class="mdl-navigation__link mdl-typography--text-uppercase" href="${pageContext.request.contextPath}/opcion">Registrarse</a><!--Quitarse al estar logueado en el sistema-->
+                            <a class="mdl-navigation__link mdl-typography--text-uppercase" href="${pageContext.request.contextPath}/loggea">Iniciar Sesión</a><!--Quitarse al estar logueado en el sistema-->
                         </nav>
                     </div>
                     <span class="android-mobile-title mdl-layout-title">

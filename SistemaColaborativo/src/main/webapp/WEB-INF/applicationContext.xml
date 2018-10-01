@@ -74,7 +74,7 @@
         <!-- toda peticion con el texto /sesion/ antes de el noombre de la peticion
         solo los que iniciaron sesion pueden acceder -->
         <security:intercept-url pattern="/sesion/*" access="isAuthenticated()" />
-        <security:form-login login-page="/"
+        <security:form-login login-page="/logeo"
                              authentication-failure-url="/login_error?error=1"
                              default-target-url="/sesion/inicioU"
                              always-use-default-target="true"/>
@@ -97,4 +97,8 @@
     
     </beans>
     
-</beans>    
+</beans>
+
+
+
+      

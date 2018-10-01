@@ -19,18 +19,20 @@
 <hgroup>
   <h1>Bienvenido</h1>
 </hgroup>
-<form>
-  <div class="group">
-    <input type="text"><span class="highlight"></span><span class="bar"></span>
-    <label>Email</label>
-  </div>
-  <div class="group">
-    <input type="email"><span class="highlight"></span><span class="bar"></span>
-    <label>Contraseña</label>
-  </div>
-  <button type="button" class="button buttonBlue">Ingresa
-    <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
-  </button>
-</form>
-<BR/>
+                <div class="login">
+                 <form action="${pageContext.request.contextPath}/login" method="POST" class="login-form">
+              <p><input type="text" name="username" value="" placeholder="Correo"></p>
+              <p><input type="password" name="password" value="" placeholder="Contraseña"></p>
+              <p class="remember_me">
+                <label>
+                  <input type="checkbox" name="remember_me" id="remember_me">
+                 ¡No me olvides!
+                </label>
+
+              </p>
+              <button class="btn btn-primary tn-lg btn-block" id="Login" type="" style="width: 100%">       Login        </button>
+              <!--<p class="submit"><input type="submit" name="commit" value="Login"></p>-->
+
+            </form>
+              </div>
 </html>

@@ -38,26 +38,31 @@ public class ControladorInicio {
 
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    @RequestMapping(value = "/loggea", method = RequestMethod.GET)
     public String login() {
         return "login";
 
     }
 
-    @RequestMapping(value = "/loggea", method = RequestMethod.GET)
-    public String loggea() {
-        return "index";
+    @RequestMapping(value = "/loggear", method = RequestMethod.GET)
+    public String loggea(HttpServletRequest request) {
+         if (request.isUserInRole("ROLE_ADMIN")) {
+            return "redirect:/sesion/inicioU";
+        }
 
+        return "indexusuario";
+       
     }
 
     //En caso de que sea unerror
     @RequestMapping(value = "/login_error")
     public ModelAndView fallo(HttpServletRequest request, ModelMap model) {
-        if (request.isUserInRole("ROLE_ADMIN")) {
+          if (request.isUserInRole("ROLE_ADMIN")) {
             return new ModelAndView("redirect:/sesion/inicioU");
         }
 
         return new ModelAndView("index", model);
+       
     }
 
     @RequestMapping(value = "/sesion/inicioU", method = RequestMethod.GET)
