@@ -89,8 +89,8 @@ public class ControladorProfesor {
             if (uni != null && uni.equals("on")) {
                 hab += "universidad,";
             }
-            if(hab.length()!= 0){
-                hab = hab.substring(0,hab.length()-1);
+            if (hab.length() != 0) {
+                hab = hab.substring(0, hab.length() - 1);
             }
             p.setNiveles_educativos(hab);
             //agregar a la base
@@ -104,22 +104,22 @@ public class ControladorProfesor {
             Estudios es = new Estudios();
             String fecha_inicio = request.getParameter("fecha_inicio");
             String fecha_fin = request.getParameter("fecha_fin");
-            String estudio=request.getParameter("estudios");
+            String estudio = request.getParameter("estudios");
+            es.setCurriculum(cv);
             //Si no "dd/MM/yyyy"
-            Date startDate=new SimpleDateFormat("dd/MM/yyyy hh:mm:ss").parse(fecha_inicio);
-            Date finalDate=new SimpleDateFormat("dd/MM/yyyy hh:mm:ss").parse(fecha_fin);
+            Date startDate = new SimpleDateFormat("yyyy-MM-dd").parse(fecha_inicio);
+            Date finalDate = new SimpleDateFormat("yyyy-MM-dd").parse(fecha_fin);
             es.setFecha_inicio(startDate);
             es.setFecha_fin(finalDate);
             es.setUniversidad(request.getParameter("universidad"));
             estudios_bd.guardar(es);
-            
 
             Experiencia exp = new Experiencia();
             exp.setEmpresa(request.getParameter("empresa"));
             String fecha_inicio_experiencia = request.getParameter("fecha_inicio");
             String fecha_fin_experiencia = request.getParameter("fecha_fin");
-            Date startDateexp=new SimpleDateFormat("dd/MM/yyyy hh:mm:ss").parse(fecha_inicio_experiencia);
-            Date finalDateexp=new SimpleDateFormat("dd/MM/yyyy hh:mm:ss").parse(fecha_fin_experiencia);
+            Date startDateexp = new SimpleDateFormat("yyyy-MM-dd").parse(fecha_inicio_experiencia);
+            Date finalDateexp = new SimpleDateFormat("yyyy-MM-dd").parse(fecha_fin_experiencia);
             exp.setFecha_inicio(startDateexp);
             exp.setFecha_fin(finalDateexp);
             exp.setCurriculum(cv);
