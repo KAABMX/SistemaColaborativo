@@ -5,7 +5,7 @@
  */
 package mx.unam.ciencias.is.sistemacolaborativo.mapeobd;
 
-import java.sql.Date;
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,7 +17,7 @@ import javax.persistence.Table;
 
 /**
  *
- * @author Moctezuma19
+ * @author Moctezuma19, luis
  */
 @Entity
 @Table(name = "Experiencia")

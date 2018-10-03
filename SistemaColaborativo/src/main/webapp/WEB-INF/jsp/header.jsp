@@ -17,8 +17,8 @@
         <link rel="stylesheet"  type = "text/css" href="<c:url value="/css/styles.css"/>"/>
         <link rel="stylesheet" type="text/css" href="<c:url value="/css/register.css"/>"> 
         <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
         <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>      
         <style>
             #view-source {
                 position: fixed;
@@ -56,6 +56,7 @@
                             <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Asesores</a>
                             <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Información</a>
                             <a class="mdl-navigation__link mdl-typography--text-uppercase" href="${pageContext.request.contextPath}/opcion">Registrarse</a><!--Quitarse al estar logueado en el sistema-->
+                            <a class="mdl-navigation__link mdl-typography--text-uppercase" href="${pageContext.request.contextPath}/loggea">Iniciar Sesión</a><!--Quitarse al estar logueado en el sistema-->
                         </nav>
                     </div>
                     <span class="android-mobile-title mdl-layout-title">
