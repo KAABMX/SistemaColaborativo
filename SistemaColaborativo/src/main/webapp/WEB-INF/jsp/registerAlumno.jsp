@@ -79,14 +79,14 @@ Author     : hectorsama
                                         <div class="input-group-addon">
                                             <i class="	glyphicon glyphicon-warning-sign"></i>
                                         </div>
-                                        <input type="password" class="form-control"  name="contrasenya" id="contrasenya"  placeholder="Contraseña" required/>
+                                        <input type="password" minlength = 8 class="form-control"  name="contrasenya" id="contrasenya"  placeholder="Contraseña (Mínimo 8 caracteres)" required/>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         
                         
-                                                                        <div class="row">
+                        <div class="row">
                             <div class="col-md-12 col-xs-12 col-sm-12">
                                 <div class="form-group">
                                     <div class="input-group">
@@ -94,6 +94,9 @@ Author     : hectorsama
                                             <i class="	glyphicon glyphicon-warning-sign"></i>
                                         </div>
                                         <input type="password" class="form-control"  name="confirm" id="confirm"  placeholder=" Repetir Contraseña" required/>
+                                    </div>
+                                    <div align = "center">
+                                        <span id="pwmatch" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> ¿Coinciden?
                                     </div>
                                 </div>
                             </div>
@@ -106,7 +109,7 @@ Author     : hectorsama
                                         <div class="input-group-addon">
                                             <i class="glyphicon glyphicon-phone"></i>
                                         </div>
-                                        <input type="number" minlength="10" maxlength="12" class="form-control" name="telefono" id="telefono" placeholder="Celular">
+                                        <input type="number" minlength=10 maxlength=12 class="form-control" name="telefono" id="telefono" placeholder="Celular">
                                     </div>
                                 </div>
                             </div>
@@ -120,7 +123,7 @@ Author     : hectorsama
                                             <i class="glyphicon glyphicon-user"></i>
                                         </div>
                                   
-                                        <select class="form-control" id="sexo" name="sexo" placeholder="Sexo">
+                                        <select class="form-control" id="sexo" name="sexo" >
                                             <option>Femenino</option>
                                             <option>Masculino</option>
                                         </select>
@@ -132,11 +135,12 @@ Author     : hectorsama
                         <div class="row">
                             <div class="col-md-12 col-xs-12 col-sm-12">
                                 <div class="form-group">
+                                    <label for="nivel">Nivel Academico:</label>
                                     <div class="input-group">
+                                        
                                         <div class="input-group-addon">
                                             <i class="glyphicon glyphicon-user"></i>
-                                        </div>
-                                        <label for="nivel">Nivel Academico:</label>
+                                        </div> 
                                         <select class="form-control" id="nivel" name="nivel">
                                             <option>Primaria</option>
                                             <option>Secundaria</option>

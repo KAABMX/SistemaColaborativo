@@ -108,7 +108,7 @@ public class ComplementariosDAO {
      *
      * @return la lista que contiene a todos los usuarios de la base de datos
      */
-    public List<Complementarios> getExperiencia() {
+    public List<Complementarios> getComplementarios() {
         List<Complementarios> result = null;
         Session session = sessionFactory.openSession();
         Transaction tx = null;
@@ -129,7 +129,7 @@ public class ComplementariosDAO {
         return result;
     }
 
-    public Complementarios getExperiencia(int pk_id_complementarios) {
+    public Complementarios getComplementarios(int pk_id_complementarios) {
         Complementarios result = null;
         Session s = sessionFactory.openSession();
         Transaction tx = null;
