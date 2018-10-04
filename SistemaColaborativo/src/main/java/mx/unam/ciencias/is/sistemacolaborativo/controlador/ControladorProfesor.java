@@ -67,65 +67,65 @@ public class ControladorProfesor {
             usuario_bd.guardar(usuario);
             Profesor p = new Profesor();
             //agregar costo
-            p.setCosto_x_hora(request.getParameter("costo"));
+            //p.setCosto_x_hora(request.getParameter("costo"));
             p.setUsuario(usuario);
-            p.setHabilidades(request.getParameter("habilidades"));
+            //p.setHabilidades(request.getParameter("habilidades"));
             //varios niveles
 
-            String prim = request.getParameter("primaria");
-            String sec = request.getParameter("secundaria");
-            String bach = request.getParameter("bachillerato");
-            String uni = request.getParameter("universidad");
-            String hab = "";
-            if (prim != null && prim.equals("on")) {
-                hab += "primaria,";
-            }
-            if (sec != null && sec.equals("on")) {
-                hab += "secundaria,";
-            }
-            if (bach != null && bach.equals("on")) {
-                hab += "bachillerato,";
-            }
-            if (uni != null && uni.equals("on")) {
-                hab += "universidad,";
-            }
-            if (hab.length() != 0) {
-                hab = hab.substring(0, hab.length() - 1);
-            }
-            p.setNiveles_educativos(hab);
-            //agregar a la base
-            profesor_bd.guardar(p);
-            //borrar y ver como se guardan las fechas
-            Curriculum cv = new Curriculum();
-            cv.setProfesor(p);
-            cv.setLugar_de_nacimiento(request.getParameter("lugar"));
-            cv_bd.guardar(cv);
-            //agregar a la base
-            Estudios es = new Estudios();
-            String fecha_inicio = request.getParameter("fecha_inicio");
-            String fecha_fin = request.getParameter("fecha_fin");
-            String estudio = request.getParameter("estudios");
-            es.setCurriculum(cv);
-            //Si no "dd/MM/yyyy"
-            Date startDate = new SimpleDateFormat("yyyy-MM-dd").parse(fecha_inicio);
-            Date finalDate = new SimpleDateFormat("yyyy-MM-dd").parse(fecha_fin);
-            es.setFecha_inicio(startDate);
-            es.setFecha_fin(finalDate);
-            es.setUniversidad(request.getParameter("universidad"));
-            estudios_bd.guardar(es);
+            //String prim = request.getParameter("primaria");
+            //String sec = request.getParameter("secundaria");
+            //String bach = request.getParameter("bachillerato");
+            //String uni = request.getParameter("universidad");
+            //String hab = "";
+            //if (prim != null && prim.equals("on")) {
+            //    hab += "primaria,";
+            //}
+            //if (sec != null && sec.equals("on")) {
+//                hab += "secundaria,";
+//////            }
+  //          if (bach != null && bach.equals("on")) {
+//                hab += "bachillerato,";
+//            }
+//            if (uni != null && uni.equals("on")) {
+//                hab += "universidad,";
+//            }
+//            if (hab.length() != 0) {
+//                hab = hab.substring(0, hab.length() - 1);
+//            }
+//            p.setNiveles_educativos(hab);
+//            //agregar a la base
+              profesor_bd.guardar(p);
+//            //borrar y ver como se guardan las fechas
+//            Curriculum cv = new Curriculum();
+//            cv.setProfesor(p);
+//            cv.setLugar_de_nacimiento(request.getParameter("lugar"));
+//            cv_bd.guardar(cv);
+//            //agregar a la base
+//            Estudios es = new Estudios();
+//            String fecha_inicio = request.getParameter("fecha_inicio");
+//            String fecha_fin = request.getParameter("fecha_fin");
+//            String estudio = request.getParameter("estudios");
+//            es.setCurriculum(cv);
+//            //Si no "dd/MM/yyyy"
+            //Date startDate = new SimpleDateFormat("yyyy-MM-dd").parse(fecha_inicio);
+            //Date finalDate = new SimpleDateFormat("yyyy-MM-dd").parse(fecha_fin);
+            //es.setFecha_inicio(startDate);
+            //es.setFecha_fin(finalDate);
+            //es.setUniversidad(request.getParameter("universidad"));
+            //estudios_bd.guardar(es);
 
-            Experiencia exp = new Experiencia();
-            exp.setEmpresa(request.getParameter("empresa"));
-            String fecha_inicio_experiencia = request.getParameter("fecha_inicio");
-            String fecha_fin_experiencia = request.getParameter("fecha_fin");
-            Date startDateexp = new SimpleDateFormat("yyyy-MM-dd").parse(fecha_inicio_experiencia);
-            Date finalDateexp = new SimpleDateFormat("yyyy-MM-dd").parse(fecha_fin_experiencia);
-            exp.setFecha_inicio(startDateexp);
-            exp.setFecha_fin(finalDateexp);
-            exp.setCurriculum(cv);
-            exp.setFuncion_trabajo(request.getParameter("funcion_trabajo"));
-            exp.setTarea_trabajo(request.getParameter("tarea_trabajo"));
-            experiencia_bd.guardar(exp);
+//            Experiencia exp = new Experiencia();
+            //exp.setEmpresa(request.getParameter("empresa"));
+            //String fecha_inicio_experiencia = request.getParameter("fecha_inicio");
+////            String fecha_fin_experiencia = request.getParameter("fecha_fin");
+//            Date startDateexp = new SimpleDateFormat("yyyy-MM-dd").parse(fecha_inicio_experiencia);
+//            Date finalDateexp = new SimpleDateFormat("yyyy-MM-dd").parse(fecha_fin_experiencia);
+//            exp.setFecha_inicio(startDateexp);
+//            exp.setFecha_fin(finalDateexp);
+            //exp.setCurriculum(cv);
+            //exp.setFuncion_trabajo(request.getParameter("funcion_trabajo"));
+            //exp.setTarea_trabajo(request.getParameter("tarea_trabajo"));
+            //experiencia_bd.guardar(exp);
 
             /*
             //agregar a la base/
