@@ -64,6 +64,7 @@ public class ControladorProfesor {
             //InputStream foto = new FileInputStream(request.getParameter("foto"));
             //convertir la foto a bytes y agregarlo al usuario
             usuario.setSexo(request.getParameter("sexo"));
+            usuario.setRol("ROL_PROFESOR");
             usuario_bd.guardar(usuario);
             Profesor p = new Profesor();
             //agregar costo
