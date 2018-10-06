@@ -49,7 +49,7 @@ public class ControladorAlumno {
             //InputStream foto = new FileInputStream(request.getParameter("foto"));
             //convertir la foto a bytes y agregarlo al usuario
             usuario.setSexo(request.getParameter("sexo"));
-            usuario.setRol("ROL_ESTUDIANTE");
+            usuario.setRol("ROLE_ESTUDIANTE");
             usuario_bd.guardar(usuario);
             //hasta aqui se crea el usuario
             //agregar a la base

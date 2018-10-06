@@ -19,51 +19,62 @@ import org.springframework.web.servlet.ModelAndView;
 public class ControladorSesion {
 
     @Autowired
-    UsuarioDAO Usuario_db;
+    UsuarioDAO usuario_db;
 
-    @RequestMapping(value = "/loggear", method = RequestMethod.GET)
-    public String loggea(HttpServletRequest request) {
-        if (request.isUserInRole("ROL_ESTUDIANTE")) {
-            return "redirect:/sesion/inicioU";
-        }
-        if (request.isUserInRole("ROL_PROFESOR")) {
-            return "redirect:/sesion/inicioP";
-        }
-
+    @RequestMapping(value = "/inicio", method = RequestMethod.GET)
+    public String loggea(HttpServletRequest request,Principal principal) {
+       // System.out.println(principal.getName()+principal.toString());
+        
+        //Usuario u = usuario_db.getUsuario(principal.getName());
+        //System.out.println(u.getRol()+request.isUserInRole("ROLE_ESTUDIANTE"));
+        if (request.isUserInRole("ROLE_ESTUDIANTE")) {
+            return "redirect:/alumno/inicio";
+        } 
+       if (request.isUserInRole("ROLE_PROFESOR")) {
+           return "redirect:/profesor/inicio";
+        } 
         return "index";
 
+
     }
 
-    @RequestMapping(value = "/login_error")
-    public ModelAndView fallo(HttpServletRequest request, ModelMap model) {
-        if (request.isUserInRole("ROLE_ESTUDIANTE")) {
-            return new ModelAndView("redirect:/sesion/inicioU");
+    
+        @RequestMapping(value = "/login_error")
+    public ModelAndView fallop(HttpServletRequest request, ModelMap model) {
+           if (request.isUserInRole("ROLE_ESTUDIANTE")) {
+            return new ModelAndView("redirect:/alumno/inicio");
         }
         if (request.isUserInRole("ROLE_PROFESOR")) {
-            return new ModelAndView("redirect:/sesion/inicioU");
+            return new ModelAndView("redirect:/profesor/inicio");
         }
 
-        return new ModelAndView("inicio", model);
+        return new ModelAndView("index", model);
     }
 
-    @RequestMapping(value = "/sesion/inicioU", method = RequestMethod.GET)
+
+    @RequestMapping(value = "/alumno/inicio", method = RequestMethod.GET)
     public ModelAndView inicioU(HttpServletRequest request, ModelMap model, Principal principal) {
 
         String u = principal.getName();
-        Usuario usuario = Usuario_db.getUsuario(u);
+        Usuario usuario = usuario_db.getUsuario(u);
         model.addAttribute("username", u);
         return new ModelAndView("indexusuario", model);
 
     }
 
-    @RequestMapping(value = "/sesion/inicioP", method = RequestMethod.GET)
+    @RequestMapping(value = "/profesor/inicio", method = RequestMethod.GET)
     public ModelAndView inicioP(HttpServletRequest request, ModelMap model, Principal principal) {
 
         String u = principal.getName();
-        Usuario usuario = Usuario_db.getUsuario(u);
+        Usuario usuario = usuario_db.getUsuario(u);
         model.addAttribute("username", u);
-        return new ModelAndView("indexusuario", model);
+        return new ModelAndView("inicioProfesor", model);
 
+    }
+    
+    @RequestMapping(value = "/error403", method = RequestMethod.GET)
+    public String error403(){
+        return "error403";
     }
 
 }

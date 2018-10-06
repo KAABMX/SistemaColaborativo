@@ -1,4 +1,4 @@
-Document   : Login
+ <%--Document   : Login
 Created on : 30/09/2018, 03:57:50 PM
 Author     : hectorsama, luis
 --%>
@@ -23,15 +23,8 @@ Author     : hectorsama, luis
             <p><input type="text" name="username" value="" placeholder="Correo"></p>
             <p><input type="password" name="password" value="" placeholder="Contraseña"></p>
             <p class="remember_me">
-                <label>
-                    <input type="checkbox" name="remember_me" id="remember_me">
-                    ¡No me olvides!
-                </label>
-
             </p>
-            <button class="btn btn-primary tn-lg btn-block" id="Login" type="" style="width: 100%">       Login        </button>
-            <!--<p class="submit"><input type="submit" name="commit" value="Login"></p>-->
-
+            <button class="btn btn-primary tn-lg btn-block" id="Login" type="" style="width: 100%">Iniciar Sesión</button>
         </form>
     </div>
 </html>
