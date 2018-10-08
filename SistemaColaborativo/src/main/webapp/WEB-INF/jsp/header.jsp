@@ -14,6 +14,11 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.min.css">
+                
+
+        <link rel="stylesheet" href="//storage.googleapis.com/code.getmdl.io/1.0.1/material.teal-red.min.css" />
+        <script src="//storage.googleapis.com/code.getmdl.io/1.0.1/material.min.js"></script>
+        
         <link rel="stylesheet"  type = "text/css" href="<c:url value="/css/styles.css"/>"/>
         <link rel="stylesheet" type="text/css" href="<c:url value="/css/register.css"/>"> 
         <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">

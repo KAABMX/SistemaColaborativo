@@ -10,109 +10,71 @@
         <div class="row">
             <div class="well center-block">
                 <div class="well-header">
-                    <h3 class="text-center text-success"> Actualzar datos </h3>
+                    <center><h1> Actualizar datos </h1></center>
                     <hr>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-12 col-sm-12 col-xs-12">
-                        <div class="form-group">
-                            <div class="input-group">
-                                <div class="input-group-addon">
-                                    <i class="glyphicon glyphicon-user"></i>
-                                </div>
-                                <input type="text" placeholder="Nombre" name="nombre" id="nombre" class="form-control" required>
-
-                            </div>
-                        </div>
+                </div>                                            
+                <form action="#">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label center-block col-xs-12">
+                        <input class="mdl-textfield__input" type="text" id="nombre" name="nombre" />
+                        <label class="mdl-textfield__label" for="nombre">                            
+                            Nombre
+                        </label>
                     </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <div class="form-group">
-                            <div class="input-group">
-                                <div class="input-group-addon">
-                                    <i class="glyphicon glyphicon-user"></i>
-                                </div>
-                                <input type="text" placeholder="Apellido Paterno" name="paterno" id="paterno" class="form-control" required>
-                            </div>
-                        </div>
+                </form>
+                <form action="#">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label center-block col-xs-12">
+                        <input class="mdl-textfield__input" type="text" id="paterno" name="paterno" />
+                        <label class="mdl-textfield__label" for="paterno">                            
+                            Apellido Paterno
+                        </label>
                     </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <div class="form-group">
-                            <div class="input-group">
-                                <div class="input-group-addon">
-                                    <i class="glyphicon glyphicon-user"></i>
-                                </div>
-                                <input type="text" placeholder="Apellido Materno" name="materno"  id="materno" class="form-control" required>
-                            </div>
-                        </div>
+                </form>
+                <form action="#">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label center-block col-xs-12">
+                        <input class="mdl-textfield__input" type="text" id="materno" name="materno"/>
+                        <label class="mdl-textfield__label" for="materno">                            
+                            Apellido Materno
+                        </label>
                     </div>
-                </div>
+                </form>
+
+
+                <form action="#">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label center-block col-xs-12">
+                        <input class="mdl-textfield__input" type="email" id="correo" name="correo"/>
+                        <label class="mdl-textfield__label" for="correo">                            
+                            Correo
+                        </label>
+                        <span class="mdl-textfield__error">Por favor, usa un correo.</span>
+                    </div>
+                </form>
+
+                <form action="#">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label center-block col-xs-12">
+                        <input class="mdl-textfield__input" type="password" id="contrasenya" name="contrasenya" 
+                               pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"/>                        
+                        <label class="mdl-textfield__label" for="contrasenya">                            
+                            Contraseña
+                        </label>
+                        <span class="mdl-textfield__error">Contraseña (Mínimo 8 caracteres).</span>
+                    </div>
+                </form>
+
+
+                <form action="#">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label center-block col-xs-12">
+                        <input class="mdl-textfield__input" type="number" id="telefono" name="telefono" />                        
+                        <label class="mdl-textfield__label" for="telefono">                            
+                            Celular
+                        </label>
+                        <span class="mdl-textfield__error">Usa un telefono.</span>
+                    </div>
+                </form>               
 
                 <div class="row">
                     <div class="col-md-12 col-xs-12 col-sm-12">
                         <div class="form-group">
-                            <div class="input-group">
-                                <div class="input-group-addon">
-                                    <i class="glyphicon glyphicon-envelope"></i>
-                                </div>
-                                <input type="email" class="form-control"  name="correo" id="correo"  placeholder="Email" required/>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-12 col-xs-12 col-sm-12">
-                        <div class="form-group">
-                            <div class="input-group">
-                                <div class="input-group-addon">
-                                    <i class="	glyphicon glyphicon-warning-sign"></i>
-                                </div>
-                                <input type="password" minlength = 8 class="form-control"  name="contrasenya" id="contrasenya"  placeholder="Contraseña (Mínimo 8 caracteres)" required/>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="row">
-                    <div class="col-md-12 col-xs-12 col-sm-12">
-                        <div class="form-group">
-                            <div class="input-group">
-                                <div class="input-group-addon">
-                                    <i class="	glyphicon glyphicon-warning-sign"></i>
-                                </div>
-                                <input type="password" class="form-control"  name="confirm" id="confirm"  placeholder=" Repetir Contraseña" required/>
-                            </div>
-                            <div align = "center">
-                                <span id="pwmatch" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> ¿Coinciden?
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-12 col-xs-12 col-sm-12">
-                        <div class="form-group">
-                            <div class="input-group">
-                                <div class="input-group-addon">
-                                    <i class="glyphicon glyphicon-phone"></i>
-                                </div>
-                                <input type="number" minlength=10 maxlength=12 class="form-control" name="telefono" id="telefono" placeholder="Celular">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-12 col-xs-12 col-sm-12">
-                        <div class="form-group">
+                            <label for="nivel">Sexo:</label>
                             <div class="input-group">
                                 <div class="input-group-addon">
                                     <i class="glyphicon glyphicon-user"></i>
@@ -147,31 +109,58 @@
                     </div>
                 </div>
 
-                <div class="input-group-addon">
-                    <i class="glyphicon glyphicon-pencil"></i>
-                    <label for="nivel">Materias de interes:</label>
+                <div class="well-header">
+                    <center><h3> Materias de interes </h3></center>
+                    <hr>
                 </div>
 
-                <div class="checkbox">
-                    <label><input type="checkbox"  name="matematicas" id="matematicas">Matemáticas</label>
-                </div>
+                <ul class="demo-list-control mdl-list">
+                    <li class="mdl-list__item">
+                        <span class="mdl-list__item-primary-content">      
+                            Matemáticas
+                        </span>
+                        <span class="mdl-list__item-secondary-action">
+                            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="matematicas">
+                                <input type="checkbox" class="mdl-checkbox__input" name="matematicas" id="matematicas"/>
+                            </label>
+                        </span>
+                    </li>
+                    <li class="mdl-list__item">
+                        <span class="mdl-list__item-primary-content">      
+                            Español
+                        </span>
+                        <span class="mdl-list__item-secondary-action">
+                            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="espanol">
+                                <input type="checkbox" class="mdl-checkbox__input" name="espanol" id="espanol" />
+                            </label>
+                        </span>
+                    </li>
+                    <li class="mdl-list__item">
+                        <span class="mdl-list__item-primary-content">      
+                            Geografia
+                        </span>
+                        <span class="mdl-list__item-secondary-action">
+                            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="geografia">
+                                <input type="checkbox" class="mdl-checkbox__input" name="geografia" id="geografia"/>
+                            </label>
+                        </span>
+                    </li>
+                    <li class="mdl-list__item">
+                        <span class="mdl-list__item-primary-content">      
+                            Historia
+                        </span>
+                        <span class="mdl-list__item-secondary-action">
+                            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="historia">
+                                <input type="checkbox" class="mdl-checkbox__input" name="historia" id="historia"/>
+                            </label>
+                        </span>
+                    </li>
+                </ul>
 
-                <div class="checkbox">
-                    <label><input type="checkbox" name="espanol" id="espanol">Español</label>
-                </div>
 
-                <div class="checkbox">
-                    <label><input type="checkbox" name="geografia" id="geografia">Geografía</label>
-                </div>
-                <div class="checkbox">
-                    <label><input type="checkbox" name="historia" id="historia">Historia</label>
-                </div>
-
-                <div class="row widget">
-                    <div class="col-md-12 col-xs-12 col-sm-12">
-                        <button id="button"  class="btn btn-primary btn-lg btn-block login-button">Actualizar</button>
-                    </div>
-                </div>
+                <button id="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored " >
+                    Actualizar
+                </button>
             </div>
         </div>
     </div>
