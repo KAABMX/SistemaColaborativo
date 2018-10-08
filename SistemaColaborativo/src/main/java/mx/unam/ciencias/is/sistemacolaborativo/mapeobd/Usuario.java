@@ -17,27 +17,39 @@ import javax.persistence.Table;
  * @author hectorsama
  */
 @Entity
-@Table (name="Usuario")
+@Table(name = "Usuario")
 public class Usuario {
-@Id@GeneratedValue(strategy =GenerationType.IDENTITY )
-@Column(name="pk_id_usuario")
- private int pk_id_usuario;
- @Column (name="nombre")
- private String nombre;
- @Column (name="apellido_paterno")
- private String apellido_p;
- @Column (name="apellido_materno")
- private String apellido_m;
- @Column(name="correo")
- private String correo;
- @Column (name="foto")
- private byte[] foto;
- @Column(name="telefono")
- private String  telefono;
- @Column(name="sexo")
- private String sexo;
- @Column(name="contrasenia")
- private String contrasenia;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "pk_id_usuario")
+    private int pk_id_usuario;
+    @Column(name = "nombre")
+    private String nombre;
+    @Column(name = "apellido_paterno")
+    private String apellido_p;
+    @Column(name = "apellido_materno")
+    private String apellido_m;
+    @Column(name = "correo")
+    private String correo;
+    @Column(name = "foto")
+    private byte[] foto;
+    @Column(name = "telefono")
+    private String telefono;
+    @Column(name = "sexo")
+    private String sexo;
+    @Column(name = "contrasenia")
+    private String contrasenia;
+    @Column(name = "rol")
+    private String rol;
+
+    public String getRol() {
+        return rol;
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
+    }
 
     public String getContrasenia() {
         return contrasenia;
@@ -46,7 +58,6 @@ public class Usuario {
     public void setContrasenia(String contrasenia) {
         this.contrasenia = contrasenia;
     }
- 
 
     public int getPk_id_usuario() {
         return pk_id_usuario;
@@ -112,6 +123,4 @@ public class Usuario {
         this.sexo = sexo;
     }
 
-    
-    
 }
