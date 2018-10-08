@@ -107,6 +107,13 @@
                 <input class="mdl-textfield__input" type="number" id="number" name="costo_x_hora" required>
                 <label class="mdl-textfield__label" for="sample3">Costo por hora (MXN)</label>
             </div>
+            <div class="mdl-textfield mdl-js-textfield">
+                <input class="mdl-textfield__input" id="file" type="text" name="identificacion" style="left:0;" placeholder="Tu identificación" readonly>
+                <Label class="input-custom-file mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" style="right:0;background-color:#66b04f;">
+                    Subir
+                    <input type="file" id="boton" accept="image/jpg, image/png" style="display:none;">
+                </label>
+            </div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                 <i><label class="mdl-card__title">Niveles educativos de enseñanza</label></i>
             </div>
@@ -165,8 +172,8 @@
                 </ul>
             </div>
             <div class="mdl-card__actions" style="padding-bottom:30px;">
-                <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-js-ripple-effect" style="background-color:#66b04f;">
-                    <i class="material-icons">add</i>
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" style="background-color:#66b04f;width:70%;">
+                    Listo
                 </button>
             </div>
         </form>
