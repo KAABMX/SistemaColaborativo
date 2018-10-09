@@ -121,15 +121,16 @@ public class ControladorProfesor {
             hab = hab.substring(0, hab.length() - 1);
         }
         p.setNiveles_educativos(hab);
-        /*
+        
         try {
             Part file = request.getPart("file");
             InputStream is = file.getInputStream();
-            byte[] ident = IOUtils.toByteArray(is);
+            byte[] ident = new byte[is.available()];
+            is.read(ident);
             p.setIdentificacion(ident);
         } catch (Exception e) {
 
-        }*/
+        }
         //agregar a la base
         profesor_bd.actualizar(p);
         //borrar y ver como se guardan las fechas
