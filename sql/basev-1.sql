@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS `Sistema_colaborativo`.`usuario` (
   `correo` VARCHAR(45) NOT NULL,
   `nombre` VARCHAR(45) NOT NULL,
   `direccion` VARCHAR(45) NOT NULL,
-  `fecha_nacimiendo` DATE NOT NULL,
+  `fechaNacimiento` DATE NOT NULL,
   `activo` TINYINT(1) NOT NULL DEFAULT 1,
   `numero` INT NOT NULL,
   `username` VARCHAR(45) NOT NULL,
@@ -36,14 +36,14 @@ ENGINE = InnoDB;
 -- Table `Sistema_colaborativo`.`resena`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Sistema_colaborativo`.`resena` (
-  `comentario` MEDIUMTEXT NULL,
+  `comentario` VARCHAR(255) NULL,
   `calificacion` INT NOT NULL,
   `idResena` INT NOT NULL AUTO_INCREMENT,
-  `rIdUsuario` VARCHAR(45) NOT NULL,
+  `username` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`idResena`),
-  INDEX `r_idusuario_idx` (`rIdUsuario` ASC) VISIBLE,
+  INDEX `r_idusuario_idx` (`username` ASC) VISIBLE,
   CONSTRAINT `r_idusuario`
-    FOREIGN KEY (`rIdUsuario`)
+    FOREIGN KEY (`username`)
     REFERENCES `Sistema_colaborativo`.`usuario` (`username`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
@@ -55,10 +55,10 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Sistema_colaborativo`.`alumno` (
   `idAlumno` INT NOT NULL AUTO_INCREMENT,
-  `aIdUsuario` VARCHAR(45) NOT NULL,
+  `username` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`idAlumno`),
   CONSTRAINT `a_idUsuario`
-    FOREIGN KEY (`aIdUsuario`)
+    FOREIGN KEY (`username`)
     REFERENCES `Sistema_colaborativo`.`usuario` (`username`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
@@ -71,11 +71,11 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `Sistema_colaborativo`.`profesor` (
   `contratado` TINYINT(1) NOT NULL DEFAULT 1,
   `idProfesor` INT NOT NULL AUTO_INCREMENT,
-  `pIdUsuario` VARCHAR(45) NOT NULL,
+  `username` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`idProfesor`),
-  INDEX `idUsuario_idx` (`pIdUsuario` ASC) VISIBLE,
+  INDEX `idUsuario_idx` (`username` ASC) VISIBLE,
   CONSTRAINT `p_idUsuario`
-    FOREIGN KEY (`pIdUsuario`)
+    FOREIGN KEY (`username`)
     REFERENCES `Sistema_colaborativo`.`usuario` (`username`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
@@ -89,12 +89,12 @@ CREATE TABLE IF NOT EXISTS `Sistema_colaborativo`.`horario` (
   `dia` VARCHAR(20) NOT NULL,
   `horaInicio` TIME NOT NULL,
   `horaFin` TIME NOT NULL,
-  `disponible` TINYINT NOT NULL DEFAULT 1,
+  `disponible` TINYINT(1) NOT NULL DEFAULT 1,
   `idHorario` INT NOT NULL AUTO_INCREMENT,
-  `hIdProfesor` INT NOT NULL,
+  `idProfesor` INT NOT NULL,
   PRIMARY KEY (`idHorario`),
   CONSTRAINT `h_idProfesor`
-    FOREIGN KEY (`hIdProfesor`)
+    FOREIGN KEY (`idProfesor`)
     REFERENCES `Sistema_colaborativo`.`profesor` (`idProfesor`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
@@ -117,10 +117,10 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `Sistema_colaborativo`.`materia` (
   `materia` VARCHAR(45) NOT NULL,
   `idMateria` INT NOT NULL AUTO_INCREMENT,
-  `mIdNivel` INT NOT NULL,
+  `idNivel` INT NOT NULL,
   PRIMARY KEY (`idMateria`),
   CONSTRAINT `m_idNivel`
-    FOREIGN KEY (`mIdNivel`)
+    FOREIGN KEY (`idNivel`)
     REFERENCES `Sistema_colaborativo`.`nivel` (`idNivel`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
@@ -133,10 +133,10 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `Sistema_colaborativo`.`tema` (
   `tema` VARCHAR(45) NOT NULL,
   `idTema` INT NOT NULL AUTO_INCREMENT,
-  `tIdMateria` INT NOT NULL,
+  `idMateria` INT NOT NULL,
   PRIMARY KEY (`idTema`),
   CONSTRAINT `t_idMateria`
-    FOREIGN KEY (`tIdMateria`)
+    FOREIGN KEY (`idMateria`)
     REFERENCES `Sistema_colaborativo`.`materia` (`idMateria`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
@@ -148,28 +148,28 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Sistema_colaborativo`.`asesorar` (
   `idAsesorar` INT NOT NULL AUTO_INCREMENT,
-  `aIdHorario` INT NOT NULL,
-  `aIdTema` INT NOT NULL,
-  `aIdProfesor` INT NOT NULL,
-  `aIdAlumno` INT NOT NULL,
+  `idHorario` INT NOT NULL,
+  `idTema` INT NOT NULL,
+  `idProfesor` INT NOT NULL,
+  `idAlumno` INT NOT NULL,
   PRIMARY KEY (`idAsesorar`),
   CONSTRAINT `a_idHorario`
-    FOREIGN KEY (`aIdHorario`)
+    FOREIGN KEY (`idHorario`)
     REFERENCES `Sistema_colaborativo`.`horario` (`idHorario`)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
   CONSTRAINT `a_idTema`
-    FOREIGN KEY (`aIdTema`)
+    FOREIGN KEY (`idTema`)
     REFERENCES `Sistema_colaborativo`.`tema` (`idTema`)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
   CONSTRAINT `a_idProfesor`
-    FOREIGN KEY (`aIdProfesor`)
+    FOREIGN KEY (`idProfesor`)
     REFERENCES `Sistema_colaborativo`.`profesor` (`idProfesor`)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
   CONSTRAINT `a_idAlumno`
-    FOREIGN KEY (`aIdAlumno`)
+    FOREIGN KEY (`idAlumno`)
     REFERENCES `Sistema_colaborativo`.`alumno` (`idAlumno`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
@@ -181,28 +181,28 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Sistema_colaborativo`.`interesar` (
   `idInteresar` INT NOT NULL AUTO_INCREMENT,
-  `iIdNivel` INT NOT NULL,
-  `iIdMateria` INT NOT NULL,
-  `iIdTema` INT NOT NULL,
-  `iIdUsuario` VARCHAR(45) NOT NULL,
+  `idNivel` INT NOT NULL,
+  `idMateria` INT NOT NULL,
+  `idTema` INT NOT NULL,
+  `username` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`idInteresar`),
   CONSTRAINT `i_idNivel`
-    FOREIGN KEY (`iIdNivel`)
+    FOREIGN KEY (`idNivel`)
     REFERENCES `Sistema_colaborativo`.`nivel` (`idNivel`)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
   CONSTRAINT `i_idMateria`
-    FOREIGN KEY (`iIdMateria`)
+    FOREIGN KEY (`idMateria`)
     REFERENCES `Sistema_colaborativo`.`materia` (`idMateria`)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
   CONSTRAINT `i_idTema`
-    FOREIGN KEY (`iIdTema`)
+    FOREIGN KEY (`idTema`)
     REFERENCES `Sistema_colaborativo`.`tema` (`idTema`)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
   CONSTRAINT `i_idUsuario`
-    FOREIGN KEY (`iIdUsuario`)
+    FOREIGN KEY (`username`)
     REFERENCES `Sistema_colaborativo`.`usuario` (`username`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
@@ -217,10 +217,10 @@ CREATE TABLE IF NOT EXISTS `Sistema_colaborativo`.`tarjeta` (
   `numero` INT NOT NULL,
   `vencimiento` DATE NOT NULL,
   `idTarjeta` INT NOT NULL,
-  `tIdUsuario` VARCHAR(45) NOT NULL,
+  `username` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`idTarjeta`),
   CONSTRAINT `t_idUsuario`
-    FOREIGN KEY (`tIdUsuario`)
+    FOREIGN KEY (`username`)
     REFERENCES `Sistema_colaborativo`.`usuario` (`username`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
@@ -231,12 +231,12 @@ ENGINE = InnoDB;
 -- Table `Sistema_colaborativo`.`denuncia`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Sistema_colaborativo`.`denuncia` (
-  `motivo` MEDIUMTEXT NOT NULL,
+  `motivo` VARCHAR(255) NOT NULL,
   `idDenuncia` INT NOT NULL AUTO_INCREMENT,
-  `dIdUsuario` VARCHAR(45) NOT NULL,
+  `username` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`idDenuncia`),
   CONSTRAINT `d_idUsuario`
-    FOREIGN KEY (`dIdUsuario`)
+    FOREIGN KEY (`username`)
     REFERENCES `Sistema_colaborativo`.`usuario` (`username`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
