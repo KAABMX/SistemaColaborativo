@@ -53,8 +53,5 @@ public class ControladorInicio {
     public String profesor() {
         return "registerProfesor";
     }
-    @RequestMapping(value = "/curriculum", method = RequestMethod.GET)
-    public String cv() {
-        return "curriculum";
-    }
+
 }

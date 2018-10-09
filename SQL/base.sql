@@ -34,10 +34,11 @@ FOREIGN KEY (fk_id_alumno)
 CREATE TABLE Profesor(
 pk_id_profesor INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 fk_id_usuario INT NOT NULL,
-identificacion_identidad MEDIUMBLOB,
+identificacion MEDIUMBLOB,
 costo_x_hora VARCHAR(120),
 niveles_educativos VARCHAR(120),
 habilidades VARCHAR(320),
+estaActivo BOOLEAN DEFAULT false,
 	FOREIGN KEY (fk_id_usuario) 
 	REFERENCES Usuario(pk_id_usuario)
 	ON DELETE CASCADE
@@ -47,6 +48,7 @@ CREATE TABLE Curriculum(
 pk_id_cv INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 fk_id_profesor INT NOT NULL,
 lugar_de_nacimiento VARCHAR(90),
+identificacion MEDIUMBLOB,
 FOREIGN KEY (fk_id_profesor) 
 	REFERENCES Profesor(pk_id_profesor)
 	ON DELETE CASCADE
