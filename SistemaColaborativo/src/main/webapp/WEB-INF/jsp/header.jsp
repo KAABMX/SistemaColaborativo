@@ -29,6 +29,9 @@
                 margin-bottom: 40px;
                 z-index: 900;
             }
+            label.input-custom-file input[type=file] {
+                display: none;
+            }
         </style>
     </head>
     <body>
