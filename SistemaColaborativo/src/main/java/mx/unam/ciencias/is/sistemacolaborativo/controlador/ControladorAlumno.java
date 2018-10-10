@@ -97,7 +97,7 @@ public class ControladorAlumno {
         } catch (Exception e) {
 
         }
-        return new ModelAndView("index", model);
+        return new ModelAndView("perfil", model);
 
     }
 }

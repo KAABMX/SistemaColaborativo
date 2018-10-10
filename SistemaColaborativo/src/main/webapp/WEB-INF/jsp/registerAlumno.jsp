@@ -171,6 +171,7 @@ Author     : hectorsama
                         <div class="row widget">
                             <div class="col-md-12 col-xs-12 col-sm-12">
                                 <button id="button"  class="btn btn-primary btn-lg btn-block login-button">Registrate</button>
+                               
                             </div>
                         </div>
                     </div>

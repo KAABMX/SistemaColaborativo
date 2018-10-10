@@ -20,6 +20,6 @@ public class ControladorPerfilAlumno {
       */
     @RequestMapping(value="/peticion3", method = RequestMethod.GET)
     public String registroGET(){
-        return "VistaDenuncia";
+        return "perfil";
     }
 }
