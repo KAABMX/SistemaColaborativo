@@ -33,7 +33,7 @@ public class ControladorAlumno {
     private AlumnoDAO alumno_bd;
     @Autowired
     private InteresAcademicoDAO interes_bd;
-    private int idUsuario = 1;
+    private int idUsuario = 8;
 
     @RequestMapping(value = "/registra", method = RequestMethod.POST)
     public ModelAndView peticion(HttpServletRequest request, ModelMap model) {

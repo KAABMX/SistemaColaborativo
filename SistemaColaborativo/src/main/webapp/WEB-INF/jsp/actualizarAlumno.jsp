@@ -1,168 +1,117 @@
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
+<%-- 
+    Document   : curriculum
+    Created on : 3/10/2018, 03:04:12 PM
+    Author     : Moctezuma19
+--%>
 <jsp:include page='header.jsp'>
-    <jsp:param name="title" value="Actualizar datos."/>
+    <jsp:param name="title" value="Tu curriculum"/>
 </jsp:include>
-<form action="${pageContext.request.contextPath}/actualizarAlumno" name="myForm" method="post" onsubmit="return(validate());">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="well center-block">
-                <div class="well-header">
-                    <center><h1> Actualizar datos </h1></center>
-                    <hr>
-                </div>                                            
-                <form action="#">
-                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label center-block col-xs-12">
-                        <input class="mdl-textfield__input" type="text" id="nombre" name="nombre" />
-                        <label class="mdl-textfield__label" for="nombre">                            
-                            Nombre
-                        </label>
-                    </div>
-                </form>
-                <form action="#">
-                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label center-block col-xs-12">
-                        <input class="mdl-textfield__input" type="text" id="paterno" name="paterno" />
-                        <label class="mdl-textfield__label" for="paterno">                            
-                            Apellido Paterno
-                        </label>
-                    </div>
-                </form>
-                <form action="#">
-                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label center-block col-xs-12">
-                        <input class="mdl-textfield__input" type="text" id="materno" name="materno"/>
-                        <label class="mdl-textfield__label" for="materno">                            
-                            Apellido Materno
-                        </label>
-                    </div>
-                </form>
-
-
-                <form action="#">
-                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label center-block col-xs-12">
-                        <input class="mdl-textfield__input" type="email" id="correo" name="correo"/>
-                        <label class="mdl-textfield__label" for="correo">                            
-                            Correo
-                        </label>
-                        <span class="mdl-textfield__error">Por favor, usa un correo.</span>
-                    </div>
-                </form>
-
-                <form action="#">
-                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label center-block col-xs-12">
-                        <input class="mdl-textfield__input" type="password" id="contrasenya" name="contrasenya" 
-                               pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"/>                        
-                        <label class="mdl-textfield__label" for="contrasenya">                            
-                            ContraseÃ±a
-                        </label>
-                        <span class="mdl-textfield__error">ContraseÃ±a (MÃ­nimo 8 caracteres).</span>
-                    </div>
-                </form>
-
-
-                <form action="#">
-                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label center-block col-xs-12">
-                        <input class="mdl-textfield__input" type="number" id="telefono" name="telefono" />                        
-                        <label class="mdl-textfield__label" for="telefono">                            
-                            Celular
-                        </label>
-                        <span class="mdl-textfield__error">Usa un telefono.</span>
-                    </div>
-                </form>               
-
-                <div class="row">
-                    <div class="col-md-12 col-xs-12 col-sm-12">
-                        <div class="form-group">
-                            <label for="nivel">Sexo:</label>
-                            <div class="input-group">
-                                <div class="input-group-addon">
-                                    <i class="glyphicon glyphicon-user"></i>
-                                </div>
-
-                                <select class="form-control" id="sexo" name="sexo" >
-                                    <option>Femenino</option>
-                                    <option>Masculino</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-12 col-xs-12 col-sm-12">
-                        <div class="form-group">
-                            <label for="nivel">Nivel Academico:</label>
-                            <div class="input-group">
-
-                                <div class="input-group-addon">
-                                    <i class="glyphicon glyphicon-user"></i>
-                                </div> 
-                                <select class="form-control" id="nivel" name="nivel">
-                                    <option>Primaria</option>
-                                    <option>Secundaria</option>
-                                    <option>Bachillerato</option>
-                                    <option>Universidad</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="well-header">
-                    <center><h3> Materias de interes </h3></center>
-                    <hr>
-                </div>
-
-                <ul class="demo-list-control mdl-list">
+<div align='center' style="padding-top:50px;">
+    <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp center-block" style="width:500px">
+        <div class="mdl-card__title" style="background-color:#66b04f;" >
+            <!--h4 class="mdl-card__title-text" style='color:white;'>Información Académica y Laboral</h4-->
+        </div>
+        <div class="mdl-card__supporting-text">
+            <h2>Actualizar datos</h2>
+        </div>
+        <form id="sample3" method="post" style="width:500px" enctype="multipart/form-data" action="${pageContext.request.contextPath}/actualizarAlumno">            
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" name = "nombre">
+                <label class="mdl-textfield__label" for="sample3">Nombre</label>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" name = "paterno">
+                <label class="mdl-textfield__label" for="sample3">Apellido paterno</label>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" name = "materno">
+                <label class="mdl-textfield__label" for="sample3">Apellido materno</label>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="email" name = "correo">
+                <label class="mdl-textfield__label" for="sample3">Correo</label>
+            </div>            
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="password" name = "contrasenya">
+                <label class="mdl-textfield__label" for="sample3">Contraseña</label>
+            </div>            
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="tel" name = "telefono">
+                <label class="mdl-textfield__label" for="sample3">Celular</label>
+            </div>           
+            
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <select class="mdl-textfield__input" id="lugar" name="sexo">
+                    <option value="Femenino">Femenino</option>
+                    <option value="Masculino">Masculino</option>                    
+                </select>
+                <label class="mdl-textfield__label" for="lugar">Sexo:</label>
+            </div>                        
+            
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <select class="mdl-textfield__input" id="lugar" name="nivel">
+                                    <option value="Primaria">Primaria</option>
+                                    <option value="Secundaria">Secundaria</option>
+                                    <option value="Bachillerato">Bachillerato</option>
+                                    <option value="Universidad">Universidad</option>                
+                </select>
+                <label class="mdl-textfield__label" for="lugar">Nivel academico:</label>
+            </div>                        
+            
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <h3><label class="mdl-card__title">Materias de interes</label></h3>
+            </div>
+            <div>
+                <ul class="mdl-list">
                     <li class="mdl-list__item">
-                        <span class="mdl-list__item-primary-content">      
-                            MatemÃ¡ticas
+                        <span class="mdl-list__item-primary-content" style="padding-left:90px;">
+                            Matemáticas
                         </span>
-                        <span class="mdl-list__item-secondary-action">
-                            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="matematicas">
-                                <input type="checkbox" class="mdl-checkbox__input" name="matematicas" id="matematicas"/>
+                        <span class="mdl-list__item-secondary-action"  style="padding-right:80px;">
+                            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="list-checkbox-1">
+                                <input type="checkbox" id="list-checkbox-1" class="mdl-checkbox__input" name="matematicas"/>
                             </label>
                         </span>
                     </li>
                     <li class="mdl-list__item">
-                        <span class="mdl-list__item-primary-content">      
-                            EspaÃ±ol
+                        <span class="mdl-list__item-primary-content" style="padding-left:90px;">
+                            Español
                         </span>
-                        <span class="mdl-list__item-secondary-action">
-                            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="espanol">
-                                <input type="checkbox" class="mdl-checkbox__input" name="espanol" id="espanol" />
+                        <span class="mdl-list__item-secondary-action" style="padding-right:80px;">
+                            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="list-checkbox-2">
+                                <input type="checkbox" id="list-checkbox-2" class="mdl-checkbox__input" name="espanol"/>
                             </label>
                         </span>
                     </li>
                     <li class="mdl-list__item">
-                        <span class="mdl-list__item-primary-content">      
+                        <span class="mdl-list__item-primary-content" style="padding-left:90px;">
                             Geografia
                         </span>
-                        <span class="mdl-list__item-secondary-action">
-                            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="geografia">
-                                <input type="checkbox" class="mdl-checkbox__input" name="geografia" id="geografia"/>
+                        <span class="mdl-list__item-secondary-action" style="padding-right:80px;">
+                            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="list-checkbox-3">
+                                <input type="checkbox" id="list-checkbox-3" class="mdl-checkbox__input" name="geografia"/>
                             </label>
                         </span>
                     </li>
                     <li class="mdl-list__item">
-                        <span class="mdl-list__item-primary-content">      
+                        <span class="mdl-list__item-primary-content" style="padding-left:90px;">
                             Historia
                         </span>
-                        <span class="mdl-list__item-secondary-action">
-                            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="historia">
-                                <input type="checkbox" class="mdl-checkbox__input" name="historia" id="historia"/>
+                        <span class="mdl-list__item-secondary-action" style="padding-right:80px;">
+                            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="list-checkbox-4">
+                                <input type="checkbox" id="list-checkbox-4" class="mdl-checkbox__input" name="historia"/>
                             </label>
                         </span>
-                    </li>
+                    </li>                    
                 </ul>
-
-
-                <button id="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored " >
+            </div>
+                                    
+            <div class="mdl-card__actions" style="padding-bottom:30px;">
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" style="background-color:#66b04f;width:70%;">
                     Actualizar
                 </button>
             </div>
-        </div>
+        </form>
     </div>
-</form>
+</div>
 <%@include file='footer.jsp'%>
