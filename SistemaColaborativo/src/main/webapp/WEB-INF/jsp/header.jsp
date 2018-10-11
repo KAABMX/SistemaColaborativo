@@ -100,7 +100,3 @@
             </div>
             <div class="android-content mdl-layout__content">
                 <a name="top"></a>
-            </div>
-        </div>
-    </body>
-</html>

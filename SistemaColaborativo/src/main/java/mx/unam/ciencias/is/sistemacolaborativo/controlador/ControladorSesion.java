@@ -25,8 +25,16 @@ public class ControladorSesion {
     public String loggea(HttpServletRequest request, Principal principal) {
         // System.out.println(principal.getName()+principal.toString());
 
-        //Usuario u = usuario_db.getUsuario(principal.getName());
+        Usuario u = usuario_db.getUsuario(principal.getName());
         //System.out.println(u.getRol()+request.isUserInRole("ROLE_ESTUDIANTE"));
+        if (!u.getActivado()) {
+            try {
+                request.logout();
+            } catch (Exception e) {
+
+            }
+            return "redirect:/error-activacion";
+        }
         if (request.isUserInRole("ROLE_ESTUDIANTE")) {
             return "redirect:/alumno/inicio";
         }
@@ -47,6 +55,11 @@ public class ControladorSesion {
         }
 
         return new ModelAndView("index", model);
+    }
+
+    @RequestMapping(value = "/error-activacion")
+    public ModelAndView errorActivacion(HttpServletRequest request, ModelMap model) {
+        return new ModelAndView("error-activacion", model);
     }
 
     @RequestMapping(value = "/alumno/inicio", method = RequestMethod.GET)

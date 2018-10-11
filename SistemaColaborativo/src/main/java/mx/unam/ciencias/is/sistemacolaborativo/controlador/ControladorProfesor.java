@@ -6,9 +6,11 @@
 package mx.unam.ciencias.is.sistemacolaborativo.controlador;
 
 import java.io.InputStream;
+import java.math.BigInteger;
 import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Random;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.Part;
@@ -31,7 +33,6 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import sun.misc.IOUtils;
 
 /**
  *
@@ -67,6 +68,8 @@ public class ControladorProfesor {
             String contrasenya = request.getParameter("contrasenya");
             String hashedPassword = passwordEncoder.encode(contrasenya);
             usuario.setContrasenia(hashedPassword);
+            String ca = obtenerCadenaAleatoria();
+            usuario.setCodigo_activacion(ca);
             //InputStream foto = new FileInputStream(request.getParameter("foto"));
             //convertir la foto a bytes y agregarlo al usuario
             usuario.setSexo(request.getParameter("sexo"));
@@ -75,9 +78,9 @@ public class ControladorProfesor {
             Profesor p = new Profesor();
             p.setUsuario(usuario);
             profesor_bd.guardar(p);
-
+            CorreoActivacion.CorreoActivacion(request, usuario);
         } catch (Exception e) {
-
+            System.out.println(e);
         }
         return new ModelAndView("index", model);
     }
@@ -85,6 +88,18 @@ public class ControladorProfesor {
     @RequestMapping(value = "/profesor/curriculum", method = RequestMethod.GET)
     public ModelAndView curriculum(HttpServletRequest request, ModelMap model, Principal principal) {
         return new ModelAndView("curriculum", model);
+    }
+
+    @RequestMapping(value = "/activar-cuenta", method = RequestMethod.GET)
+    public ModelAndView activacion(HttpServletRequest request, ModelMap model, Principal principal) {
+        int pk_id_usuario = Integer.parseInt(request.getParameter("id"));
+        String clave = request.getParameter("codigo");
+        Usuario user = usuario_bd.getUsuario(pk_id_usuario);
+        if (user.getCodigo_activacion().equals(clave)) {
+            user.setActivado(true);
+        }
+        usuario_bd.actualizar(user);
+        return new ModelAndView("activar-cuenta", model);
     }
 
     @RequestMapping(value = "/profesor/guardacv", method = RequestMethod.POST)
@@ -121,7 +136,7 @@ public class ControladorProfesor {
             hab = hab.substring(0, hab.length() - 1);
         }
         p.setNiveles_educativos(hab);
-        
+
         try {
             Part file = request.getPart("file");
             InputStream is = file.getInputStream();
@@ -173,5 +188,23 @@ public class ControladorProfesor {
         experiencia_bd.guardar(exp);
 
         return new ModelAndView("inicioProfesor", model);
+    }
+
+    /**
+     * Genera una cadena aleatoria para usarse como código de activación.
+     *
+     * @return una cadena aleatoria de 30 caracteres
+     */
+    private String obtenerCadenaAleatoria() {
+        /* La base que se usa para convertir un número a cadena. */
+        final int base = 32;
+        /*
+         * Tamaño de la cadena aleatoria. Usa 30 caracteres, y cada carácter
+         * corresponde a 5 bits.
+         */
+        final int tam = 30 * 5;
+
+        Random rnd = new Random();
+        return new BigInteger(tam, rnd).toString(base);
     }
 }
