@@ -78,7 +78,8 @@ public class ControladorProfesor {
             Profesor p = new Profesor();
             p.setUsuario(usuario);
             profesor_bd.guardar(p);
-            CorreoActivacion.CorreoActivacion(request, usuario);
+            CorreoActivacion caa = new CorreoActivacion();
+            caa.CorreoActivacion(request, usuario);
         } catch (Exception e) {
             System.out.println(e);
         }
