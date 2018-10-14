@@ -52,7 +52,6 @@ public class UsuarioDAO {
         }
     }
 
-
     /**
      * Elimina el usuario de la base de datos
      *
@@ -142,6 +141,28 @@ public class UsuarioDAO {
             String hql = "FROM Usuario WHERE correo = :correo";
             Query query = s.createQuery(hql);
             query.setParameter("correo", correo);
+            result = (Usuario) query.uniqueResult();
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            s.close();
+        }
+        return result;
+    }
+
+    public Usuario getUsuario(int pk_id_usuario) {
+        Usuario result = null;
+        Session s = sessionFactory.openSession();
+        Transaction tx = null;
+        try {
+            tx = s.beginTransaction();
+            String hql = "FROM Usuario WHERE pk_id_usuario = :pk_id_usuario";
+            Query query = s.createQuery(hql);
+            query.setParameter("pk_id_usuario", pk_id_usuario);
             result = (Usuario) query.uniqueResult();
             tx.commit();
         } catch (Exception e) {

@@ -42,7 +42,19 @@ public class Usuario {
     private String contrasenia;
     @Column(name = "rol")
     private String rol;
+    @Column(name = "codigo_activacion")
+    private String codigo_activacion;
+    @Column(name = "activado")
+    private boolean activado;
 
+    public boolean getActivado() {
+        return activado;
+    }
+
+    public void setActivado(boolean activado) {
+        this.activado = activado;
+    }
+    
     public String getRol() {
         return rol;
     }
@@ -121,6 +133,14 @@ public class Usuario {
 
     public void setSexo(String sexo) {
         this.sexo = sexo;
+    }
+
+    public String getCodigo_activacion() {
+        return codigo_activacion;
+    }
+
+    public void setCodigo_activacion(String codigo_activacion) {
+        this.codigo_activacion = codigo_activacion;
     }
 
 }

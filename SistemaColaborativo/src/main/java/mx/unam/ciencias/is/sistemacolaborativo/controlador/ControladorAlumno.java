@@ -5,6 +5,8 @@
  */
 package mx.unam.ciencias.is.sistemacolaborativo.controlador;
 
+import java.math.BigInteger;
+import java.util.Random;
 import javax.servlet.http.HttpServletRequest;
 import mx.unam.ciencias.is.sistemacolaborativo.modelo.UsuarioDAO;
 import mx.unam.ciencias.is.sistemacolaborativo.modelo.AlumnoDAO;
@@ -26,14 +28,14 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @Controller
 public class ControladorAlumno {
-    
+
     @Autowired
     private UsuarioDAO usuario_bd;
     @Autowired
     private AlumnoDAO alumno_bd;
     @Autowired
     private InteresAcademicoDAO interes_bd;
-    
+
     @RequestMapping(value = "/registra", method = RequestMethod.POST)
     public ModelAndView peticion(HttpServletRequest request, ModelMap model) {
         try {
@@ -50,6 +52,8 @@ public class ControladorAlumno {
             //convertir la foto a bytes y agregarlo al usuario
             usuario.setSexo(request.getParameter("sexo"));
             usuario.setRol("ROLE_ESTUDIANTE");
+            String ca = obtenerCadenaAleatoria();
+            usuario.setCodigo_activacion(ca);
             usuario_bd.guardar(usuario);
             //hasta aqui se crea el usuario
             //agregar a la base
@@ -58,26 +62,26 @@ public class ControladorAlumno {
             al.setUltimo_nivel_educativo(request.getParameter("nivel"));
             //agregar a la base
             alumno_bd.guardar(al);
-            
+
             String matematicas = request.getParameter("matematicas");
             String espanol = request.getParameter("espanol");
             String geografia = request.getParameter("geografia");
             String historia = request.getParameter("historia");
-            
+
             if (matematicas != null && matematicas.equals("on")) {
                 InteresAcademico g = new InteresAcademico();
                 g.setInteres("Matematicas");
                 g.setAlumno(al);
                 interes_bd.guardar(g);
             }
-            
+
             if (espanol != null && espanol.equals("on")) {
                 InteresAcademico g = new InteresAcademico();
                 g.setInteres("Español");
                 g.setAlumno(al);
                 interes_bd.guardar(g);
             }
-            
+
             if (geografia != null && geografia.equals("on")) {
                 InteresAcademico g = new InteresAcademico();
                 g.setInteres("Geografía");
@@ -90,11 +94,30 @@ public class ControladorAlumno {
                 g.setAlumno(al);
                 interes_bd.guardar(g);
             }
-            
+            CorreoActivacion caa = new CorreoActivacion();
+            caa.CorreoActivacion(request, usuario);
         } catch (Exception e) {
-            
+
         }
         return new ModelAndView("index", model);
-        
+
+    }
+
+    /**
+     * Genera una cadena aleatoria para usarse como código de activación.
+     *
+     * @return una cadena aleatoria de 30 caracteres
+     */
+    private String obtenerCadenaAleatoria() {
+        /* La base que se usa para convertir un número a cadena. */
+        final int base = 32;
+        /*
+         * Tamaño de la cadena aleatoria. Usa 30 caracteres, y cada carácter
+         * corresponde a 5 bits.
+         */
+        final int tam = 30 * 5;
+
+        Random rnd = new Random();
+        return new BigInteger(tam, rnd).toString(base);
     }
 }

@@ -34,8 +34,11 @@ public class ControladorVerProfesor {
     public ModelAndView verProfesor(ModelMap model){
         List<Profesor> profesor = profesor_db.getProfesor();
         List<Integer> profesor_lista = new LinkedList();
+        
         for(Profesor p :profesor){
+            if(p.getEstaActivo()){
             System.out.println(profesor_lista.add(p.getPk_id_profesor()));
+        }
         }
         
         model.addAttribute("profesor_lista",profesor_lista);

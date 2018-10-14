@@ -22,26 +22,32 @@ public class ControladorSesion {
     UsuarioDAO usuario_db;
 
     @RequestMapping(value = "/inicio", method = RequestMethod.GET)
-    public String loggea(HttpServletRequest request,Principal principal) {
-       // System.out.println(principal.getName()+principal.toString());
-        
-        //Usuario u = usuario_db.getUsuario(principal.getName());
+    public String loggea(HttpServletRequest request, Principal principal) {
+        // System.out.println(principal.getName()+principal.toString());
+
+        Usuario u = usuario_db.getUsuario(principal.getName());
         //System.out.println(u.getRol()+request.isUserInRole("ROLE_ESTUDIANTE"));
+        if (!u.getActivado()) {
+            try {
+                request.logout();
+            } catch (Exception e) {
+
+            }
+            return "redirect:/error-activacion";
+        }
         if (request.isUserInRole("ROLE_ESTUDIANTE")) {
             return "redirect:/alumno/inicio";
-        } 
-       if (request.isUserInRole("ROLE_PROFESOR")) {
-           return "redirect:/profesor/inicio";
-        } 
+        }
+        if (request.isUserInRole("ROLE_PROFESOR")) {
+            return "redirect:/profesor/inicio";
+        }
         return "index";
-
 
     }
 
-    
-        @RequestMapping(value = "/login_error")
+    @RequestMapping(value = "/login_error")
     public ModelAndView fallop(HttpServletRequest request, ModelMap model) {
-           if (request.isUserInRole("ROLE_ESTUDIANTE")) {
+        if (request.isUserInRole("ROLE_ESTUDIANTE")) {
             return new ModelAndView("redirect:/alumno/inicio");
         }
         if (request.isUserInRole("ROLE_PROFESOR")) {
@@ -51,6 +57,10 @@ public class ControladorSesion {
         return new ModelAndView("index", model);
     }
 
+    @RequestMapping(value = "/error-activacion")
+    public ModelAndView errorActivacion(HttpServletRequest request, ModelMap model) {
+        return new ModelAndView("error-activacion", model);
+    }
 
     @RequestMapping(value = "/alumno/inicio", method = RequestMethod.GET)
     public ModelAndView inicioU(HttpServletRequest request, ModelMap model, Principal principal) {
@@ -71,9 +81,9 @@ public class ControladorSesion {
         return new ModelAndView("inicioProfesor", model);
 
     }
-    
+
     @RequestMapping(value = "/error403", method = RequestMethod.GET)
-    public String error403(){
+    public String error403() {
         return "error403";
     }
 
