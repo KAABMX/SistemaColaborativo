@@ -16,9 +16,9 @@
             <!--h4 class="mdl-card__title-text" style='color:white;'>Información Académica y Laboral</h4-->
         </div>
         <div class="mdl-card__supporting-text">
-            <h2>Actualizar datos</h2>
+            <h2>Profesor</h2>
         </div>
-        <form id="sample3" method="post" style="width:500px" enctype="multipart/form-data" action="${pageContext.request.contextPath}/actualizarAlumno">            
+        <form id="sample3" method="post" style="width:500px" enctype="multipart/form-data" action="${pageContext.request.contextPath}/registraProfesor">            
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                 <input class="mdl-textfield__input" type="text" name = "nombre">
                 <label class="mdl-textfield__label" for="sample3">Nombre</label>

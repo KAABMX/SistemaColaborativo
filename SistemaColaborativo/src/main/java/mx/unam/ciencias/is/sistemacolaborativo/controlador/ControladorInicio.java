@@ -88,5 +88,10 @@ public class ControladorInicio {
     @RequestMapping(value = "/actualizarAlumno", method = RequestMethod.GET)
     public String actualizarAlumno() {
         return "actualizarAlumno";
-    }
+    }       
+    
+    @RequestMapping(value = "/actualizarProfesor", method = RequestMethod.GET)
+    public String actualizarProfesor() {
+        return "actualizarProfesor";
+    }    
 }

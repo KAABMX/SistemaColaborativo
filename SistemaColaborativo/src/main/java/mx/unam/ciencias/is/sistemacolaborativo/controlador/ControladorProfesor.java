@@ -5,9 +5,12 @@
  */
 package mx.unam.ciencias.is.sistemacolaborativo.controlador;
 
+import java.io.InputStream;
+import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.Part;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Complementarios;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Curriculum;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Estudios;
@@ -47,6 +50,7 @@ public class ControladorProfesor {
     private ExperienciaDAO experiencia_bd;
     @Autowired
     private EstudiosDAO estudios_bd;
+    private int temporatalIdUsuaario = 9;
 
     @RequestMapping(value = "/registraProfesor", method = RequestMethod.POST)
     public ModelAndView peticion(HttpServletRequest request, ModelMap model) {
@@ -61,86 +65,134 @@ public class ControladorProfesor {
             String contrasenya = request.getParameter("contrasenya");
             String hashedPassword = passwordEncoder.encode(contrasenya);
             usuario.setContrasenia(hashedPassword);
-            //InputStream foto = new FileInputStream(request.getParameter("foto"));
-            //convertir la foto a bytes y agregarlo al usuario
             usuario.setSexo(request.getParameter("sexo"));
             usuario_bd.guardar(usuario);
             Profesor p = new Profesor();
-            //agregar costo
-            //p.setCosto_x_hora(request.getParameter("costo"));
             p.setUsuario(usuario);
-            //p.setHabilidades(request.getParameter("habilidades"));
-            //varios niveles
-
-            //String prim = request.getParameter("primaria");
-            //String sec = request.getParameter("secundaria");
-            //String bach = request.getParameter("bachillerato");
-            //String uni = request.getParameter("universidad");
-            //String hab = "";
-            //if (prim != null && prim.equals("on")) {
-            //    hab += "primaria,";
-            //}
-            //if (sec != null && sec.equals("on")) {
-//                hab += "secundaria,";
-//////            }
-  //          if (bach != null && bach.equals("on")) {
-//                hab += "bachillerato,";
-//            }
-//            if (uni != null && uni.equals("on")) {
-//                hab += "universidad,";
-//            }
-//            if (hab.length() != 0) {
-//                hab = hab.substring(0, hab.length() - 1);
-//            }
-//            p.setNiveles_educativos(hab);
-//            //agregar a la base
-              profesor_bd.guardar(p);
-//            //borrar y ver como se guardan las fechas
-//            Curriculum cv = new Curriculum();
-//            cv.setProfesor(p);
-//            cv.setLugar_de_nacimiento(request.getParameter("lugar"));
-//            cv_bd.guardar(cv);
-//            //agregar a la base
-//            Estudios es = new Estudios();
-//            String fecha_inicio = request.getParameter("fecha_inicio");
-//            String fecha_fin = request.getParameter("fecha_fin");
-//            String estudio = request.getParameter("estudios");
-//            es.setCurriculum(cv);
-//            //Si no "dd/MM/yyyy"
-            //Date startDate = new SimpleDateFormat("yyyy-MM-dd").parse(fecha_inicio);
-            //Date finalDate = new SimpleDateFormat("yyyy-MM-dd").parse(fecha_fin);
-            //es.setFecha_inicio(startDate);
-            //es.setFecha_fin(finalDate);
-            //es.setUniversidad(request.getParameter("universidad"));
-            //estudios_bd.guardar(es);
-
-//            Experiencia exp = new Experiencia();
-            //exp.setEmpresa(request.getParameter("empresa"));
-            //String fecha_inicio_experiencia = request.getParameter("fecha_inicio");
-////            String fecha_fin_experiencia = request.getParameter("fecha_fin");
-//            Date startDateexp = new SimpleDateFormat("yyyy-MM-dd").parse(fecha_inicio_experiencia);
-//            Date finalDateexp = new SimpleDateFormat("yyyy-MM-dd").parse(fecha_fin_experiencia);
-//            exp.setFecha_inicio(startDateexp);
-//            exp.setFecha_fin(finalDateexp);
-            //exp.setCurriculum(cv);
-            //exp.setFuncion_trabajo(request.getParameter("funcion_trabajo"));
-            //exp.setTarea_trabajo(request.getParameter("tarea_trabajo"));
-            //experiencia_bd.guardar(exp);
-
-            /*
-            //agregar a la base/
-            Complementarios com = new Complementarios();
-            com.setCentro(request.getParameter("centro"));
-            com.setEstudio(request.getParameter("estudiob"));
-            //com.setFechaFin(fechaFin);
-            //com.setFechaInicio(fechaInicio);
-            com.setCurriculum(cv);
-            com.setLugar(request.getParameter("lugar"));
-            complementarios_bd.guardar(com); //agregar a la base*/
+            profesor_bd.guardar(p);
         } catch (Exception e) {
-
+            System.out.println(e);
         }
         return new ModelAndView("index", model);
     }
 
+    /**
+     * Actualiza los campos de un profesor.
+     *
+     * @param request
+     * @param model
+     * @param principal
+     * @return
+     */
+    @RequestMapping(value = "/actualizaProfesor", method = RequestMethod.POST)
+    public ModelAndView actualizarProfesor(HttpServletRequest request, ModelMap model, Principal principal) {
+        Usuario usuarioActualizado = usuario_bd.getUsuario(temporatalIdUsuaario);
+        if (request.getParameter("correo") != null) {
+            usuarioActualizado.setCorreo(request.getParameter("correo"));
+        }
+        if (request.getParameter("nombre") != null) {            
+            usuarioActualizado.setNombre(request.getParameter("nombre"));
+        }
+        if (request.getParameter("paterno") != null) {
+            usuarioActualizado.setApellido_p(request.getParameter("paterno"));
+        }
+        if (request.getParameter("materno") != null) {
+            usuarioActualizado.setApellido_m(request.getParameter("materno"));
+        }
+        if (request.getParameter("telefono") != null) {
+            usuarioActualizado.setTelefono(request.getParameter("telefono"));
+        }
+        if (request.getParameter("contrasenya") != null) {
+            BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+            usuarioActualizado.setContrasenia(passwordEncoder.encode(request.getParameter("contrasenya")));
+            String contrasenaConf = request.getParameter("confirm");
+        }
+        if (request.getParameter("sexo") != null) {
+            usuarioActualizado.setSexo(request.getParameter("sexo"));
+        }        
+        usuario_bd.actualizar(usuarioActualizado);
+        Profesor profesorActualizado = profesor_bd.getProfesor(usuarioActualizado);
+        profesorActualizado.setCosto_x_hora(request.getParameter("costo"));
+        profesorActualizado.setUsuario(usuarioActualizado);
+        profesorActualizado.setHabilidades(request.getParameter("habilidades"));
+        //varios niveles
+        //profesorActualizado.setEstaActivo(true);
+        String prim = request.getParameter("primaria");
+        String sec = request.getParameter("secundaria");
+        String bach = request.getParameter("bachillerato");
+        String uni = request.getParameter("licenciatura");
+        String pos = request.getParameter("posgrado");
+        String hab = "";
+        if (prim != null && prim.equals("on")) {
+            hab += "primaria,";
+        }
+        if (sec != null && sec.equals("on")) {
+            hab += "secundaria,";
+        }
+        if (bach != null && bach.equals("on")) {
+            hab += "bachillerato,";
+        }
+        if (uni != null && uni.equals("on")) {
+            hab += "licenciatura,";
+        }
+        if (pos != null && pos.equals("on")) {
+            hab += "posgrado,";
+        }
+        if (hab.length() != 0) {
+            hab = hab.substring(0, hab.length() - 1);
+        }
+        profesorActualizado.setNiveles_educativos(hab);
+
+        try {
+            Part file = request.getPart("file");
+            InputStream is = file.getInputStream();
+            byte[] ident = new byte[is.available()];
+            is.read(ident);
+            //profesorActualizado.setIdentificacion(ident);
+        } catch (Exception e) {
+
+        }
+        //agregar a la base
+        profesor_bd.actualizar(profesorActualizado);
+        //borrar y ver como se guardan las fechas
+        Curriculum cv = new Curriculum();
+        cv.setProfesor(profesorActualizado);
+        cv.setLugar_de_nacimiento(request.getParameter("lugar"));
+        cv_bd.actualizar(cv);//Revisar
+        //agregar a la base
+        Estudios es = new Estudios();
+        String fecha_inicio = request.getParameter("fecha_inicio");
+        String fecha_fin = request.getParameter("fecha_fin");
+        String estudio = request.getParameter("estudios");
+        es.setCurriculum(cv);
+        try {
+            Date startDate = new SimpleDateFormat("yyyy-MM-dd").parse(fecha_inicio);
+            Date finalDate = new SimpleDateFormat("yyyy-MM-dd").parse(fecha_fin);
+            es.setFecha_inicio(startDate);
+            es.setFecha_fin(finalDate);
+        } catch (Exception e) {
+
+        }
+        es.setUniversidad(request.getParameter("universidad"));
+        estudios_bd.actualizar(es);//Revisar
+
+        Experiencia exp = new Experiencia();
+        exp.setEmpresa(request.getParameter("empresa"));
+        String fecha_inicio_experiencia = request.getParameter("fecha_inicio_trabajo");
+        String fecha_fin_experiencia = request.getParameter("fecha_fin_trabajo");
+        try {
+            Date startDateexp = new SimpleDateFormat("yyyy-MM-dd").parse(fecha_inicio_experiencia);
+            Date finalDateexp = new SimpleDateFormat("yyyy-MM-dd").parse(fecha_fin_experiencia);
+            exp.setFecha_inicio(startDateexp);
+            exp.setFecha_fin(finalDateexp);
+        } catch (Exception e) {
+
+        }
+        exp.setCurriculum(cv);
+        exp.setFuncion_trabajo(request.getParameter("funcion_trabajo"));
+        exp.setTarea_trabajo(request.getParameter("tarea_trabajo"));
+        experiencia_bd.actualizar(exp);
+
+        return new ModelAndView("actualizarProfesor", model);
+    }
 }
