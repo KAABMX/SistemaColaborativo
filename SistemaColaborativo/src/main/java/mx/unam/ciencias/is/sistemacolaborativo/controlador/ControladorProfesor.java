@@ -87,27 +87,28 @@ public class ControladorProfesor {
     @RequestMapping(value = "/actualizaProfesor", method = RequestMethod.POST)
     public ModelAndView actualizarProfesor(HttpServletRequest request, ModelMap model, Principal principal) {
         Usuario usuarioActualizado = usuario_bd.getUsuario(temporatalIdUsuaario);
-        if (request.getParameter("correo") != null) {
+        String nombre = request.getParameter("nombre");
+        if (!request.getParameter("correo").equals("")) {
             usuarioActualizado.setCorreo(request.getParameter("correo"));
         }
-        if (request.getParameter("nombre") != null) {            
+        if (!request.getParameter("nombre").equals("")) {            
             usuarioActualizado.setNombre(request.getParameter("nombre"));
         }
-        if (request.getParameter("paterno") != null) {
+        if (!request.getParameter("paterno").equals("")) {
             usuarioActualizado.setApellido_p(request.getParameter("paterno"));
         }
-        if (request.getParameter("materno") != null) {
+        if (!request.getParameter("materno").equals("")) {
             usuarioActualizado.setApellido_m(request.getParameter("materno"));
         }
-        if (request.getParameter("telefono") != null) {
+        if (!request.getParameter("telefono").equals("")) {
             usuarioActualizado.setTelefono(request.getParameter("telefono"));
         }
-        if (request.getParameter("contrasenya") != null) {
+        if (!request.getParameter("contrasenya").equals("")) {
             BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
             usuarioActualizado.setContrasenia(passwordEncoder.encode(request.getParameter("contrasenya")));
             String contrasenaConf = request.getParameter("confirm");
         }
-        if (request.getParameter("sexo") != null) {
+        if (!request.getParameter("sexo").equals("")) {
             usuarioActualizado.setSexo(request.getParameter("sexo"));
         }        
         usuario_bd.actualizar(usuarioActualizado);
