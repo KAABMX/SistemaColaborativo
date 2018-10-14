@@ -35,6 +35,9 @@
 		$("#pwmatch").css("color","#FF0004");
 	}
 });
+document.getElementById("boton").onchange = function () {
+    document.getElementById("file").value = this.files[0].name;
+};
         </script>
     </body>
 </html>

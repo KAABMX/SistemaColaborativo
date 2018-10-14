@@ -29,13 +29,16 @@ public class Profesor {
     @OneToOne
     @JoinColumn(name = "fk_id_usuario")
     private Usuario usuario;
-
+    @Column(name = "identificacion")
+    private byte[] identificacion;
     @Column(name = "costo_x_hora")
     private String costo_x_hora;
     @Column(name = "niveles_educativos")
     private String niveles_educativos;
     @Column(name = "habilidades")
     private String habilidades;
+    @Column(name = "estaActivo")
+    private boolean estaActivo;
 
     public Usuario getUsuario() {
         return usuario;
@@ -75,6 +78,22 @@ public class Profesor {
 
     public void setHabilidades(String habilidades) {
         this.habilidades = habilidades;
+    }
+
+    public byte[] getIdentificacion() {
+        return identificacion;
+    }
+
+    public void setIdentificacion(byte[] identificacion) {
+        this.identificacion = identificacion;
+    }
+
+    public boolean getEstaActivo() {
+        return estaActivo;
+    }
+
+    public void setEstaActivo(boolean estaActivo) {
+        this.estaActivo = estaActivo;
     }
 
 }
