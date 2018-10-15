@@ -33,6 +33,7 @@ public class ControladorAlumno {
     private AlumnoDAO alumno_bd;
     @Autowired
     private InteresAcademicoDAO interes_bd;
+    //Identificador del usuario que inicio sesión.
     private int idUsuario = 8;
 
     @RequestMapping(value = "/registra", method = RequestMethod.POST)

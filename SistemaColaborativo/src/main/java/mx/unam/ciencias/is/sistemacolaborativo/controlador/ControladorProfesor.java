@@ -50,7 +50,8 @@ public class ControladorProfesor {
     private ExperienciaDAO experiencia_bd;
     @Autowired
     private EstudiosDAO estudios_bd;
-    private int temporatalIdUsuaario = 9;
+    //Identificador del usuario que inicio sesión.
+    private int idUsuario = 9;
 
     @RequestMapping(value = "/registraProfesor", method = RequestMethod.POST)
     public ModelAndView peticion(HttpServletRequest request, ModelMap model) {
@@ -86,7 +87,8 @@ public class ControladorProfesor {
      */
     @RequestMapping(value = "/actualizaProfesor", method = RequestMethod.POST)
     public ModelAndView actualizarProfesor(HttpServletRequest request, ModelMap model, Principal principal) {
-        Usuario usuarioActualizado = usuario_bd.getUsuario(temporatalIdUsuaario);
+        //idUsuario = Integer.parseInt(request.getParameter("id"));
+        Usuario usuarioActualizado = usuario_bd.getUsuario(idUsuario);
         String nombre = request.getParameter("nombre");
         if (!request.getParameter("correo").equals("")) {
             usuarioActualizado.setCorreo(request.getParameter("correo"));
