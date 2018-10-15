@@ -7,7 +7,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<jsp:include page='header.jsp'>
+<jsp:include page='headerS.jsp'>
     <jsp:param name="title" value="Registro de profesor"/>
 </jsp:include>
 <div align='center' style="padding-top:50px;">
