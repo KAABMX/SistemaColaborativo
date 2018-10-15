@@ -12,11 +12,12 @@ Author     : hectorsama
 <html>
 
     <div class="box1">
+            <h3 class="section-heading">Los nombres son: </h3>
 
-        <h3>Estos son los profesores:  
-
-        <c:forEach items="${profesor_lista}" var="item">
-            ${item}<br>
+        <c:forEach items="${profeLista}" var="item">
+            <pre>
+             <li><a href="https://example.com"> ${item} </a></li>
+            </pre>
         </c:forEach>
 
 

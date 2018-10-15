@@ -107,7 +107,7 @@
                 <span class="mdl-typography--font-light">Fecha de fin de tus labores</span>
             </div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="number" id="number" name="costo" required>
+                <input class="mdl-textfield__input" type="number" id="costo" name="costo" required>
                 <label class="mdl-textfield__label" for="sample3">Costo por hora (MXN)</label>
             </div>
             <div class="mdl-textfield mdl-js-textfield">

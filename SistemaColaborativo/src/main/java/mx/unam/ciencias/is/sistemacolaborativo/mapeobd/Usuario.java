@@ -66,7 +66,9 @@ public class Usuario {
     public String getContrasenia() {
         return contrasenia;
     }
-
+    public String getNombreC(){
+        return nombre+" "+apellido_p+" "+apellido_m;
+    }
     public void setContrasenia(String contrasenia) {
         this.contrasenia = contrasenia;
     }
