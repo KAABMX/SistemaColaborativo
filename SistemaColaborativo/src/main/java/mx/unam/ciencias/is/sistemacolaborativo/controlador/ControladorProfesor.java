@@ -334,21 +334,4 @@ public class ControladorProfesor {
         return new ModelAndView("inicioProfesor", model);
     }
 
-    /**
-     * Genera una cadena aleatoria para usarse como código de activación.
-     *
-     * @return una cadena aleatoria de 30 caracteres
-     */
-    private String obtenerCadenaAleatoria() {
-        /* La base que se usa para convertir un número a cadena. */
-        final int base = 32;
-        /*
-         * Tamaño de la cadena aleatoria. Usa 30 caracteres, y cada carácter
-         * corresponde a 5 bits.
-         */
-        final int tam = 30 * 5;
-
-        Random rnd = new Random();
-        return new BigInteger(tam, rnd).toString(base);
-    }
 }

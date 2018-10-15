@@ -158,25 +158,5 @@ public class ProfesorDAO {
         }
         return result;
     }    
-       
-    public Profesor getProfesor(Usuario usuario) {
-        Profesor result = null;
-        Session s = sessionFactory.openSession();
-        Transaction tx = null;
-        try{
-            tx = s.beginTransaction();
-            String hql = "FROM Profesor WHERE fk_id_usuario = :fk_id_usuario";                  
-            Query query = s.createQuery(hql);
-            query.setParameter("fk_id_usuario",usuario);
-            result = (Profesor)query.uniqueResult();
-            tx.commit();
-        }catch(Exception e){
-            if(tx != null)
-                tx.rollback();
-            e.printStackTrace();
-        }finally{
-            s.close();
-        }
-        return result;
-    }         
+             
 }
