@@ -17,14 +17,14 @@ import org.hibernate.Transaction;
  * @author hectorsama
  */
 public class UsuarioDAO {
-    
+
     /*Sesion para conectarnos a la base de datos*/
     private SessionFactory sessionFactory;
 
     public SessionFactory getSessionFactory() {
         return sessionFactory;
     }
-    
+
     public void setSessionFactory(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
@@ -38,24 +38,23 @@ public class UsuarioDAO {
             tx = session.beginTransaction();
             //guardamos el usuario
             session.persist(usuario);
-           
+
             tx.commit();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             //Se regresa a un estado consistente 
-            if (tx!=null){ 
+            if (tx != null) {
                 tx.rollback();
             }
-            e.printStackTrace(); 
+            e.printStackTrace();
         } finally {
             //cerramos simpre la sesion
             session.close();
         }
     }
-        
-        
-            /**
+
+    /**
      * Elimina el usuario de la base de datos
+     *
      * @param usuario el usuario a eliminar
      */
     public void eliminar(Usuario usuario) {
@@ -66,28 +65,24 @@ public class UsuarioDAO {
             tx = session.beginTransaction();
             //eliminamos el usuario
             session.delete(usuario);
-           
+
             tx.commit();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             //Se regresa a un estado consistente 
-            if (tx!=null){ 
+            if (tx != null) {
                 tx.rollback();
             }
-            e.printStackTrace(); 
-        }
-        finally {
+            e.printStackTrace();
+        } finally {
             //cerramos siempre la sesion
             session.close();
         }
     }
-    
-    
-    
-    
+
     /**
      * Actualiza el usuario en la base de datos
-     * @param usuario con los nuevos valores 
+     *
+     * @param usuario con los nuevos valores
      */
     public void actualizar(Usuario usuario) {
         Session session = sessionFactory.openSession();
@@ -97,64 +92,63 @@ public class UsuarioDAO {
             tx = session.beginTransaction();
             //actualizar el usuario
             session.update(usuario);
-           
+
             tx.commit();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             //Se regresa a un estado consistente 
-            if (tx!=null){ 
+            if (tx != null) {
                 tx.rollback();
             }
-            e.printStackTrace(); 
-        }
-        finally {
+            e.printStackTrace();
+        } finally {
             //cerramos siempre la sesion
             session.close();
         }
-}
-    
-    
-        /**
+    }
+
+    /**
      * Regresa la lista de todos los usuarios en la base de datos
+     *
      * @return la lista que contiene a todos los usuarios de la base de datos
      */
-    public List<Usuario> getUsuarios(){
-        List<Usuario> result= null;
+    public List<Usuario> getUsuarios() {
+        List<Usuario> result = null;
         Session session = sessionFactory.openSession();
-        Transaction tx=null;
-        try{
-            tx=session.beginTransaction();
-            String hql= "FROM Usuario";
-            Query query =session.createQuery(hql);
-            result=(List<Usuario>)query.list();
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+            String hql = "FROM Usuario";
+            Query query = session.createQuery(hql);
+            result = (List<Usuario>) query.list();
             tx.commit();
-        }catch (Exception e){
-            if(tx != null)
+        } catch (Exception e) {
+            if (tx != null) {
                 tx.rollback();
-            e.printStackTrace();      
-        }finally{
+            }
+            e.printStackTrace();
+        } finally {
             session.close();
         }
         return result;
     }
-    
-    
-       public Usuario getUsuario(String correo) {
+
+    public Usuario getUsuario(String correo) {
         Usuario result = null;
         Session s = sessionFactory.openSession();
         Transaction tx = null;
-        try{
+        try {
             tx = s.beginTransaction();
-            String hql = "FROM Usuario WHERE correo = :correo";                  
+            String hql = "FROM Usuario WHERE correo = :correo";
             Query query = s.createQuery(hql);
-            query.setParameter("correo",correo);
-            result = (Usuario)query.uniqueResult();
+            query.setParameter("correo", correo);
+            result = (Usuario) query.uniqueResult();
             tx.commit();
-        }catch(Exception e){
-            if(tx != null)
+        } catch (Exception e) {
+            if (tx != null) {
                 tx.rollback();
+            }
             e.printStackTrace();
-        }finally{
+        } finally {
             s.close();
         }
         return result;
@@ -182,4 +176,3 @@ public class UsuarioDAO {
     }          
     
 }
-

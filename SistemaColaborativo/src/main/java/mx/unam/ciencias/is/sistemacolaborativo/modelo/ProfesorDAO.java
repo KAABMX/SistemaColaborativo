@@ -138,15 +138,15 @@ public class ProfesorDAO {
     }
     
     
-       public Profesor getProfesor(int pk_id_profesor) {
+       public Profesor getProfesor(Usuario u) {
         Profesor result = null;
         Session s = sessionFactory.openSession();
         Transaction tx = null;
         try{
             tx = s.beginTransaction();
-            String hql = "FROM Profesor WHERE pk_id_profesor = :pk_id_profesor";                  
+            String hql = "FROM Profesor WHERE fk_id_usuario = :fk_id_usuario";                  
             Query query = s.createQuery(hql);
-            query.setParameter("pk_id_profesor",pk_id_profesor);
+            query.setParameter("fk_id_usuario",u);
             result = (Profesor)query.uniqueResult();
             tx.commit();
         }catch(Exception e){

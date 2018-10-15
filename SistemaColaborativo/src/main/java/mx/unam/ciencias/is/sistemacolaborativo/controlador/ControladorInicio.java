@@ -44,37 +44,6 @@ public class ControladorInicio {
 
     }
 
-    @RequestMapping(value = "/loggear", method = RequestMethod.GET)
-    public String loggea(HttpServletRequest request) {
-         if (request.isUserInRole("ROLE_ADMIN")) {
-            return "redirect:/sesion/inicioU";
-        }
-
-        return "indexusuario";
-       
-    }
-
-    //En caso de que sea unerror
-    @RequestMapping(value = "/login_error")
-    public ModelAndView fallo(HttpServletRequest request, ModelMap model) {
-          if (request.isUserInRole("ROLE_ADMIN")) {
-            return new ModelAndView("redirect:/sesion/inicioU");
-        }
-
-        return new ModelAndView("index", model);
-       
-    }
-
-    @RequestMapping(value = "/sesion/inicioU", method = RequestMethod.GET)
-    public ModelAndView inicioU(HttpServletRequest request, ModelMap model, Principal principal) {
-
-        String u = principal.getName();
-        Usuario usuario = Usuario_db.getUsuario(u);
-
-        return new ModelAndView("index", model);
-
-    }
-
     @RequestMapping(value = "/registrarAlumno", method = RequestMethod.GET)
     public String alumno() {
         return "registerAlumno";
