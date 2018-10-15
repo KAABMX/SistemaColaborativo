@@ -3,7 +3,9 @@
     Created on : Oct 5, 2018, 2:09:41 PM
     Author     : juan
 --%>
-
+<jsp:include page='header.jsp'>
+    <jsp:param name="title" value="Pagina Principal"/>
+</jsp:include>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -27,3 +29,4 @@
     </body>
 
 </html>
+<%@include file='footer.jsp'%>
