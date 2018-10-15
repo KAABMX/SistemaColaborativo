@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package mx.unam.ciencias.is.sistemacolaborativo.modelo;
 
 import java.util.List;
@@ -153,27 +154,26 @@ public class UsuarioDAO {
         }
         return result;
     }
-
-    public Usuario getUsuario(int pk_id_usuario) {
+       
+       public Usuario getUsuario(int pk_id_usuario) {
         Usuario result = null;
         Session s = sessionFactory.openSession();
         Transaction tx = null;
-        try {
+        try{
             tx = s.beginTransaction();
-            String hql = "FROM Usuario WHERE pk_id_usuario = :pk_id_usuario";
+            String hql = "FROM Usuario WHERE pk_id_usuario = :pk_id_usuario";                  
             Query query = s.createQuery(hql);
-            query.setParameter("pk_id_usuario", pk_id_usuario);
-            result = (Usuario) query.uniqueResult();
+            query.setParameter("pk_id_usuario",pk_id_usuario);
+            result = (Usuario)query.uniqueResult();
             tx.commit();
-        } catch (Exception e) {
-            if (tx != null) {
+        }catch(Exception e){
+            if(tx != null)
                 tx.rollback();
-            }
             e.printStackTrace();
-        } finally {
+        }finally{
             s.close();
         }
         return result;
-    }
-
+    }          
+    
 }

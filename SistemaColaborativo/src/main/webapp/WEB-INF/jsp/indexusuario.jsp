@@ -4,15 +4,9 @@
     Author     : hectorsama
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-      <div class="android-be-together-section mdl-typography--text-center">
-          <div class="logo-font android-slogan">Bienvenido al sitio</div>
-          <div class="logo-font android-sub-slogan">Aquí encontraras lo mejor sobre asesorías ...</div>
-          </div>
-</html>
+<jsp:include page='headerS.jsp'>
+    <jsp:param name="title" value="Alumno"/>
+</jsp:include>

@@ -36,10 +36,11 @@ public class ControladorVerProfesor {
     public ModelAndView verProfesor(HttpServletRequest request, ModelMap model) {
         List<Profesor> profe = profesor_db.getProfesor();
         List<String> profeLista = new LinkedList();
+        Profesor pro= new Profesor();
+         
         for (Profesor p : profe) {
             if (p.getEstaActivo() == true) {
                 profeLista.add(p.getUsuario().getNombreC());
-
             }
         }
         model.addAttribute("profeLista", profeLista);
