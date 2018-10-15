@@ -33,6 +33,7 @@
                 <value>mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Estudios</value>
                 <value>mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Experiencia</value>
                 <value>mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Complementarios</value>
+                <value>mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Horario</value>                
             </list>
         </property>
         <property name="hibernateProperties">
@@ -56,6 +57,7 @@
     <bean id="EstudiosDAO" class="mx.unam.ciencias.is.sistemacolaborativo.modelo.EstudiosDAO" p:sessionFactory-ref="hibernate4AnnotatedSessionFactory"/>
     <bean id="CurriculumDAO" class="mx.unam.ciencias.is.sistemacolaborativo.modelo.CurriculumDAO" p:sessionFactory-ref="hibernate4AnnotatedSessionFactory"/>
     <bean id="ProfesorDAO" class="mx.unam.ciencias.is.sistemacolaborativo.modelo.ProfesorDAO" p:sessionFactory-ref="hibernate4AnnotatedSessionFactory"/>
+    <bean id="HorarioDAO" class="mx.unam.ciencias.is.sistemacolaborativo.modelo.HorarioDAO" p:sessionFactory-ref="hibernate4AnnotatedSessionFactory"/>
 
   
     <!-- SpringSecurity -->

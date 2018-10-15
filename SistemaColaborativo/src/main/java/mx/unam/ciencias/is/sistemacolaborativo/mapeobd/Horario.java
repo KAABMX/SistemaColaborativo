@@ -28,8 +28,8 @@ public class Horario  implements Serializable {
     @Column(name = "idHorario")
      private int idHorario;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idProfesor")        
-     private Profesor idProfesor;
+    @JoinColumn(name = "fk_id_profesor")        
+     private Profesor fk_id_profesor;
     @Column(name = "dia")     
      private String dia;
     @Column(name = "horaInicio")     
@@ -46,7 +46,7 @@ public class Horario  implements Serializable {
 
     public Horario(int idHorario, Profesor idProfesor, String dia, Time horaInicio, Time horaFin, Boolean disponible) {
        this.idHorario = idHorario;
-       this.idProfesor = idProfesor;
+       this.fk_id_profesor = idProfesor;
        this.dia = dia;
        this.horaInicio = horaInicio;
        this.horaFin = horaFin;
@@ -61,11 +61,11 @@ public class Horario  implements Serializable {
         this.idHorario = idHorario;
     }
     public Profesor getProfesor() {
-        return this.idProfesor;
+        return this.fk_id_profesor;
     }
     
     public void setProfesor(Profesor idProfesor) {
-        this.idProfesor = idProfesor;
+        this.fk_id_profesor = idProfesor;
     }
     public String getDia() {
         return this.dia;

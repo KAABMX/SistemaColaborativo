@@ -41,7 +41,7 @@ public class Profesor {
     private String habilidades;
     @Column(name = "estaActivo")
     private boolean estaActivo;
-    @OneToMany(mappedBy = "idProfesor")    
+    @OneToMany(mappedBy = "fk_id_profesor")    
     private List<Horario> horario =  new ArrayList<>();
 
     public Usuario getUsuario() {

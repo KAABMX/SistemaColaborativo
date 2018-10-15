@@ -9,7 +9,9 @@ import java.io.InputStream;
 import java.math.BigInteger;
 import java.security.Principal;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Random;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
@@ -20,10 +22,12 @@ import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Estudios;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Experiencia;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Profesor;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Usuario;
+import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Horario;
 import mx.unam.ciencias.is.sistemacolaborativo.modelo.ComplementariosDAO;
 import mx.unam.ciencias.is.sistemacolaborativo.modelo.CurriculumDAO;
 import mx.unam.ciencias.is.sistemacolaborativo.modelo.EstudiosDAO;
 import mx.unam.ciencias.is.sistemacolaborativo.modelo.ExperienciaDAO;
+import mx.unam.ciencias.is.sistemacolaborativo.modelo.HorarioDAO;
 import mx.unam.ciencias.is.sistemacolaborativo.modelo.ProfesorDAO;
 import mx.unam.ciencias.is.sistemacolaborativo.modelo.UsuarioDAO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,6 +58,8 @@ public class ControladorProfesor {
     private ExperienciaDAO experiencia_bd;
     @Autowired
     private EstudiosDAO estudios_bd;
+    @Autowired
+    private HorarioDAO horario_bd;
 
     @RequestMapping(value = "/registraProfesor", method = RequestMethod.POST)
     public ModelAndView peticion(HttpServletRequest request, ModelMap model) {
@@ -103,6 +109,17 @@ public class ControladorProfesor {
         return new ModelAndView("activar-cuenta", model);
     }
 
+    @RequestMapping(value = "/profesor/mostrarhorario")
+    public ModelAndView mostrarHorario(HttpServletRequest request, ModelMap model, Principal principal){
+    Usuario usuario = usuario_bd.getUsuario(principal.getName());
+    Profesor p = profesor_bd.getProfesor(usuario);
+        List<Horario> horarios=p.getHorario();
+        ModelAndView mav=new ModelAndView();
+        mav.setViewName("horario");
+        mav.addObject("horarios", horarios);
+        return  mav;
+    }
+    
     @RequestMapping(value = "/profesor/guardacv", method = RequestMethod.POST)
     public ModelAndView guardaCV(HttpServletRequest request, ModelMap model, Principal principal) {
         Usuario usuario = usuario_bd.getUsuario(principal.getName());
