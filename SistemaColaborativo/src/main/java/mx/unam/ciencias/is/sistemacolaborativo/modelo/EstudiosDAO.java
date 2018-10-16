@@ -152,4 +152,26 @@ public class EstudiosDAO {
         }
         return result;
     }
+    
+    public Estudios getEstudiosCV(int fk_id_cv) {
+        Estudios result = null;
+        Session s = sessionFactory.openSession();
+        Transaction tx = null;
+        try {
+            tx = s.beginTransaction();
+            String hql = "FROM ESTUDIOS WHERE fk_id_cv = :fk_id_cv";
+            Query query = s.createQuery(hql);
+            query.setParameter("fk_id_cv", fk_id_cv);
+            result = (Estudios) query.uniqueResult();
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            s.close();
+        }
+        return result;
+    }
 }
