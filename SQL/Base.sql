@@ -6,7 +6,7 @@ nombre VARCHAR(90),
 apellido_paterno VARCHAR(120),
 apellido_materno VARCHAR(120),
 correo VARCHAR(90),
-foto BYTEA,
+foto MEDIUMBLOB,
 telefono VARCHAR (50),
 sexo VARCHAR(90),
 contrasenia VARCHAR(90),
@@ -50,7 +50,7 @@ CREATE TABLE Curriculum(
 pk_id_cv SERIAL NOT NULL  PRIMARY KEY,
 fk_id_profesor SERIAL NOT NULL,
 lugar_de_nacimiento VARCHAR(90),
-identificacion BYTEA,
+identificacion MEDIUMBLOB,
 FOREIGN KEY (fk_id_profesor) 
 	REFERENCES Profesor(pk_id_profesor)
 	ON DELETE CASCADE

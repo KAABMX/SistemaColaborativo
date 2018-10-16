@@ -26,8 +26,8 @@ public class CorreoActivacion {
         /* La cuenta que se usa para autenticarse en el servidor de correo. */
 
         Session sesionEmail;
-        final String usuarioCorreo = "ayaserverfc";
-        final String contrasena = "haskellcurry";
+        final String usuarioCorreo = "";
+        final String contrasena = "";
         String nombre = "Equipo A&A";
         String direccion = usuarioCorreo;
         Properties prop = new Properties();
