@@ -68,16 +68,17 @@ public class ControladorSesion {
         String u = principal.getName();
         Usuario usuario = usuario_db.getUsuario(u);
         model.addAttribute("username", u);
+        model.addAttribute("nombre", usuario.getNombre());
         return new ModelAndView("indexusuario", model);
 
     }
 
     @RequestMapping(value = "/profesor/inicio", method = RequestMethod.GET)
     public ModelAndView inicioP(HttpServletRequest request, ModelMap model, Principal principal) {
-
         String u = principal.getName();
         Usuario usuario = usuario_db.getUsuario(u);
         model.addAttribute("username", u);
+        model.addAttribute("nombre", usuario.getNombre());
         return new ModelAndView("inicioProfesor", model);
 
     }

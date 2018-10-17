@@ -58,6 +58,7 @@
     <bean id="CurriculumDAO" class="mx.unam.ciencias.is.sistemacolaborativo.modelo.CurriculumDAO" p:sessionFactory-ref="hibernate4AnnotatedSessionFactory"/>
     <bean id="ProfesorDAO" class="mx.unam.ciencias.is.sistemacolaborativo.modelo.ProfesorDAO" p:sessionFactory-ref="hibernate4AnnotatedSessionFactory"/>
     <bean id="HorarioDAO" class="mx.unam.ciencias.is.sistemacolaborativo.modelo.HorarioDAO" p:sessionFactory-ref="hibernate4AnnotatedSessionFactory"/>
+    
 
   
     <!-- SpringSecurity -->

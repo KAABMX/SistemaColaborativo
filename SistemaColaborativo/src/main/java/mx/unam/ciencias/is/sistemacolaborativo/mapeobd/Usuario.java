@@ -10,6 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -46,7 +48,18 @@ public class Usuario {
     private String codigo_activacion;
     @Column(name = "activado")
     private boolean activado;
+    //@OneToOne
+    //@JoinColumn(name = "pk_id_profesor")
+    //private Profesor profesor;
 
+    /*public Profesor getProfesor() {
+        return profesor;
+    }
+
+    public void setProfesor(Profesor profesor) {
+        this.profesor = profesor;
+    }*/
+        
     public boolean getActivado() {
         return activado;
     }

@@ -4,15 +4,17 @@
  * and open the template in the editor.
  */
 package mx.unam.ciencias.is.sistemacolaborativo.mapeobd;
-import javax.persistence.OneToMany;
+
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -41,8 +43,9 @@ public class Profesor {
     private String habilidades;
     @Column(name = "estaActivo")
     private boolean estaActivo;
-    @OneToMany(mappedBy = "fk_id_profesor")    
+    @OneToMany(mappedBy = "fk_id_profesor", fetch = FetchType.EAGER )    
     private List<Horario> horario =  new ArrayList<>();
+
 
     public Usuario getUsuario() {
         return usuario;
@@ -107,5 +110,6 @@ public class Profesor {
     public void setHorario(List<Horario> horario) {
         this.horario = horario;
     }    
+
 
 }

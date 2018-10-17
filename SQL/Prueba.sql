@@ -41,6 +41,7 @@ costo_x_hora VARCHAR(120),
 niveles_educativos VARCHAR(120),
 habilidades VARCHAR(320),
 identificacion varchar(90),
+estaactivo character varying(30) DEFAULT false,
 	FOREIGN KEY (fk_id_usuario) 
 	REFERENCES Usuario(pk_id_usuario)
 	ON DELETE CASCADE
