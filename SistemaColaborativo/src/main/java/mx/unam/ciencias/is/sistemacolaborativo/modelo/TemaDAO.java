@@ -136,7 +136,7 @@ public class TemaDAO {
     }
     
     
-       public Tema getTema(String idTema) {
+       public Tema getTema(int idTema) {
         Tema result = null;
         Session s = sessionFactory.openSession();
         Transaction tx = null;
