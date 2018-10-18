@@ -1,5 +1,4 @@
-CREATE DATABASE SISTEMACOLABORATIVO;
-USE SISTEMACOLABORATIVO;
+--CREATE DATABASE SISTEMACOLABORATIVO;
 CREATE TABLE Usuario(
 pk_id_usuario SERIAL NOT NULL  PRIMARY KEY,
 nombre VARCHAR(90),
@@ -93,7 +92,7 @@ FOREIGN KEY (fk_id_cv)
 	ON DELETE CASCADE
 );
 
-CREATE TABLE horario (
+CREATE TABLE Horario (
   dia VARCHAR(20) NOT NULL,
   horaInicio TIME NOT NULL,
   horaFin TIME NOT NULL,
@@ -102,6 +101,57 @@ CREATE TABLE horario (
   fk_id_profesor INT NOT NULL,
   PRIMARY KEY (idHorario),
     FOREIGN KEY (fk_id_profesor)
-    REFERENCES profesor (pk_id_profesor)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE)
+    	REFERENCES profesor (pk_id_profesor)
+    		ON DELETE CASCADE
+    		ON UPDATE CASCADE);
+
+CREATE TABLE Tema(
+	idTema SERIAL NOT NULL,
+	tema VARCHAR(20) NOT NULL,
+	PRIMARY KEY (idTema)
+	);
+
+CREATE TABLE TemaProfesor(
+	idTemaProfesor SERIAL NOT NULL,
+	idTema INT NOT NULL,
+	fk_id_profesor INT NOT NULL,
+	PRIMARY KEY (idTemaProfesor),
+	FOREIGN KEY(idTema)
+		REFERENCES Tema (idTema)
+		    ON DELETE CASCADE
+    		ON UPDATE CASCADE,
+	FOREIGN KEY(fk_id_profesor)
+		REFERENCES profesor (pk_id_profesor)
+		    ON DELETE CASCADE
+    		ON UPDATE CASCADE
+);
+	
+ CREATE TABLE Asesorar(
+ 	idAsesorar SERIAL NOT NULL,
+ 	costo float NOT NULL DEFAULT 0.0,
+ 	aceptada VARCHAR(20) NOT NULL DEFAULT false,
+ 	comentario VARCHAR(120), 
+	idTema INT NOT NULL,
+	idHorario INT NOT NULL,
+	fk_id_profesor INT NOT NULL,
+	fk_id_alumno INT NOT NULL,
+	PRIMARY KEY (idAsesorar),
+	FOREIGN KEY(idTema)
+		REFERENCES tema (idTema)
+		    ON DELETE CASCADE
+    		ON UPDATE CASCADE,
+	FOREIGN KEY(fk_id_alumno)
+		REFERENCES Alumno (pk_id_alumno)
+		    ON DELETE CASCADE
+    		ON UPDATE CASCADE,
+	FOREIGN KEY(fk_id_profesor)
+		REFERENCES Profesor (pk_id_profesor)
+		    ON DELETE CASCADE
+    		ON UPDATE CASCADE,
+	FOREIGN KEY(idHorario)
+		REFERENCES Horario (idHorario)
+		    ON DELETE CASCADE
+    		ON UPDATE CASCADE
+ 	);
+
+

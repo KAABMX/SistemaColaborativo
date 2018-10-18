@@ -8,11 +8,8 @@ package mx.unam.ciencias.is.sistemacolaborativo.controlador;
 
 import java.security.Principal;
 import java.sql.Time;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Random;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.Part;
@@ -20,12 +17,12 @@ import javax.servlet.http.Part;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Profesor;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Usuario;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Horario;
-import mx.unam.ciencias.is.sistemacolaborativo.modelo.ComplementariosDAO;
-import mx.unam.ciencias.is.sistemacolaborativo.modelo.CurriculumDAO;
-import mx.unam.ciencias.is.sistemacolaborativo.modelo.EstudiosDAO;
-import mx.unam.ciencias.is.sistemacolaborativo.modelo.ExperienciaDAO;
+import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Tema;
+import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Temaprofesor;
 import mx.unam.ciencias.is.sistemacolaborativo.modelo.HorarioDAO;
 import mx.unam.ciencias.is.sistemacolaborativo.modelo.ProfesorDAO;
+import mx.unam.ciencias.is.sistemacolaborativo.modelo.TemaDAO;
+import mx.unam.ciencias.is.sistemacolaborativo.modelo.TemaprofesorDAO;
 import mx.unam.ciencias.is.sistemacolaborativo.modelo.UsuarioDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -44,29 +41,34 @@ public class ControladorHorarioProfesor {
     @Autowired
     private ProfesorDAO profesor_bd;
     @Autowired
-    private CurriculumDAO cv_bd;
-    @Autowired
-    private ComplementariosDAO complementarios_bd;
-    @Autowired
-    private ExperienciaDAO experiencia_bd;
-    @Autowired
-    private EstudiosDAO estudios_bd;
-    @Autowired
     private HorarioDAO horario_bd;
-
+    @Autowired
+    private TemaprofesorDAO temaprofesor_bd;
+    @Autowired
+    private TemaDAO tema_bd;
+    
+    
     @RequestMapping(value = "/profesor/mostrarhorario")
     public String mostrarHorario(HttpServletRequest request, ModelMap model, Principal principal){
     Usuario usuario = usuario_bd.getUsuario(principal.getName());
     Profesor p = profesor_bd.getProfesor(usuario);
         List<Horario> horarios=p.getHorario();
         model.addAttribute("horarios",horarios);
+        
+        
+        List<Temaprofesor> temap=p.getTemaprofesor();
+        List<Tema> temas = new ArrayList<>();
+        for (Temaprofesor tema : temap) {
+            temas.add(tema.getTema());
+        }
+        model.addAttribute("temas", temas);
+        
+        model.addAttribute("todostemas", tema_bd.getTemas());
+        
         return  "vistaprofesor/horario";
     }
     
-    @RequestMapping(value = "/profesor/agregarhorario")
-    public ModelAndView obtenerHorario(HttpServletRequest request, ModelMap model, Principal principal){
-        return new ModelAndView("vistaprofesor/horarioagrega", "command",new Horario());
-    }
+
     
     @RequestMapping(value = "/profesor/guardarhorario")
     public String guardarHorario(HttpServletRequest request, ModelMap model, Principal principal){
@@ -86,6 +88,24 @@ public class ControladorHorarioProfesor {
     horario_bd.guardar(horario);
         return  "redirect:/profesor/mostrarhorario";
     }
+    
+    @RequestMapping(value = "/profesor/guardartema")
+    public String guardarTema(HttpServletRequest request, ModelMap model, Principal principal){
+    Usuario usuario = usuario_bd.getUsuario(principal.getName());
+    Profesor p = profesor_bd.getProfesor(usuario);
+    String tema=request.getParameter("temaseleccionado");
+    int t = Integer.parseInt(tema);
+    Tema nuevoTema = new Tema();
+    nuevoTema.setTema("este es un tema auxiliar");
+    nuevoTema.setIdtema(t);
+    Temaprofesor nuevoTemaProfesor= new Temaprofesor();
+    nuevoTemaProfesor.setProfesor(p);
+    nuevoTemaProfesor.setTema(nuevoTema);
+    temaprofesor_bd.guardar(nuevoTemaProfesor);
+    
+    
+        return  "redirect:/profesor/mostrarhorario";
+    }    
 
 
 }

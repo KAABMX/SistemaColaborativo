@@ -95,7 +95,7 @@
                     <div class="android-drawer-separator"></div>
                     <span class="mdl-navigation__link">Asesorías</span>
                     <a class="mdl-navigation__link" href="">Recomendaciones</a>
-                    <a class="mdl-navigation__link" href="${pageContext.request.contextPath}/profesor/mostrarhorario">horario</a>
+                    <a class="mdl-navigation__link" href="${pageContext.request.contextPath}/profesor/mostrarhorario">horarios y temas</a>
                     <div class="android-drawer-separator"></div>
                     <span class="mdl-navigation__link">Ayuda</span>
                     <a class="mdl-navigation__link" href="">Realizar Denuncia</a>

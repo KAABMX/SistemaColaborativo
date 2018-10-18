@@ -17,11 +17,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
-/**
- *
- * @author hectorsama
- */
+
 @Entity
 @Table(name = "Profesor")
 public class Profesor {
@@ -43,8 +42,15 @@ public class Profesor {
     private String habilidades;
     @Column(name = "estaActivo")
     private boolean estaActivo;
-    @OneToMany(mappedBy = "fk_id_profesor", fetch = FetchType.EAGER )    
+    @OneToMany(mappedBy = "fk_id_profesor")    
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<Horario> horario =  new ArrayList<>();
+    @OneToMany(mappedBy = "fk_id_profesor")  
+    @LazyCollection(LazyCollectionOption.FALSE)    
+    private List<Temaprofesor> temaprofesor =  new ArrayList<>();
+    @OneToMany(mappedBy = "fk_id_profesor")    
+    @LazyCollection(LazyCollectionOption.FALSE)    
+    private List<Asesorar> asesorar =  new ArrayList<>();
 
 
     public Usuario getUsuario() {
@@ -111,5 +117,20 @@ public class Profesor {
         this.horario = horario;
     }    
 
+    public List<Temaprofesor> getTemaprofesor() {
+        return this.temaprofesor;
+    }
+    
+    public void setTemaprofesor(List<Temaprofesor> temaprofesor) {
+        this.temaprofesor = temaprofesor;
+    } 
+
+    public List<Asesorar> getAsesorar() {
+        return this.asesorar;
+    }
+    
+    public void setAsesorar(List<Asesorar> asesorar) {
+        this.asesorar = asesorar;
+    } 
 
 }

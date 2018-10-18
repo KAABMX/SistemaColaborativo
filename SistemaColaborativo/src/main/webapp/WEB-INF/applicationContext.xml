@@ -34,6 +34,9 @@
                 <value>mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Experiencia</value>
                 <value>mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Complementarios</value>
                 <value>mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Horario</value>                
+                <value>mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Tema</value>                
+                <value>mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Temaprofesor</value>                
+                <value>mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Asesorar</value>                
             </list>
         </property>
         <property name="hibernateProperties">
@@ -58,6 +61,9 @@
     <bean id="CurriculumDAO" class="mx.unam.ciencias.is.sistemacolaborativo.modelo.CurriculumDAO" p:sessionFactory-ref="hibernate4AnnotatedSessionFactory"/>
     <bean id="ProfesorDAO" class="mx.unam.ciencias.is.sistemacolaborativo.modelo.ProfesorDAO" p:sessionFactory-ref="hibernate4AnnotatedSessionFactory"/>
     <bean id="HorarioDAO" class="mx.unam.ciencias.is.sistemacolaborativo.modelo.HorarioDAO" p:sessionFactory-ref="hibernate4AnnotatedSessionFactory"/>
+    <bean id="TemaDAO" class="mx.unam.ciencias.is.sistemacolaborativo.modelo.TemaDAO" p:sessionFactory-ref="hibernate4AnnotatedSessionFactory"/>
+    <bean id="TemaprofesorDAO" class="mx.unam.ciencias.is.sistemacolaborativo.modelo.TemaprofesorDAO" p:sessionFactory-ref="hibernate4AnnotatedSessionFactory"/>
+    <bean id="AsesorarDAO" class="mx.unam.ciencias.is.sistemacolaborativo.modelo.AsesorarDAO" p:sessionFactory-ref="hibernate4AnnotatedSessionFactory"/>
     
 
   
