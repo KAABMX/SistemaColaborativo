@@ -21,7 +21,7 @@ public class ControladorSesion {
     @Autowired
     UsuarioDAO usuario_db;
 
-    /*@RequestMapping(value = "/inicio", method = RequestMethod.GET)
+    @RequestMapping(value = "/inicio", method = RequestMethod.GET)
     public String loggea(HttpServletRequest request, Principal principal) {
         // System.out.println(principal.getName()+principal.toString());
 
@@ -43,7 +43,7 @@ public class ControladorSesion {
         }
         return "index";
 
-    }*/
+    }
 
     @RequestMapping(value = "/login_error")
     public ModelAndView fallop(HttpServletRequest request, ModelMap model) {
@@ -68,6 +68,7 @@ public class ControladorSesion {
         String u = principal.getName();
         Usuario usuario = usuario_db.getUsuario(u);
         model.addAttribute("username", u);
+        model.addAttribute("nombre", usuario.getNombre());
         return new ModelAndView("indexusuario", model);
 
     }

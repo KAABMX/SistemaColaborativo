@@ -2,8 +2,11 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:security="http://www.springframework.org/schema/security"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-                           http://www.springframework.org/schema/beans/spring-beans-4.3.xsd" >
+                           http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+                           http://www.springframework.org/schema/security
+                           http://www.springframework.org/schema/security/spring-security-4.1.xsd">
     <!-- Se especifica la ruta del archivo que tendra los datos de la conexión a la BD,
     en este caso el archivo se llama database.properties y se encuentra dentro de 
     la carpeta WEB-INF -->
@@ -24,12 +27,21 @@
             <list>   
                 <value>mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Usuario</value>
                 <value>mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Alumno</value>
+                <value>mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Profesor</value>
                 <value>mx.unam.ciencias.is.sistemacolaborativo.mapeobd.InteresAcademico</value>
+                <value>mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Curriculum</value>
+                <value>mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Estudios</value>
+                <value>mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Experiencia</value>
+                <value>mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Complementarios</value>
+                <value>mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Horario</value>                
+                <value>mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Tema</value>                
+                <value>mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Temaprofesor</value>                
+                <value>mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Asesorar</value>                
             </list>
         </property>
         <property name="hibernateProperties">
             <props>
-                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+                <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQL82Dialect</prop>
                 <prop key="hibernate.show_sql">true</prop>
                 <prop key="hibernate.format_sql">false</prop>
             </props>
@@ -40,26 +52,52 @@
     en el paquete controlador, se esta haciendo uso de @Autowired-->
     <!--Ejemplo para configurar bean-->
     
-     <bean id="UsuarioDAO" class="mx.unam.ciencias.is.sistemacolaborativo.modelo.UsuarioDAO" p:sessionFactory-ref="hibernate4AnnotatedSessionFactory"/>
+    <bean id="UsuarioDAO" class="mx.unam.ciencias.is.sistemacolaborativo.modelo.UsuarioDAO" p:sessionFactory-ref="hibernate4AnnotatedSessionFactory"/>
     <bean id="AlumnoDAO" class="mx.unam.ciencias.is.sistemacolaborativo.modelo.AlumnoDAO" p:sessionFactory-ref="hibernate4AnnotatedSessionFactory"/>
     <bean id="InteresAcademicoDAO" class="mx.unam.ciencias.is.sistemacolaborativo.modelo.InteresAcademicoDAO" p:sessionFactory-ref="hibernate4AnnotatedSessionFactory"/>
-      <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:p="http://www.springframework.org/schema/p"
-       xmlns:security="http://www.springframework.org/schema/security"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans
-                           http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
-                           http://www.springframework.org/schema/security
-                           http://www.springframework.org/schema/security/spring-security-4.1.xsd">
+    <bean id="ExperienciaDAO" class="mx.unam.ciencias.is.sistemacolaborativo.modelo.ExperienciaDAO" p:sessionFactory-ref="hibernate4AnnotatedSessionFactory"/>
+    <bean id="ComplementariosDAO" class="mx.unam.ciencias.is.sistemacolaborativo.modelo.ComplementariosDAO" p:sessionFactory-ref="hibernate4AnnotatedSessionFactory"/>
+    <bean id="EstudiosDAO" class="mx.unam.ciencias.is.sistemacolaborativo.modelo.EstudiosDAO" p:sessionFactory-ref="hibernate4AnnotatedSessionFactory"/>
+    <bean id="CurriculumDAO" class="mx.unam.ciencias.is.sistemacolaborativo.modelo.CurriculumDAO" p:sessionFactory-ref="hibernate4AnnotatedSessionFactory"/>
+    <bean id="ProfesorDAO" class="mx.unam.ciencias.is.sistemacolaborativo.modelo.ProfesorDAO" p:sessionFactory-ref="hibernate4AnnotatedSessionFactory"/>
+    <bean id="HorarioDAO" class="mx.unam.ciencias.is.sistemacolaborativo.modelo.HorarioDAO" p:sessionFactory-ref="hibernate4AnnotatedSessionFactory"/>
+    <bean id="TemaDAO" class="mx.unam.ciencias.is.sistemacolaborativo.modelo.TemaDAO" p:sessionFactory-ref="hibernate4AnnotatedSessionFactory"/>
+    <bean id="TemaprofesorDAO" class="mx.unam.ciencias.is.sistemacolaborativo.modelo.TemaprofesorDAO" p:sessionFactory-ref="hibernate4AnnotatedSessionFactory"/>
+    <bean id="AsesorarDAO" class="mx.unam.ciencias.is.sistemacolaborativo.modelo.AsesorarDAO" p:sessionFactory-ref="hibernate4AnnotatedSessionFactory"/>
+    
+
   
-
- 
+    <!-- SpringSecurity -->
+    <security:http pattern="/css/*" security="none"/>
+    <security:http pattern="/imagenes/*" security="none"/>
+    <security:http pattern="/js/*" security="none"/>
     
+    <!-- aqui se nterceptan as peticiones de nuestra aplicacion-->
+    <security:http auto-config='true'>
+        <!-- si la peticion es / dejamos pasar a todos -->
+        <security:intercept-url pattern="/" access="permitAll" />
+        <!-- toda peticion con el texto /sesion/ antes de el noombre de la peticion
+        solo los que iniciaron sesion pueden acceder -->
+        <!--<security:intercept-url pattern="/sesion/*" access="isAuthenticated()" />-->
+        <security:intercept-url pattern="/alumno/*" access="hasRole('ROLE_ESTUDIANTE')" />
+        <security:intercept-url pattern="/profesor/*" access="hasRole('ROLE_PROFESOR')" />
+        <security:form-login login-page="/"
+                             authentication-failure-url="/loggea/?login_error=1"
+                             default-target-url="/inicio"
+                             always-use-default-target="true"/>
+        <security:csrf disabled="true"/>
+        <security:access-denied-handler error-page="/error403" />
+        <security:logout logout-success-url="/"
+                         delete-cookies="JSESSIONID"/>
+    </security:http>
+    
+    <!--Aqui se configuran los usuarios -->
+    <security:authentication-manager>
+        <security:authentication-provider>
+            <security:password-encoder hash="bcrypt" />
+            <security:jdbc-user-service data-source-ref="dataSource"
+                                        users-by-username-query="SELECT correo,contrasenia,1 FROM usuario WHERE correo=?"
+                                        authorities-by-username-query="SELECT correo,rol,1 FROM usuario WHERE correo=?"/>
+        </security:authentication-provider>
+    </security:authentication-manager>
 </beans>
-    
-</beans>
-
-
-
-    
-    

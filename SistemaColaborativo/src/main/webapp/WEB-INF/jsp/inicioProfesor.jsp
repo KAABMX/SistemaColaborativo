@@ -1,7 +1,7 @@
 <%-- 
     Document   : inicioProfesor
     Created on : 5/10/2018, 11:12:05 PM
-    Author     : hectorsama
+    Author     : juan
 --%>
 <jsp:include page='headerProfesores.jsp'>
     <jsp:param name="title" value="Página principal"/>

@@ -1,7 +1,7 @@
 <%-- 
 Document   : register
 Created on : 13/09/2018, 06:07:15 PM
-Author     : hectorsama
+Author     : hectorsama, luis
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -10,172 +10,41 @@ Author     : hectorsama
 <jsp:include page='header.jsp'>
     <jsp:param name="title" value="Registro de alumno"/>
 </jsp:include>
-        <form action="${pageContext.request.contextPath}/registra" name="myForm" method="post" onsubmit="return(validate());">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="well center-block">
-                        <div class="well-header">
-                            <h3 class="text-center text-success"> Registro Alumno </h3>
-                            <hr>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-12 col-sm-12 col-xs-12">
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <div class="input-group-addon">
-                                            <i class="glyphicon glyphicon-user"></i>
-                                        </div>
-                                        <input type="text" placeholder="Nombre" name="nombre" id="nombre" class="form-control" required>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-xs-12 col-sm-12 col-md-12">
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <div class="input-group-addon">
-                                            <i class="glyphicon glyphicon-user"></i>
-                                        </div>
-                                        <input type="text" placeholder="Apellido Paterno" name="paterno" id="paterno" class="form-control" required>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-xs-12 col-sm-12 col-md-12">
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <div class="input-group-addon">
-                                            <i class="glyphicon glyphicon-user"></i>
-                                        </div>
-                                        <input type="text" placeholder="Apellido Materno" name="materno"  id="materno" class="form-control" required>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-12 col-xs-12 col-sm-12">
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <div class="input-group-addon">
-                                            <i class="glyphicon glyphicon-envelope"></i>
-                                        </div>
-                                        <input type="email" class="form-control"  name="correo" id="correo"  placeholder="Email" required/>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                                                <div class="row">
-                            <div class="col-md-12 col-xs-12 col-sm-12">
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <div class="input-group-addon">
-                                            <i class="	glyphicon glyphicon-warning-sign"></i>
-                                        </div>
-                                        <input type="password" class="form-control"  name="contrasenya" id="contrasenya"  placeholder="Contraseña" required/>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        
-                                                                        <div class="row">
-                            <div class="col-md-12 col-xs-12 col-sm-12">
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <div class="input-group-addon">
-                                            <i class="	glyphicon glyphicon-warning-sign"></i>
-                                        </div>
-                                        <input type="password" class="form-control"  name="confirm" id="confirm"  placeholder=" Repetir Contraseña" required/>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-12 col-xs-12 col-sm-12">
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <div class="input-group-addon">
-                                            <i class="glyphicon glyphicon-phone"></i>
-                                        </div>
-                                        <input type="number" minlength="10" maxlength="12" class="form-control" name="telefono" id="telefono" placeholder="Celular">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-12 col-xs-12 col-sm-12">
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <div class="input-group-addon">
-                                            <i class="glyphicon glyphicon-user"></i>
-                                        </div>
-                                  
-                                        <select class="form-control" id="sexo" name="sexo" placeholder="Sexo">
-                                            <option>Femenino</option>
-                                            <option>Masculino</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-12 col-xs-12 col-sm-12">
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <div class="input-group-addon">
-                                            <i class="glyphicon glyphicon-user"></i>
-                                        </div>
-                                        <label for="nivel">Nivel Academico:</label>
-                                        <select class="form-control" id="nivel" name="nivel">
-                                            <option>Primaria</option>
-                                            <option>Secundaria</option>
-                                            <option>Bachillerato</option>
-                                            <option>Universidad</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                            <div class="input-group-addon">
-                                            <i class="glyphicon glyphicon-pencil"></i>
-                                              <label for="nivel">Materias de interes:</label>
-                                        </div>
-                       
-                         <div class="checkbox">
-                            <label><input type="checkbox"  name="matematicas" id="matematicas">Matemáticas</label>
-                        </div>
-
-                        <div class="checkbox">
-                            <label><input type="checkbox" name="espanol" id="espanol">Español</label>
-                        </div>
-
-                        <div class="checkbox">
-                            <label><input type="checkbox" name="geografia" id="geografia">Geografía</label>
-                        </div>
-                                              <div class="checkbox">
-                                                  <label><input type="checkbox" name="historia" id="historia">Historia</label>
-                          </div>
-
-                        <div class="row widget">
-                            <div class="col-md-12 col-xs-12 col-sm-12">
-                                <button id="button"  class="btn btn-primary btn-lg btn-block login-button">Registrate</button>
-                               
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <div align='center' style="padding-top:50px;">
+    <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp center-block" style="width:500px">
+        <div class="mdl-card__title" style="background-color:#66b04f;" >
+            <!--h4 class="mdl-card__title-text" style='color:white;'>Información Académica y Laboral</h4-->
+        </div>
+        <div class="mdl-card__supporting-text">
+            <h2>Alumno</h2>
+        </div>
+        <form id="sample3" method="post" style="width:500px" enctype="multipart/form-data" action="${pageContext.request.contextPath}/registra">            
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" name = "nombre">
+                <label class="mdl-textfield__label" for="sample3">Nombre</label>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" name = "paterno">
+                <label class="mdl-textfield__label" for="sample3">Apellido paterno</label>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" name = "materno">
+                <label class="mdl-textfield__label" for="sample3">Apellido materno</label>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="email" name = "correo">
+                <label class="mdl-textfield__label" for="sample3">Correo</label>
+            </div>            
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="password" name = "contrasenya">
+                <label class="mdl-textfield__label" for="sample3">Contraseña</label>
+            </div>
+            <div class="mdl-card__actions" style="padding-bottom:30px;">
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" style="background-color:#66b04f;width:70%;">
+                    Registrar
+                </button>
             </div>
         </form>
+    </div>
+</div>
 <%@include file='footer.jsp'%>

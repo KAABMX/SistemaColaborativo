@@ -62,7 +62,7 @@
                     <!-- Navigation -->
                     <div class="android-navigation-container">
                         <nav class="android-navigation mdl-navigation">
-                            <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Asesorías</a>
+                            <a class="mdl-navigation__link mdl-typography--text-uppercase" href="${pageContext.request.contextPath}/alumno/verasesorias">Asesorías</a>
                             <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Asesores</a>
                             <a class="mdl-navigation__link mdl-typography--text-uppercase" href="${pageContext.request.contextPath}/verProfesores">Información</a>
                             <a class="mdl-navigation__link mdl-typography--text-uppercase" href="${pageContext.request.contextPath}/logout">Cerrar Sesión</a>
@@ -90,6 +90,7 @@
                     <span class="mdl-navigation__link">Perfil</span>
                     <a class="mdl-navigation__link" href="">Ver Perfil</a>
                     <a class="mdl-navigation__link" href="">Editar Perfil</a>
+                    <a class="mdl-navigation__link" href="${pageContext.request.contextPath}/profesor/mostrarhorario">Horarios</a>
                     <div class="android-drawer-separator"></div>
                     <span class="mdl-navigation__link">Asesorías</span>
                     <a class="mdl-navigation__link" href="">Recomendaciones</a>

@@ -5,6 +5,9 @@
  */
 package mx.unam.ciencias.is.sistemacolaborativo.controlador;
 
+import java.math.BigInteger;
+import java.security.Principal;
+import java.util.Random;
 import javax.servlet.http.HttpServletRequest;
 import mx.unam.ciencias.is.sistemacolaborativo.modelo.UsuarioDAO;
 import mx.unam.ciencias.is.sistemacolaborativo.modelo.AlumnoDAO;
@@ -33,6 +36,8 @@ public class ControladorAlumno {
     private AlumnoDAO alumno_bd;
     @Autowired
     private InteresAcademicoDAO interes_bd;
+    //Identificador del usuario que inicio sesión.
+    private int idUsuario = 8;
 
     @RequestMapping(value = "/registra", method = RequestMethod.POST)
     public ModelAndView peticion(HttpServletRequest request, ModelMap model) {
@@ -44,24 +49,23 @@ public class ControladorAlumno {
             usuario.setApellido_m(request.getParameter("materno"));
             usuario.setTelefono(request.getParameter("telefono"));
             BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-            String contrasenya = request.getParameter("contrasenya");
-            String hashedPassword = passwordEncoder.encode(contrasenya);
-            System.out.println(hashedPassword);
+            usuario.setContrasenia(passwordEncoder.encode(request.getParameter("contrasenya")));
             String contrasenaConf = request.getParameter("confirm");
             //InputStream foto = new FileInputStream(request.getParameter("foto"));
             //convertir la foto a bytes y agregarlo al usuario
             usuario.setSexo(request.getParameter("sexo"));
+            usuario.setRol("ROLE_ESTUDIANTE");
+            String ca = obtenerCadenaAleatoria();
+            usuario.setCodigo_activacion(ca);
             usuario_bd.guardar(usuario);
             //hasta aqui se crea el usuario
-            //agregar a la ase
+            //agregar a la base
             Alumno al = new Alumno();
+            al.setUsuario(usuario);
             al.setUltimo_nivel_educativo(request.getParameter("nivel"));
             //agregar a la base
             alumno_bd.guardar(al);
 
-            int id = Integer.parseInt(request.getParameter("fk_id_alumno"));
-            System.out.println(id);
-            Alumno us = alumno_bd.getAlumno(id);
             String matematicas = request.getParameter("matematicas");
             String espanol = request.getParameter("espanol");
             String geografia = request.getParameter("geografia");
@@ -70,34 +74,145 @@ public class ControladorAlumno {
             if (matematicas != null && matematicas.equals("on")) {
                 InteresAcademico g = new InteresAcademico();
                 g.setInteres("Matematicas");
-                g.setFk_id_alumno(id);
+                g.setAlumno(al);
                 interes_bd.guardar(g);
             }
 
             if (espanol != null && espanol.equals("on")) {
                 InteresAcademico g = new InteresAcademico();
                 g.setInteres("Español");
-                g.setFk_id_alumno(id);
+                g.setAlumno(al);
                 interes_bd.guardar(g);
             }
 
             if (geografia != null && geografia.equals("on")) {
                 InteresAcademico g = new InteresAcademico();
                 g.setInteres("Geografía");
-                g.setFk_id_alumno(id);
+                g.setAlumno(al);
                 interes_bd.guardar(g);
             }
             if (historia != null && historia.equals("on")) {
                 InteresAcademico g = new InteresAcademico();
                 g.setInteres("Historia");
-                g.setFk_id_alumno(id);
+                g.setAlumno(al);
                 interes_bd.guardar(g);
             }
-                         
+            CorreoActivacion caa = new CorreoActivacion();
+            caa.CorreoActivacion(request, usuario);
         } catch (Exception e) {
 
         }
-        return new ModelAndView("perfil", model);
+        return new ModelAndView("index", model);
 
     }
+
+    /**
+     * Genera una cadena aleatoria para usarse como código de activación.
+     *
+     * @return una cadena aleatoria de 30 caracteres
+     */
+    private String obtenerCadenaAleatoria() {
+        /* La base que se usa para convertir un número a cadena. */
+        final int base = 32;
+        /*
+         * Tamaño de la cadena aleatoria. Usa 30 caracteres, y cada carácter
+         * corresponde a 5 bits.
+         */
+        final int tam = 30 * 5;
+
+        Random rnd = new Random();
+        return new BigInteger(tam, rnd).toString(base);
+    }
+    
+    /**
+     * Se actualiza un usuario partiendo de su identificador unico.
+     * 
+     * @param request
+     * @param model
+     * @return 
+     */
+    @RequestMapping(value = "/actualizarAlumno", method = RequestMethod.POST)
+    public ModelAndView actualizarAlumno(HttpServletRequest request, ModelMap model,Principal principal) {                   
+        try {            
+            Usuario usuarioActualizado = usuario_bd.getUsuario(principal.getName());
+            
+            if(request.getParameter("correo") != null){
+              usuarioActualizado.setCorreo(request.getParameter("correo"));   
+            }            
+            if(request.getParameter("nombre") != null){
+                usuarioActualizado.setNombre(request.getParameter("nombre"));
+            }
+            if(request.getParameter("paterno") != null){
+               usuarioActualizado.setApellido_p(request.getParameter("paterno")); 
+            }
+            if(request.getParameter("materno") != null){
+                usuarioActualizado.setApellido_m(request.getParameter("materno"));
+            }                       
+            if(request.getParameter("telefono") != null){
+               usuarioActualizado.setTelefono(request.getParameter("telefono")); 
+            }
+            if(request.getParameter("contrasenya") != null){
+                BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+                usuarioActualizado.setContrasenia(passwordEncoder.encode(request.getParameter("contrasenya")));
+                String contrasenaConf = request.getParameter("confirm");
+            }
+            
+            //InputStream foto = new FileInputStream(request.getParameter("foto"));
+            //convertir la foto a bytes y agregarlo al usuario
+            
+            if(request.getParameter("sexo") != null){
+               usuarioActualizado.setSexo(request.getParameter("sexo")); 
+            }
+            
+            usuario_bd.actualizar(usuarioActualizado);            
+                        
+            Alumno alumnoActualizado = new Alumno();
+            
+            alumnoActualizado.setUsuario(usuarioActualizado);
+            if(request.getParameter("nivel") != null){
+               alumnoActualizado.setUltimo_nivel_educativo(request.getParameter("nivel")); 
+            }
+            
+            alumno_bd.actualizar(alumnoActualizado);
+
+            String matematicas = request.getParameter("matematicas");
+            String espanol = request.getParameter("espanol");
+            String geografia = request.getParameter("geografia");
+            String historia = request.getParameter("historia");
+
+            if (matematicas != null && matematicas.equals("on")) {
+                InteresAcademico g = new InteresAcademico();
+                g.setInteres("Matematicas");
+                g.setAlumno(alumnoActualizado);
+                interes_bd.actualizar(g);
+            }
+
+            if (espanol != null && espanol.equals("on")) {
+                InteresAcademico g = new InteresAcademico();
+                g.setInteres("Español");
+                g.setAlumno(alumnoActualizado);
+                interes_bd.actualizar(g);
+            }
+
+            if (geografia != null && geografia.equals("on")) {
+                InteresAcademico g = new InteresAcademico();
+                g.setInteres("Geografía");
+                g.setAlumno(alumnoActualizado);
+                interes_bd.actualizar(g);
+            }
+            if (historia != null && historia.equals("on")) {
+                InteresAcademico g = new InteresAcademico();
+                g.setInteres("Historia");
+                g.setAlumno(alumnoActualizado);
+                interes_bd.actualizar(g);
+            }
+
+        } catch (Exception e) {
+
+        }
+        return new ModelAndView("index", model);
+
+
+    }
+
 }
