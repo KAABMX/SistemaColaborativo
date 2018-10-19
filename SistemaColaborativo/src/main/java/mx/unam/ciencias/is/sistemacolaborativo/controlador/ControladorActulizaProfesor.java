@@ -9,7 +9,9 @@ package mx.unam.ciencias.is.sistemacolaborativo.controlador;
 import java.io.InputStream;
 import java.security.Principal;
 import java.sql.Time;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
@@ -91,31 +93,72 @@ public class ControladorActulizaProfesor {
 	String materno = request.getParameter("materno");
 	String telefono = request.getParameter("telefono");
 	String sexo = request.getParameter("sexo");
-	String costo =request.getParameter("costo");
 	
+	
+        usuario.setNombre(nombre);
+        usuario.setApellido_p(paterno);
+        usuario.setApellido_m(materno);
+        usuario.setTelefono(telefono);
+        usuario.setSexo(sexo);
+        usuario.setCorreo(correo);
+        
+        
+        String costo =request.getParameter("costo");
+        profesor.setCosto_x_hora(costo);
+        
+	
+        String lugar =request.getParameter("lugar");
+        curriculum.setLugar_de_nacimiento(lugar);
+        
+        
+	String fecha_inicio =request.getParameter("fecha_inicio");
+	String fecha_fin = request.getParameter("fecha_fin");
+
         try {
-            Part file = request.getPart("file");
-            InputStream is = file.getInputStream();
-            byte[] ident = new byte[is.available()];
-            is.read(ident);
-            profesor.setIdentificacion(ident);
+        Date estudiosi = new SimpleDateFormat("yyyy-MM-dd").parse(fecha_inicio);
+        Date estudiosf = new SimpleDateFormat("yyyy-MM-dd").parse(fecha_fin);
+        estudios.setFecha_inicio(estudiosi);
+        estudios.setFecha_fin(estudiosf);        
         } catch (Exception e) {
 
         }
-	
-        String lugar =request.getParameter("lugar");
-	String fecha_inicio =request.getParameter("fecha_inicio");
-	String fecha_fin = request.getParameter("fecha_fin");
+        
+        
+        
 	String estudiosg = request.getParameter("estudios");
+        complementarios.setEstudio(estudiosg);
+        
 	String universidad =request.getParameter("universidad");
+        estudios.setUniversidad(universidad);
+        
 	String empresa =request.getParameter("empresa");
 	String fecha_inicio_trabajo =request.getParameter("fecha_inicio_trabajo");
 	String fecha_fin_trabajo =request.getParameter("fecha_fin_trabajo");
 	String funcion_trabajo =request.getParameter("funcion_trabajo");
 	String tarea_trabajo =request.getParameter("tarea_trabajo");
+        experiencia.setEmpresa(empresa);
+        
+        experiencia.setFuncion_trabajo(funcion_trabajo);
+        experiencia.setTarea_trabajo(tarea_trabajo);
+        
+        try {
+        Date trabajoi = new SimpleDateFormat("yyyy-MM-dd").parse(fecha_inicio);
+        Date trabajof = new SimpleDateFormat("yyyy-MM-dd").parse(fecha_fin);
+        experiencia.setFecha_inicio(trabajoi);
+        experiencia.setFecha_fin(trabajof);
+        } catch (Exception e) {
+
+        }
+        
+        usuario_bd.actualizar(usuario);
+        profesor_bd.actualizar(profesor);
+        cv_bd.actualizar(curriculum);
+        experiencia_bd.actualizar(experiencia);
+        estudios_bd.actualizar(estudios);
+        complementarios_bd.actualizar(complementarios);
     
 
         
-        return  "vistaprofesor/actualizarProfesor";
+        return  "/profesor/actualizaprofesor";
     }
 }

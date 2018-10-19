@@ -137,13 +137,6 @@
                 <input class="mdl-textfield__input" type="number" id="number" name="costo" value="${profesor.getCosto_x_hora().toString()}">
                 <label class="mdl-textfield__label" for="sample3">Costo por hora (MXN)</label>
             </div>
-            <div class="mdl-textfield mdl-js-textfield">
-                <input class="mdl-textfield__input" id="file" type="text" name="identificacion" style="left:0;" placeholder="Tu identificación"  readonly>
-                <Label class="input-custom-file mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" style="right:0;background-color:#66b04f;">
-                    Subir
-                    <input type="file" id="boton" accept="image/jpeg, image/png" style="display:none;">
-                </label>
-            </div>
             <div class="mdl-card__actions" style="padding-bottom:30px;">
                 <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" style="background-color:#66b04f;width:70%;">
                     Actualizar
