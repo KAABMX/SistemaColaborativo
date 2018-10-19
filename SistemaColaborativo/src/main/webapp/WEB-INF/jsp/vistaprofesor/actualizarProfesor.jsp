@@ -17,37 +17,33 @@
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                 <i><label class="mdl-card__title">Datos generales</label></i>
         </div>        
-        <form id="sample3" method="post" style="width:500px" enctype="multipart/form-data" action="${pageContext.request.contextPath}/actualizaProfesor">
+        <form id="sample3" method="post" style="width:500px" enctype="multipart/form-data" action="${pageContext.request.contextPath}/profesor/realizaactualizaprofesor">
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" name = "nombre" >
+                <input class="mdl-textfield__input" type="text" name = "nombre" value="${usuario.getNombre()}">
                 <label class="mdl-textfield__label" for="sample3">Nombre</label>
             </div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" name = "paterno" >
+                <input class="mdl-textfield__input" type="text" name = "paterno" value="${usuario.getApellido_p()}" >
                 <label class="mdl-textfield__label" for="sample3">Apellido paterno</label>
             </div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" name = "materno" >
+                <input class="mdl-textfield__input" type="text" name = "materno" value="${usuario.getApellido_m()}">
                 <label class="mdl-textfield__label" for="sample3">Apellido materno</label>
             </div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="email" name = "correo" >
+                <input class="mdl-textfield__input" type="email" name = "correo" value="${usuario.getCorreo()}">
                 <label class="mdl-textfield__label" for="sample3">Correo</label>
             </div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="tel" name = "telefono" >
+                <input class="mdl-textfield__input" type="tel" name = "telefono" value="${usuario.getTelefono()}">
                 <label class="mdl-textfield__label" for="sample3">Telefono</label>
             </div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" name = "sexo" >
+                <input class="mdl-textfield__input" type="text" name = "sexo" value="${usuario.getSexo()}">
                 <label class="mdl-textfield__label" for="sample3">Sexo</label>
             </div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="password" name = "contrasenya" >
-                <label class="mdl-textfield__label" for="sample3">Contraseña</label>
-            </div>
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <select class="mdl-textfield__input" id="lugar" name="lugar">
+                <select class="mdl-textfield__input" id="lugar" name="lugar" value="${curriculum.getLugar_de_nacimiento()}">
                     <option value="Aguascalientes">Aguascalientes</option>
                     <option value="Baja California">Baja California</option>
                     <option value="Baja California Sur">Baja California Sur</option>
@@ -56,7 +52,7 @@
                     <option value="Colima">Colima</option>
                     <option value="Chiapas">Chiapas</option>
                     <option value="Chihuahua">Chihuahua</option>
-                    <option value="Distrito Federal">Distrito Federal</option>
+                    <option value="Distrito Federal" selected>Distrito Federal</option>
                     <option value="Durango">Durango</option>
                     <option value="Guanajuato">Guanajuato</option>
                     <option value="Guerrero">Guerrero</option>
@@ -87,25 +83,25 @@
                 <i><label class="mdl-card__title">Formación Académica</label></i>
             </div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" name = "estudios" >
+                <input class="mdl-textfield__input" type="text" name = "estudios" value="${complementarios.getEstudio()}" required>
                 <label class="mdl-textfield__label" for="sample3">Estudios</label>
             </div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" name = "universidad" >
+                <input class="mdl-textfield__input" type="text" name = "universidad" value="${estudios.getUniversidad()}" >
                 <label class="mdl-textfield__label" for="sample3">Universidad</label>
             </div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" name = "habilidades" >
+                <input class="mdl-textfield__input" type="text" name = "habilidades" value="${profesor.getHabilidades()}">
                 <label class="mdl-textfield__label" for="sample3">Área(s) de especialidad</label>
             </div>
             <div class="mdl-textfield mdl-js-textfield">
-                <input class="mdl-textfield__input" type="date" id="date" name="fecha_inicio" >
+                <input class="mdl-textfield__input" type="date" id="date" name="fecha_inicio" value="1996-08-01">
             </div>
             <div class="mdl-card__supporting-text" >
                 <span class="mdl-typography--font-light">Fecha de inicio de tus estudios</span>
             </div>
             <div class="mdl-textfield mdl-js-textfield">
-                <input class="mdl-textfield__input"  type="date" id="date" name="fecha_fin" >
+                <input class="mdl-textfield__input"  type="date" id="date" name="fecha_fin" value="1996-08-01">
             </div>
             <div class="mdl-card__supporting-text" >
                 <span class="mdl-typography--font-light">Fecha de fin de tus estudios</span>
@@ -114,31 +110,31 @@
                 <i><label class="mdl-card__title">Experiencia Laboral</label></i>
             </div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" name = "empresa" >
+                <input class="mdl-textfield__input" type="text" name = "empresa" value="${experiencia.getEmpresa()}">
                 <label class="mdl-textfield__label" for="sample3">Empresa</label>
             </div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" name = "funcion_trabajo" >
+                <input class="mdl-textfield__input" type="text" name = "funcion_trabajo" value="${experiencia.getFuncion_trabajo()}">
                 <label class="mdl-textfield__label" for="sample3">Función realizada</label>
             </div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" name = "tarea_trabajo" >
+                <input class="mdl-textfield__input" type="text" name = "tarea_trabajo" value="${experiencia.getTarea_trabajo()}">
                 <label class="mdl-textfield__label" for="sample3">Tarea realizada</label>
             </div>
             <div class="mdl-textfield mdl-js-textfield">
-                <input class="mdl-textfield__input" type="date" id="date" name="fecha_inicio_trabajo" >
+                <input class="mdl-textfield__input" type="date" id="date" name="fecha_inicio_trabajo" value="1996-08-01">
             </div>
             <div class="mdl-card__supporting-text" >
                 <span class="mdl-typography--font-light">Fecha de inicio de tus labores</span>
             </div>
             <div class="mdl-textfield mdl-js-textfield">
-                <input class="mdl-textfield__input" type="date" id="date" name="fecha_fin_trabajo" >
+                <input class="mdl-textfield__input" type="date" id="date" name="fecha_fin_trabajo" value="1996-08-01">
             </div>
             <div class="mdl-card__supporting-text" >
                 <span class="mdl-typography--font-light">Fecha de fin de tus labores</span>
             </div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="number" id="number" name="costo" >
+                <input class="mdl-textfield__input" type="number" id="number" name="costo" value="${profesor.getCosto_x_hora().toString()}">
                 <label class="mdl-textfield__label" for="sample3">Costo por hora (MXN)</label>
             </div>
             <div class="mdl-textfield mdl-js-textfield">
@@ -147,63 +143,6 @@
                     Subir
                     <input type="file" id="boton" accept="image/jpeg, image/png" style="display:none;">
                 </label>
-            </div>
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <i><label class="mdl-card__title">Niveles educativos de enseñanza</label></i>
-            </div>
-            <div>
-                <ul class="mdl-list">
-                    <li class="mdl-list__item">
-                        <span class="mdl-list__item-primary-content" style="padding-left:90px;">
-                            Primaria
-                        </span>
-                        <span class="mdl-list__item-secondary-action"  style="padding-right:80px;">
-                            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="list-checkbox-1">
-                                <input type="checkbox" id="list-checkbox-1" class="mdl-checkbox__input" name="primaria"/>
-                            </label>
-                        </span>
-                    </li>
-                    <li class="mdl-list__item">
-                        <span class="mdl-list__item-primary-content" style="padding-left:90px;">
-                            Secundaria
-                        </span>
-                        <span class="mdl-list__item-secondary-action" style="padding-right:80px;">
-                            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="list-checkbox-2">
-                                <input type="checkbox" id="list-checkbox-2" class="mdl-checkbox__input" name="secundaria"/>
-                            </label>
-                        </span>
-                    </li>
-                    <li class="mdl-list__item">
-                        <span class="mdl-list__item-primary-content" style="padding-left:90px;">
-                            Bachillerato
-                        </span>
-                        <span class="mdl-list__item-secondary-action" style="padding-right:80px;">
-                            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="list-checkbox-3">
-                                <input type="checkbox" id="list-checkbox-3" class="mdl-checkbox__input" name="bachillerato"/>
-                            </label>
-                        </span>
-                    </li>
-                    <li class="mdl-list__item">
-                        <span class="mdl-list__item-primary-content" style="padding-left:90px;">
-                            Licenciatura
-                        </span>
-                        <span class="mdl-list__item-secondary-action" style="padding-right:80px;">
-                            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="list-checkbox-4">
-                                <input type="checkbox" id="list-checkbox-4" class="mdl-checkbox__input" name="licenciatura"/>
-                            </label>
-                        </span>
-                    </li>
-                    <li class="mdl-list__item">
-                        <span class="mdl-list__item-primary-content" style="padding-left:90px;">
-                            Posgrado
-                        </span>
-                        <span class="mdl-list__item-secondary-action" style="padding-right:80px;">
-                            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="list-checkbox-5">
-                                <input type="checkbox" id="list-checkbox-5" class="mdl-checkbox__input" name="posgrado"/>
-                            </label>
-                        </span>
-                    </li>
-                </ul>
             </div>
             <div class="mdl-card__actions" style="padding-bottom:30px;">
                 <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" style="background-color:#66b04f;width:70%;">

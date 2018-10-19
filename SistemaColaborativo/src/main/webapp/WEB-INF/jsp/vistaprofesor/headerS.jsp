@@ -91,7 +91,7 @@
                     <div class="android-drawer-separator"></div>
                     <span class="mdl-navigation__link">Perfil</span>
                     <a class="mdl-navigation__link" href="">Ver Perfil</a>
-                    <a class="mdl-navigation__link" href="">Editar Perfil</a>
+                    <a class="mdl-navigation__link" href="${pageContext.request.contextPath}/profesor/actualizaprofesor">Editar Perfil</a>
                     <div class="android-drawer-separator"></div>
                     <span class="mdl-navigation__link">Asesorías</span>
                     <a class="mdl-navigation__link" href="">Recomendaciones</a>

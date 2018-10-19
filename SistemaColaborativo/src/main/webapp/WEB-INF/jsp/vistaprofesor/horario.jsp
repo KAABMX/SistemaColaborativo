@@ -92,7 +92,7 @@
           <div style="text-align:center;">
               <table class="table" style="width:50%" >
                   <tr>
-                      <td>temas</td>
+                      <td>Materias</td>
                       <td style="width: 10%"></td>
                       <td rowspan="${temas.size()}" style="width: 40%">
                           <div>

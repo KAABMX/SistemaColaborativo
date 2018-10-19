@@ -159,4 +159,25 @@ public class CurriculumDAO {
         }
         return result;
     }    
+       
+       public Curriculum getCurriculumF(int fk_id_profesor) {
+        Curriculum result = null;
+        Session s = sessionFactory.openSession();
+        Transaction tx = null;
+        try{
+            tx = s.beginTransaction();
+            String hql = "FROM Curriculum WHERE fk_id_profesor = :fk_id_profesor";                  
+            Query query = s.createQuery(hql);
+            query.setParameter("fk_id_profesor",fk_id_profesor);
+            result = (Curriculum)query.uniqueResult();
+            tx.commit();
+        }catch(Exception e){
+            if(tx != null)
+                tx.rollback();
+            e.printStackTrace();
+        }finally{
+            s.close();
+        }
+        return result;
+    }       
 }

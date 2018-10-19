@@ -1,10 +1,3 @@
-<%-- 
-    Document   : headerProfesores
-    Created on : 15/10/2018, 11:28:16 AM
-    Author     : hectorsama
---%>
-
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -21,6 +14,11 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.min.css">
+                
+
+        <link rel="stylesheet" href="//storage.googleapis.com/code.getmdl.io/1.0.1/material.teal-red.min.css" />
+        <script src="//storage.googleapis.com/code.getmdl.io/1.0.1/material.min.js"></script>
+        
         <link rel="stylesheet"  type = "text/css" href="<c:url value="/css/styles.css"/>"/>
         <link rel="stylesheet" type="text/css" href="<c:url value="/css/register.css"/>"> 
         <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -62,15 +60,15 @@
                     <!-- Navigation -->
                     <div class="android-navigation-container">
                         <nav class="android-navigation mdl-navigation">
-                            <a class="mdl-navigation__link mdl-typography--text-uppercase" href="${pageContext.request.contextPath}/alumno/verasesorias">Asesorías</a>
+                            <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Asesorías</a>
                             <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Asesores</a>
                             <a class="mdl-navigation__link mdl-typography--text-uppercase" href="${pageContext.request.contextPath}/verProfesores">Información</a>
-                            <a class="mdl-navigation__link mdl-typography--text-uppercase" href="${pageContext.request.contextPath}/logout">Cerrar Sesión</a>
-                            <a class="mdl-navigation__link mdl-typography--text-uppercase" href="${pageContext.request.contextPath}/profesor/curriculum">Completar Registro</a><!--Quitarse al estar logueado en el sistema-->
+                            <a class="mdl-navigation__link mdl-typography--text-uppercase" href="${pageContext.request.contextPath}/opcion">Registrarse</a><!--Quitarse al estar logueado en el sistema-->
+                            <a class="mdl-navigation__link mdl-typography--text-uppercase" href="${pageContext.request.contextPath}/loggea">Iniciar Sesión</a><!--Quitarse al estar logueado en el sistema-->
                         </nav>
                     </div>
                     <span class="android-mobile-title mdl-layout-title">
-                        <img class="android-logo-image" src="<c:url value = "/imagenes/android-logo.png"/>">
+                        <img class="android-logo-image" src="<c:url value = "/imagenes/educa.jpg"/>">
                     </span>
                     <button class="android-more-button mdl-button mdl-js-button mdl-button--icon mdl-js-ripple-effect" id="more-button">
                         <i class="material-icons">more_vert</i>
@@ -84,22 +82,4 @@
                     </ul>-->
                 </div>
             </div>
-            <div class=" mdl-layout__drawer">
-                <nav class="mdl-navigation">
-                    <div class="android-drawer-separator"></div>
-                    <span class="mdl-navigation__link">Perfil</span>
-                    <a class="mdl-navigation__link" href="">Ver Perfil</a>
-                    <a class="mdl-navigation__link" href="${pageContext.request.contextPath}/profesor/actualizaprofesor">Editar Perfil</a>
-                    <a class="mdl-navigation__link" href="${pageContext.request.contextPath}/profesor/mostrarhorario">Horarios y materias</a>
-                    <div class="android-drawer-separator"></div>
-                    <span class="mdl-navigation__link">Asesorías</span>
-                    <a class="mdl-navigation__link" href="">Recomendaciones</a>
-                    <a class="mdl-navigation__link" href="">Ver Mis Asesorías</a>
-                    <div class="android-drawer-separator"></div>
-                    <span class="mdl-navigation__link">Ayuda</span>
-                    <a class="mdl-navigation__link" href="">Realizar Denuncia</a>
-                    <a class="mdl-navigation__link" href="${pageContext.request.contextPath}/logout">Salir</a>
-                </nav>
-            </div>
-            <div class="android-content mdl-layout__content">
                 <a name="top"></a>
