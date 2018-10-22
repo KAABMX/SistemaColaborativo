@@ -8,9 +8,9 @@
           <div style="text-align:center;">
               <table class="table" style="width:50%" >
                   <tr>
-                      <td>dia</td>
-                      <td>fecha inicio</td>
-                      <td>fecha fin</td>
+                      <td>Dia</td>
+                      <td>Hora inicio</td>
+                      <td>Hora fin</td>
                       <td style="width: 10%"></td>
                       <td rowspan="${horarios.size()}" style="width: 40%">
                           <div>
@@ -64,7 +64,7 @@
                                         
                                       
                                           <div class="col-md-12 col-xs-12 col-sm-12">
-                                              <button id="button"  class="btn btn-primary btn-lg btn-block login-button">AgregaHorario</button>
+                                              <button id="button"  class="btn btn-primary btn-lg btn-block login-button">Agrega Horario</button>
                                           </div>
                                           
                                      </div>
@@ -84,11 +84,65 @@
                   </c:forEach>
               </table>           
           </div>
-                        <%-------------------------------------------%>
+                                      
+                        <%--------------------NIVELES-----------------------%>
                         
                         
                         
-         <h3>temas</h3>
+         <h3>Niveles</h3>
+          <div style="text-align:center;">
+              <table class="table" style="width:50%" >
+                  <tr>
+                      <td>Materias</td>
+                      <td style="width: 10%"></td>
+                      <td rowspan="${temas.size()}" style="width: 40%">
+                          <div>
+                          
+                        <form action="${pageContext.request.contextPath}/profesor/guardarnivel" >
+                                      <div class="row">                                   
+                                          <div class="col-md-12 col-xs-12 col-sm-12">
+                                              <label for="tema">Nivel</label>
+                                                  <div class="input-group">
+                                                      <div class="input-group-addon">
+                                                          <i class="glyphicon glyphicon-list-alt"></i>
+                                                      </div>
+                                                          <select class="mdl-textfield__input" id="tema" name="nivelseleccionado">
+                                                              <c:forEach items="${todosniveles}" var="todosnivel">
+                                                                  <option value="${todosnivel.getIdnivel()}">${todosnivel.getNivel()}</option>        
+                                                              </c:forEach>
+                                                          </select>
+                                                  </div>
+                                             
+                                          </div>
+                                        
+                                      
+                                          <div class="col-md-12 col-xs-12 col-sm-12">
+                                              <button id="button"  class="btn btn-primary btn-lg btn-block login-button">Agrega Nivel</button>
+                                          </div>
+                                          
+                                     </div>
+                                                          
+                                             
+                        </form>
+                          </div>
+                      </td>
+                 
+                  
+                  </tr>
+                  <c:forEach items="${niveles}" var="nivel">
+                  <tr>
+                      <td>${nivel.getNivel()}</td>
+                  </tr>                      
+                      
+                  </c:forEach>
+                  
+              </table>
+          </div>                                        
+                        <%---------------------MATERIAS----------------------%>
+                        
+                        
+                        
+         <h3>Materias</h3>
           <div style="text-align:center;">
               <table class="table" style="width:50%" >
                   <tr>
@@ -100,7 +154,7 @@
                         <form action="${pageContext.request.contextPath}/profesor/guardartema" >
                                       <div class="row">                                   
                                           <div class="col-md-12 col-xs-12 col-sm-12">
-                                              <label for="tema">Tema</label>
+                                              <label for="tema">Materia</label>
                                                   <div class="input-group">
                                                       <div class="input-group-addon">
                                                           <i class="glyphicon glyphicon-list-alt"></i>
@@ -116,7 +170,7 @@
                                         
                                       
                                           <div class="col-md-12 col-xs-12 col-sm-12">
-                                              <button id="button"  class="btn btn-primary btn-lg btn-block login-button">AgregaTema</button>
+                                              <button id="button"  class="btn btn-primary btn-lg btn-block login-button">Agrega Nivel</button>
                                           </div>
                                           
                                      </div>

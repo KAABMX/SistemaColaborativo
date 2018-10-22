@@ -1,4 +1,4 @@
---CREATE DATABASE SISTEMACOLABORATIVO;
+﻿--CREATE DATABASE SISTEMACOLABORATIVO;
 CREATE TABLE Usuario(
 pk_id_usuario SERIAL NOT NULL  PRIMARY KEY,
 nombre VARCHAR(90),
@@ -11,7 +11,9 @@ sexo VARCHAR(90),
 contrasenia VARCHAR(90),
 rol varchar(25) null,
 codigo_activacion VARCHAR(30),
-activado VARCHAR(30) DEFAULT false
+activado VARCHAR(30) DEFAULT false,
+calificacion float DEFAULT 5.0,
+problematico VARCHAR(30) DEFAULT false
 );
 
 CREATE TABLE Alumno(
@@ -37,8 +39,6 @@ pk_id_profesor SERIAL NOT NULL  PRIMARY KEY,
 fk_id_usuario SERIAL NOT NULL,
 identificacion_identidad VARCHAR(90),
 costo_x_hora VARCHAR(120),
-niveles_educativos VARCHAR(120),
-habilidades VARCHAR(320),
 identificacion varchar(90),
 estaactivo character varying(30) DEFAULT false,
 	FOREIGN KEY (fk_id_usuario) 
@@ -92,6 +92,29 @@ FOREIGN KEY (fk_id_cv)
 	ON DELETE CASCADE
 );
 
+CREATE TABLE Resena (
+  comentario VARCHAR(255),
+  calificacion INT NOT NULL,
+  idResena SERIAL NOT NULL,
+  fk_id_usuario INT NOT NULL,
+  PRIMARY KEY (idResena),
+    FOREIGN KEY (fk_id_usuario)
+    	REFERENCES Usuario (pk_id_usuario)
+		    ON DELETE CASCADE
+		    ON UPDATE CASCADE);
+
+
+CREATE TABLE Denuncia (
+  motivo VARCHAR(255) NOT NULL,
+  idDenuncia SERIAL NOT NULL,
+  fk_id_usuario INT NOT NULL,
+  PRIMARY KEY (idDenuncia),
+    FOREIGN KEY (fk_id_usuario)
+    	REFERENCES Usuario (pk_id_usuario)
+		    ON DELETE CASCADE
+		    ON UPDATE CASCADE);
+
+
 CREATE TABLE Horario (
   dia VARCHAR(20) NOT NULL,
   horaInicio TIME NOT NULL,
@@ -105,10 +128,36 @@ CREATE TABLE Horario (
     		ON DELETE CASCADE
     		ON UPDATE CASCADE);
 
+CREATE TABLE Nivel(
+	idnivel SERIAL NOT NULL,
+	nivel VARCHAR(20) NOT NULL,
+	PRIMARY KEY (idnivel)
+	);
+
+CREATE TABLE NivelProfesor(
+	idnivelprofesor SERIAL NOT NULL,
+	idnivel INT NOT NULL,
+	fk_id_profesor INT NOT NULL,
+	PRIMARY KEY (idnivelprofesor),
+	FOREIGN KEY(idnivel)
+		REFERENCES Nivel (idnivel)
+		    ON DELETE CASCADE
+    		ON UPDATE CASCADE,
+	FOREIGN KEY(fk_id_profesor)
+		REFERENCES profesor (pk_id_profesor)
+		    ON DELETE CASCADE
+    		ON UPDATE CASCADE
+);
+
 CREATE TABLE Tema(
 	idTema SERIAL NOT NULL,
 	tema VARCHAR(20) NOT NULL,
-	PRIMARY KEY (idTema)
+	idnivel INT NOT NULL,
+	PRIMARY KEY (idTema),
+	FOREIGN KEY(idnivel)
+		REFERENCES Nivel (idnivel)
+		    ON DELETE CASCADE
+    		ON UPDATE CASCADE	
 	);
 
 CREATE TABLE TemaProfesor(
@@ -125,6 +174,7 @@ CREATE TABLE TemaProfesor(
 		    ON DELETE CASCADE
     		ON UPDATE CASCADE
 );
+	
 	
  CREATE TABLE Asesorar(
  	idAsesorar SERIAL NOT NULL,

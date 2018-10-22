@@ -36,10 +36,6 @@ public class Profesor {
     private byte[] identificacion;
     @Column(name = "costo_x_hora")
     private String costo_x_hora;
-    @Column(name = "niveles_educativos")
-    private String niveles_educativos;
-    @Column(name = "habilidades")
-    private String habilidades;
     @Column(name = "estaActivo")
     private boolean estaActivo;
     @OneToMany(mappedBy = "fk_id_profesor")    
@@ -48,6 +44,9 @@ public class Profesor {
     @OneToMany(mappedBy = "fk_id_profesor")  
     @LazyCollection(LazyCollectionOption.FALSE)    
     private List<Temaprofesor> temaprofesor =  new ArrayList<>();
+    @OneToMany(mappedBy = "fk_id_profesor")  
+    @LazyCollection(LazyCollectionOption.FALSE)    
+    private List<Nivelprofesor> nivelprofesor =  new ArrayList<>();
     @OneToMany(mappedBy = "fk_id_profesor")    
     @LazyCollection(LazyCollectionOption.FALSE)    
     private List<Asesorar> asesorar =  new ArrayList<>();
@@ -75,22 +74,6 @@ public class Profesor {
 
     public void setCosto_x_hora(String costo_x_hora) {
         this.costo_x_hora = costo_x_hora;
-    }
-
-    public String getNiveles_educativos() {
-        return niveles_educativos;
-    }
-
-    public void setNiveles_educativos(String niveles_educativos) {
-        this.niveles_educativos = niveles_educativos;
-    }
-
-    public String getHabilidades() {
-        return habilidades;
-    }
-
-    public void setHabilidades(String habilidades) {
-        this.habilidades = habilidades;
     }
 
     public byte[] getIdentificacion() {
@@ -132,5 +115,13 @@ public class Profesor {
     public void setAsesorar(List<Asesorar> asesorar) {
         this.asesorar = asesorar;
     } 
+
+    public List<Nivelprofesor> getNivelprofesor() {
+        return nivelprofesor;
+    }
+
+    public void setNivelprofesor(List<Nivelprofesor> nivelprofesor) {
+        this.nivelprofesor = nivelprofesor;
+    }
 
 }

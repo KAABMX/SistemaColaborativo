@@ -64,10 +64,6 @@
                 <input class="mdl-textfield__input" type="text" name = "universidad" required>
                 <label class="mdl-textfield__label" for="sample3">Universidad</label>
             </div>
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" name = "habilidades" required>
-                <label class="mdl-textfield__label" for="sample3">Área(s) de especialidad</label>
-            </div>
             <div class="mdl-textfield mdl-js-textfield">
                 <input class="mdl-textfield__input" type="date" id="date" name="fecha_inicio" required>
             </div>
@@ -118,3 +114,12 @@
                     <input type="file" id="boton" accept="image/jpeg, image/png" style="display:none;">
                 </label>
             </div>
+            <div class="mdl-card__actions" style="padding-bottom:30px;">
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" style="background-color:#66b04f;width:70%;">
+                    Enviar
+                </button>
+            </div>
+        </form>            
+    </div>
+</div>
+<%@include file='footer.jsp'%>

@@ -17,9 +17,13 @@ import javax.servlet.http.Part;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Profesor;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Usuario;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Horario;
+import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Nivel;
+import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Nivelprofesor;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Tema;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Temaprofesor;
 import mx.unam.ciencias.is.sistemacolaborativo.modelo.HorarioDAO;
+import mx.unam.ciencias.is.sistemacolaborativo.modelo.NivelDAO;
+import mx.unam.ciencias.is.sistemacolaborativo.modelo.NivelprofesorDAO;
 import mx.unam.ciencias.is.sistemacolaborativo.modelo.ProfesorDAO;
 import mx.unam.ciencias.is.sistemacolaborativo.modelo.TemaDAO;
 import mx.unam.ciencias.is.sistemacolaborativo.modelo.TemaprofesorDAO;
@@ -46,24 +50,48 @@ public class ControladorHorarioProfesor {
     private TemaprofesorDAO temaprofesor_bd;
     @Autowired
     private TemaDAO tema_bd;
+    @Autowired
+    private NivelprofesorDAO nievelprofesor_bd;
+    @Autowired
+    private NivelDAO nivel_bd;
     
     
     @RequestMapping(value = "/profesor/mostrarhorario")
     public String mostrarHorario(HttpServletRequest request, ModelMap model, Principal principal){
     Usuario usuario = usuario_bd.getUsuario(principal.getName());
     Profesor p = profesor_bd.getProfesor(usuario);
+        //horarios
         List<Horario> horarios=p.getHorario();
         model.addAttribute("horarios",horarios);
-        
-        
+        //niveles
+        List<Nivelprofesor> nivelp=p.getNivelprofesor();
+        List<Nivel> niveles = new ArrayList<>();
+        for (Nivelprofesor nievel : nivelp) {
+            niveles.add(nievel.getNivel());
+        }
+        model.addAttribute("niveles", niveles);
+        model.addAttribute("todosniveles", nivel_bd.getNivels());
+
+        //temas
         List<Temaprofesor> temap=p.getTemaprofesor();
         List<Tema> temas = new ArrayList<>();
         for (Temaprofesor tema : temap) {
             temas.add(tema.getTema());
         }
         model.addAttribute("temas", temas);
+
+        List<Tema> todostemas = new ArrayList<>();
+        for (Nivel nivelt : niveles) {
+            for (Tema teman : nivelt.getTemas()) {
+                todostemas.add(teman);
+            }
+        }       
         
-        model.addAttribute("todostemas", tema_bd.getTemas());
+        
+        model.addAttribute("todostemas", todostemas);
+        
+        
+
         
         return  "vistaprofesor/horario";
     }
@@ -107,5 +135,21 @@ public class ControladorHorarioProfesor {
         return  "redirect:/profesor/mostrarhorario";
     }    
 
-
+    @RequestMapping(value = "/profesor/guardarnivel")
+    public String guardarNivel(HttpServletRequest request, ModelMap model, Principal principal){
+    Usuario usuario = usuario_bd.getUsuario(principal.getName());
+    Profesor p = profesor_bd.getProfesor(usuario);
+    String nivel=request.getParameter("nivelseleccionado");
+    int t = Integer.parseInt(nivel);
+    Nivel nuevoNivel = new Nivel();
+    nuevoNivel.setNivel("este es un nivel auxiliar");
+    nuevoNivel.setIdnivel(t);
+    Nivelprofesor nuevoNivelProfesor= new Nivelprofesor();
+    nuevoNivelProfesor.setProfesor(p);
+    nuevoNivelProfesor.setNivel(nuevoNivel);
+    nievelprofesor_bd.guardar(nuevoNivelProfesor);
+    
+    
+        return  "redirect:/profesor/mostrarhorario";
+    }
 }

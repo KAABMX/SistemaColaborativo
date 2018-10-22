@@ -5,14 +5,19 @@
  */
 package mx.unam.ciencias.is.sistemacolaborativo.mapeobd;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 /**
  *
@@ -48,17 +53,16 @@ public class Usuario {
     private String codigo_activacion;
     @Column(name = "activado")
     private boolean activado;
-    //@OneToOne
-    //@JoinColumn(name = "pk_id_profesor")
-    //private Profesor profesor;
-
-    /*public Profesor getProfesor() {
-        return profesor;
-    }
-
-    public void setProfesor(Profesor profesor) {
-        this.profesor = profesor;
-    }*/
+    @Column(name = "calificacion")
+    private double calificacion;
+    @Column(name = "problematico")
+    private boolean problematico;
+    @OneToMany(mappedBy = "fk_id_usuario")    
+    @LazyCollection(LazyCollectionOption.FALSE)    
+    private List<Resena> resena =  new ArrayList<>();    
+    @OneToMany(mappedBy = "fk_id_usuario")    
+    @LazyCollection(LazyCollectionOption.FALSE)    
+    private List<Denuncia> denuncia =  new ArrayList<>();    
         
     public boolean getActivado() {
         return activado;
@@ -156,6 +160,38 @@ public class Usuario {
 
     public void setCodigo_activacion(String codigo_activacion) {
         this.codigo_activacion = codigo_activacion;
+    }
+
+    public double getCalificacion() {
+        return calificacion;
+    }
+
+    public void setCalificacion(double calificacion) {
+        this.calificacion = calificacion;
+    }
+
+    public boolean getProblematico() {
+        return problematico;
+    }
+
+    public void setProblematico(boolean problematico) {
+        this.problematico = problematico;
+    }
+
+    public List<Resena> getResena() {
+        return resena;
+    }
+
+    public void setResena(List<Resena> resena) {
+        this.resena = resena;
+    }
+
+    public List<Denuncia> getDenuncia() {
+        return denuncia;
+    }
+
+    public void setDenuncia(List<Denuncia> denuncia) {
+        this.denuncia = denuncia;
     }
 
 }

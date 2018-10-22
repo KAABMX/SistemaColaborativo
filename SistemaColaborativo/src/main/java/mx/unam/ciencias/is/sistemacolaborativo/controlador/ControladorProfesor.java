@@ -130,34 +130,8 @@ public class ControladorProfesor {
         Profesor p = profesor_bd.getProfesor(usuario);
         p.setCosto_x_hora(request.getParameter("costo"));
         p.setUsuario(usuario);
-        p.setHabilidades(request.getParameter("habilidades"));
         //varios niveles
         p.setEstaActivo(true);
-        String prim = request.getParameter("primaria");
-        String sec = request.getParameter("secundaria");
-        String bach = request.getParameter("bachillerato");
-        String uni = request.getParameter("licenciatura");
-        String pos = request.getParameter("posgrado");
-        String hab = "";
-        if (prim != null && prim.equals("on")) {
-            hab += "primaria,";
-        }
-        if (sec != null && sec.equals("on")) {
-            hab += "secundaria,";
-        }
-        if (bach != null && bach.equals("on")) {
-            hab += "bachillerato,";
-        }
-        if (uni != null && uni.equals("on")) {
-            hab += "licenciatura,";
-        }
-        if (pos != null && pos.equals("on")) {
-            hab += "posgrado,";
-        }
-        if (hab.length() != 0) {
-            hab = hab.substring(0, hab.length() - 1);
-        }
-        p.setNiveles_educativos(hab);
 
         try {
             Part file = request.getPart("file");
