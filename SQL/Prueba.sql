@@ -79,18 +79,7 @@ FOREIGN KEY (fk_id_cv)
 	REFERENCES Curriculum(pk_id_cv)
 	ON DELETE CASCADE
 );
-CREATE TABLE Complementarios(
-pk_id_complementarios SERIAL NOT NULL  PRIMARY KEY,
-fk_id_cv SERIAL,
-estudio VARCHAR(90),
-fecha_inicio DATE,
-fecha_fin DATE,
-centro VARCHAR(90),
-lugar VARCHAR(90),
-FOREIGN KEY (fk_id_cv) 
-	REFERENCES Curriculum(pk_id_cv)
-	ON DELETE CASCADE
-);
+
 
 CREATE TABLE Resena (
   comentario VARCHAR(255),

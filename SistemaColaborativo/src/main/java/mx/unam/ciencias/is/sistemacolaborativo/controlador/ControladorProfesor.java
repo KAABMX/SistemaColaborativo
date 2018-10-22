@@ -14,13 +14,11 @@ import java.util.Random;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.Part;
-import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Complementarios;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Curriculum;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Estudios;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Experiencia;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Profesor;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Usuario;
-import mx.unam.ciencias.is.sistemacolaborativo.modelo.ComplementariosDAO;
 import mx.unam.ciencias.is.sistemacolaborativo.modelo.CurriculumDAO;
 import mx.unam.ciencias.is.sistemacolaborativo.modelo.EstudiosDAO;
 import mx.unam.ciencias.is.sistemacolaborativo.modelo.ExperienciaDAO;
@@ -48,8 +46,6 @@ public class ControladorProfesor {
     private ProfesorDAO profesor_bd;
     @Autowired
     private CurriculumDAO cv_bd;
-    @Autowired
-    private ComplementariosDAO complementarios_bd;
     @Autowired
     private ExperienciaDAO experiencia_bd;
     @Autowired

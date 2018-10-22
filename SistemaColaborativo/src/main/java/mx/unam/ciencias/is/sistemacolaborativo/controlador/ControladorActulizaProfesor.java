@@ -16,14 +16,11 @@ import java.util.List;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.Part;
-//import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Complementarios;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Profesor;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Usuario;
-import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Complementarios;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Curriculum;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Estudios;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Experiencia;
-import mx.unam.ciencias.is.sistemacolaborativo.modelo.ComplementariosDAO;
 import mx.unam.ciencias.is.sistemacolaborativo.modelo.CurriculumDAO;
 import mx.unam.ciencias.is.sistemacolaborativo.modelo.EstudiosDAO;
 import mx.unam.ciencias.is.sistemacolaborativo.modelo.ExperienciaDAO;
@@ -48,8 +45,6 @@ public class ControladorActulizaProfesor {
     @Autowired
     private CurriculumDAO cv_bd;
     @Autowired
-    private ComplementariosDAO complementarios_bd;
-    @Autowired
     private ExperienciaDAO experiencia_bd;
     @Autowired
     private EstudiosDAO estudios_bd;
@@ -61,7 +56,7 @@ public class ControladorActulizaProfesor {
     Profesor profesor=profesor_bd.getProfesor(usuario);
     Curriculum curriculum =cv_bd.getCurriculumF(profesor.getPk_id_profesor());
             System.out.println("hola");
-    Complementarios complementarios=complementarios_bd.getComplementariosF(curriculum.getPk_id_cv());
+  
     Estudios estudios=estudios_bd.getEstudios(curriculum.getPk_id_cv());
     Experiencia experiencia=experiencia_bd.getExperienciaF(curriculum.getPk_id_cv());
     
@@ -70,7 +65,6 @@ public class ControladorActulizaProfesor {
     model.addAttribute("curriculum",curriculum);
     model.addAttribute("estudios",estudios);
     model.addAttribute("experiencia",experiencia);
-    model.addAttribute("complementarios",complementarios);
     
 
         
@@ -83,7 +77,7 @@ public class ControladorActulizaProfesor {
     Profesor profesor=profesor_bd.getProfesor(usuario);
     Curriculum curriculum =cv_bd.getCurriculumF(profesor.getPk_id_profesor());
 
-    Complementarios complementarios=complementarios_bd.getComplementariosF(curriculum.getPk_id_cv());
+
     Estudios estudios=estudios_bd.getEstudios(curriculum.getPk_id_cv());
     Experiencia experiencia=experiencia_bd.getExperienciaF(curriculum.getPk_id_cv());
     
@@ -125,8 +119,7 @@ public class ControladorActulizaProfesor {
         
         
         
-	String estudiosg = request.getParameter("estudios");
-        complementarios.setEstudio(estudiosg);
+
         
 	String universidad =request.getParameter("universidad");
         estudios.setUniversidad(universidad);
@@ -155,7 +148,7 @@ public class ControladorActulizaProfesor {
         cv_bd.actualizar(curriculum);
         experiencia_bd.actualizar(experiencia);
         estudios_bd.actualizar(estudios);
-        complementarios_bd.actualizar(complementarios);
+
     
 
         

@@ -83,10 +83,6 @@
                 <i><label class="mdl-card__title">Formación Académica</label></i>
             </div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" name = "estudios" value="${complementarios.getEstudio()}" required>
-                <label class="mdl-textfield__label" for="sample3">Estudios</label>
-            </div>
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                 <input class="mdl-textfield__input" type="text" name = "universidad" value="${estudios.getUniversidad()}" >
                 <label class="mdl-textfield__label" for="sample3">Universidad</label>
             </div>
