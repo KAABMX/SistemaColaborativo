@@ -117,63 +117,6 @@
                     <input type="file" id="boton" accept="image/jpeg, image/png" style="display:none;">
                 </label>
             </div>
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <i><label class="mdl-card__title">Niveles educativos de enseñanza</label></i>
-            </div>
-            <div>
-                <ul class="mdl-list">
-                    <li class="mdl-list__item">
-                        <span class="mdl-list__item-primary-content" style="padding-left:90px;">
-                            Primaria
-                        </span>
-                        <span class="mdl-list__item-secondary-action"  style="padding-right:80px;">
-                            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="list-checkbox-1">
-                                <input type="checkbox" id="list-checkbox-1" class="mdl-checkbox__input" name="primaria"/>
-                            </label>
-                        </span>
-                    </li>
-                    <li class="mdl-list__item">
-                        <span class="mdl-list__item-primary-content" style="padding-left:90px;">
-                            Secundaria
-                        </span>
-                        <span class="mdl-list__item-secondary-action" style="padding-right:80px;">
-                            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="list-checkbox-2">
-                                <input type="checkbox" id="list-checkbox-2" class="mdl-checkbox__input" name="secundaria"/>
-                            </label>
-                        </span>
-                    </li>
-                    <li class="mdl-list__item">
-                        <span class="mdl-list__item-primary-content" style="padding-left:90px;">
-                            Bachillerato
-                        </span>
-                        <span class="mdl-list__item-secondary-action" style="padding-right:80px;">
-                            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="list-checkbox-3">
-                                <input type="checkbox" id="list-checkbox-3" class="mdl-checkbox__input" name="bachillerato"/>
-                            </label>
-                        </span>
-                    </li>
-                    <li class="mdl-list__item">
-                        <span class="mdl-list__item-primary-content" style="padding-left:90px;">
-                            Licenciatura
-                        </span>
-                        <span class="mdl-list__item-secondary-action" style="padding-right:80px;">
-                            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="list-checkbox-4">
-                                <input type="checkbox" id="list-checkbox-4" class="mdl-checkbox__input" name="licenciatura"/>
-                            </label>
-                        </span>
-                    </li>
-                    <li class="mdl-list__item">
-                        <span class="mdl-list__item-primary-content" style="padding-left:90px;">
-                            Posgrado
-                        </span>
-                        <span class="mdl-list__item-secondary-action" style="padding-right:80px;">
-                            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="list-checkbox-5">
-                                <input type="checkbox" id="list-checkbox-5" class="mdl-checkbox__input" name="posgrado"/>
-                            </label>
-                        </span>
-                    </li>
-                </ul>
-            </div>
             <div class="mdl-card__actions" style="padding-bottom:30px;">
                 <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" style="background-color:#66b04f;width:70%;">
                     Listo

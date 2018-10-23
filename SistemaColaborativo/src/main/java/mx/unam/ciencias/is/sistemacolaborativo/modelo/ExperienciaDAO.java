@@ -151,4 +151,26 @@ public class ExperienciaDAO {
         }
         return result;
     }
+    
+    public Experiencia getExperienciaF(int fk_id_cv) {
+        Experiencia result = null;
+        Session s = sessionFactory.openSession();
+        Transaction tx = null;
+        try {
+            tx = s.beginTransaction();
+            String hql = "FROM Experiencia WHERE fk_id_cv = :fk_id_cv";
+            Query query = s.createQuery(hql);
+            query.setParameter("fk_id_cv", fk_id_cv);
+            result = (Experiencia) query.uniqueResult();
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            s.close();
+        }
+        return result;
+    }    
 }

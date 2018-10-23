@@ -5,10 +5,10 @@
 --%>
 
 <jsp:include page='headerProfesores.jsp'>
-    <jsp:param name="title" value="Página principal"/>
+    <jsp:param name="title" value="Pï¿½gina principal"/>
 </jsp:include>
       <div class="android-be-together-section mdl-typography--text-center">
           <div class="logo-font android-slogan">Bienvenido al sitio ${nombre}</div>
-          <div class="logo-font android-sub-slogan">Aquí encontraras lo mejor sobre asesorías ...</div>
+          <div class="logo-font android-sub-slogan">Aquï¿½ encontraras lo mejor sobre asesorï¿½as ...</div>
           </div>
 <%@include file='footer.jsp'%>

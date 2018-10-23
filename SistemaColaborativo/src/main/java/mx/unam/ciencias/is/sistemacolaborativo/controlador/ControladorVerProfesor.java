@@ -26,7 +26,7 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @Controller
 public class ControladorVerProfesor {
-
+/*
     @Autowired
     ProfesorDAO profesor_db;
     @Autowired
@@ -45,5 +45,5 @@ public class ControladorVerProfesor {
         }
         model.addAttribute("profeLista", profeLista);
         return new ModelAndView("verProfesor", model);
-    }
+    }*/
 }

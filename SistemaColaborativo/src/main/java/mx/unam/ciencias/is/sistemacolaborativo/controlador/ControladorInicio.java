@@ -54,6 +54,7 @@ public class ControladorInicio {
         return "registerProfesor";
     }
 
+
     @RequestMapping(value = "/actualizarAlumno", method = RequestMethod.GET)
     public String actualizarAlumno() {
         return "actualizarAlumno";
@@ -63,4 +64,9 @@ public class ControladorInicio {
     public String actualizarProfesor() {
         return "actualizarProfesor";
     }    
+
+    @RequestMapping(value = "/curriculum", method = RequestMethod.GET)
+    public String cv(){
+        return "curriculum";
+    }
 }

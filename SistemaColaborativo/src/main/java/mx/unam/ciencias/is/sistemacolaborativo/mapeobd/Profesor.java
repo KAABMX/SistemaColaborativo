@@ -5,19 +5,22 @@
  */
 package mx.unam.ciencias.is.sistemacolaborativo.mapeobd;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
-/**
- *
- * @author hectorsama
- */
+
 @Entity
 @Table(name = "Profesor")
 public class Profesor {
@@ -39,6 +42,16 @@ public class Profesor {
     private String habilidades;
     @Column(name = "estaActivo")
     private boolean estaActivo;
+    @OneToMany(mappedBy = "fk_id_profesor")    
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<Horario> horario =  new ArrayList<>();
+    @OneToMany(mappedBy = "fk_id_profesor")  
+    @LazyCollection(LazyCollectionOption.FALSE)    
+    private List<Temaprofesor> temaprofesor =  new ArrayList<>();
+    @OneToMany(mappedBy = "fk_id_profesor")    
+    @LazyCollection(LazyCollectionOption.FALSE)    
+    private List<Asesorar> asesorar =  new ArrayList<>();
+
 
     public Usuario getUsuario() {
         return usuario;
@@ -95,5 +108,29 @@ public class Profesor {
     public void setEstaActivo(boolean estaActivo) {
         this.estaActivo = estaActivo;
     }
+    
+    public List<Horario> getHorario() {
+        return this.horario;
+    }
+    
+    public void setHorario(List<Horario> horario) {
+        this.horario = horario;
+    }    
+
+    public List<Temaprofesor> getTemaprofesor() {
+        return this.temaprofesor;
+    }
+    
+    public void setTemaprofesor(List<Temaprofesor> temaprofesor) {
+        this.temaprofesor = temaprofesor;
+    } 
+
+    public List<Asesorar> getAsesorar() {
+        return this.asesorar;
+    }
+    
+    public void setAsesorar(List<Asesorar> asesorar) {
+        this.asesorar = asesorar;
+    } 
 
 }

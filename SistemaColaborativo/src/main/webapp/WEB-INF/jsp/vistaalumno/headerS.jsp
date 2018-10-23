@@ -1,9 +1,8 @@
 <%-- 
-    Document   : headerProfesores
-    Created on : 15/10/2018, 11:28:16 AM
-    Author     : hectorsama
+    Document   : headerS
+    Created on : 10/10/2018, 05:25:34 PM
+    Author     : Moctezuma19
 --%>
-
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
@@ -47,7 +46,7 @@
             <div class="android-header mdl-layout__header mdl-layout__header--waterfall">
                 <div class="mdl-layout__header-row">
                     <span class="android-title mdl-layout-title">
-                        <img class="android-logo-image" src="<c:url value = "/imagenes/educa.jpg"/>"> <!--Cambiar por el logo de la aplicacion-->
+                        <img class="android-logo-image" src="<c:url value = "/imagenes/android-logo.png"/>"> <!--Cambiar por el logo de la aplicacion-->
                     </span>
                     <!-- Add spacer, to align navigation to the right in desktop -->
                     <div class="android-header-spacer mdl-layout-spacer"></div>
@@ -62,11 +61,10 @@
                     <!-- Navigation -->
                     <div class="android-navigation-container">
                         <nav class="android-navigation mdl-navigation">
-                            <a class="mdl-navigation__link mdl-typography--text-uppercase" href="${pageContext.request.contextPath}/alumno/verasesorias">Asesorías</a>
+                            <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Asesorías</a>
                             <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Asesores</a>
                             <a class="mdl-navigation__link mdl-typography--text-uppercase" href="${pageContext.request.contextPath}/verProfesores">Información</a>
-                            <a class="mdl-navigation__link mdl-typography--text-uppercase" href="${pageContext.request.contextPath}/logout">Cerrar Sesión</a>
-                            <a class="mdl-navigation__link mdl-typography--text-uppercase" href="${pageContext.request.contextPath}/profesor/curriculum">Completar Registro</a><!--Quitarse al estar logueado en el sistema-->
+                            <a class="mdl-navigation__link mdl-typography--text-uppercase" href="${pageContext.request.contextPath}/logout">Cerrar Sesión</a><!--Quitarse al estar logueado en el sistema-->
                         </nav>
                     </div>
                     <span class="android-mobile-title mdl-layout-title">
@@ -84,21 +82,24 @@
                     </ul>-->
                 </div>
             </div>
-            <div class=" mdl-layout__drawer">
+
+            <div class="android-drawer mdl-layout__drawer">
+                <span class="mdl-layout-title">
+                    <img class="android-logo-image" src=" <c:url value = "/imagenes/android-logo-white.png"/>"> <!--Cambiar por el logo de la aplicacion-->
+                </span>
                 <nav class="mdl-navigation">
                     <div class="android-drawer-separator"></div>
                     <span class="mdl-navigation__link">Perfil</span>
                     <a class="mdl-navigation__link" href="">Ver Perfil</a>
-
-                    <a class="mdl-navigation__link" href="${pageContext.request.contextPath}/profesor/actualizaprofesor">Editar Perfil</a>
-                    <a class="mdl-navigation__link" href="${pageContext.request.contextPath}/profesor/mostrarhorario">Horarios y materias</a>
+                    <a class="mdl-navigation__link" href="">Editar Perfil</a>
                     <div class="android-drawer-separator"></div>
                     <span class="mdl-navigation__link">Asesorías</span>
                     <a class="mdl-navigation__link" href="">Recomendaciones</a>
-                    <a class="mdl-navigation__link" href="">Ver Mis Asesorías</a>
+                    <a class="mdl-navigation__link" href="${pageContext.request.contextPath}/profesor/mostrarhorario">horarios y temas</a>
                     <div class="android-drawer-separator"></div>
                     <span class="mdl-navigation__link">Ayuda</span>
                     <a class="mdl-navigation__link" href="">Realizar Denuncia</a>
+                    <span class="mdl-navigation__link">Sesión</span>
                     <a class="mdl-navigation__link" href="${pageContext.request.contextPath}/logout">Salir</a>
                 </nav>
             </div>

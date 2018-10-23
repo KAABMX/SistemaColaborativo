@@ -5,9 +5,11 @@
  */
 package mx.unam.ciencias.is.sistemacolaborativo.mapeobd;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,10 +18,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-/**
- *
- * @author hectorsama
- */
 @Entity
 @Table(name = "Alumno")
 public class Alumno implements java.io.Serializable {
@@ -34,6 +32,8 @@ public class Alumno implements java.io.Serializable {
     private String ultimo_nivel_educativo;
     @OneToMany(mappedBy = "alumno")
     private List<InteresAcademico> intereses;
+    @OneToMany(mappedBy = "fk_id_alumno", fetch = FetchType.EAGER )    
+    private List<Asesorar> asesorar =  new ArrayList<>();
 
     public List<InteresAcademico> getIntereses() {
         return intereses;
@@ -66,5 +66,13 @@ public class Alumno implements java.io.Serializable {
     public void setUltimo_nivel_educativo(String ultimo_nivel_educativo) {
         this.ultimo_nivel_educativo = ultimo_nivel_educativo;
     }
+    
+    public List<Asesorar> getAsesorar() {
+        return this.asesorar;
+    }
+    
+    public void setAsesorar(List<Asesorar> asesorar) {
+        this.asesorar = asesorar;
+    }     
 
 }

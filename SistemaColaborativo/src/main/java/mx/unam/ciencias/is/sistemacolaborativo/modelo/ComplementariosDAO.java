@@ -135,7 +135,7 @@ public class ComplementariosDAO {
         Transaction tx = null;
         try {
             tx = s.beginTransaction();
-            String hql = "FROM Experiencia WHERE pk_id_complementarios = :pk_id_complementarios";
+            String hql = "FROM Complementarios WHERE pk_id_complementarios = :pk_id_complementarios";
             Query query = s.createQuery(hql);
             query.setParameter("pk_id_complementarios", pk_id_complementarios);
             result = (Complementarios) query.uniqueResult();
@@ -150,4 +150,26 @@ public class ComplementariosDAO {
         }
         return result;
     }   
+
+    public Complementarios getComplementariosF(int fk_id_cv) {
+        Complementarios result = null;
+        Session s = sessionFactory.openSession();
+        Transaction tx = null;
+        try {
+            tx = s.beginTransaction();
+            String hql = "FROM Complementarios WHERE fk_id_cv = :fk_id_cv";
+            Query query = s.createQuery(hql);
+            query.setParameter("fk_id_cv", fk_id_cv);
+            result = (Complementarios) query.uniqueResult();
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            s.close();
+        }
+        return result;
+    }
 }

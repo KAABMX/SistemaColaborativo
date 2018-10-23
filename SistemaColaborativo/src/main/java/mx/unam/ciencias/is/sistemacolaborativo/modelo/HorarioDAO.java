@@ -6,17 +6,14 @@
 package mx.unam.ciencias.is.sistemacolaborativo.modelo;
 
 import java.util.List;
-import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Curriculum;
+import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Horario;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
-/**
- *
- * @author hectorsama
- */
-public class CurriculumDAO {
+
+public class HorarioDAO {
     
     /*Sesion para conectarnos a la base de datos*/
     private SessionFactory sessionFactory;
@@ -29,15 +26,15 @@ public class CurriculumDAO {
         this.sessionFactory = sessionFactory;
     }
 
-    public void guardar(Curriculum cv) {
+    public void guardar(Horario horario) {
         //se inicia la sesion
         Session session = sessionFactory.openSession();
         //la transaccion a relizar
         Transaction tx = null;
         try {
             tx = session.beginTransaction();
-            //guardamos el usuario
-            session.persist(cv);
+            //guardamos el Horario
+            session.persist(horario);
            
             tx.commit();
         }
@@ -55,17 +52,17 @@ public class CurriculumDAO {
         
         
             /**
-     * Elimina el usuario de la base de datos
-     * @param usuario el usuario a eliminar
+     * Elimina el Horario de la base de datos
+     * @param horario el Horario a eliminar
      */
-    public void eliminar(Curriculum cv) {
+    public void eliminar(Horario horario) {
         Session session = sessionFactory.openSession();
         //la transaccion a relizar
         Transaction tx = null;
         try {
             tx = session.beginTransaction();
-            //eliminamos el usuario
-            session.delete(cv);
+            //eliminamos el Horario
+            session.delete(horario);
            
             tx.commit();
         }
@@ -86,17 +83,17 @@ public class CurriculumDAO {
     
     
     /**
-     * Actualiza el usuario en la base de datos
-     * @param curriculum con los nuevos valores 
+     * Actualiza el Horario en la base de datos
+     * @param horario con los nuevos valores 
      */
-    public void actualizar(Curriculum cv) {
+    public void actualizar(Horario horario) {
         Session session = sessionFactory.openSession();
         //la transaccion a relizar
         Transaction tx = null;
         try {
             tx = session.beginTransaction();
-            //actualizar el usuario
-            session.update(cv);
+            //actualizar el Horario
+            session.update(horario);
            
             tx.commit();
         }
@@ -115,18 +112,18 @@ public class CurriculumDAO {
     
     
         /**
-     * Regresa la lista de todos los usuarios en la base de datos
-     * @return la lista que contiene a todos los usuarios de la base de datos
+     * Regresa la lista de todos los Horarios en la base de datos
+     * @return la lista que contiene a todos los Horarios de la base de datos
      */
-    public List<Curriculum> getCurriculums(){
-        List<Curriculum> result= null;
+    public List<Horario> getHorarios(){
+        List<Horario> result= null;
         Session session = sessionFactory.openSession();
         Transaction tx=null;
         try{
             tx=session.beginTransaction();
-            String hql= "FROM Curriculum";
+            String hql= "FROM Horario";
             Query query =session.createQuery(hql);
-            result=(List<Curriculum>)query.list();
+            result=(List<Horario>)query.list();
             tx.commit();
         }catch (Exception e){
             if(tx != null)
@@ -139,16 +136,16 @@ public class CurriculumDAO {
     }
     
     
-       public Curriculum getCurriculum(int pk_id_cv) {
-        Curriculum result = null;
+       public Horario getHorario(String idHorario) {
+        Horario result = null;
         Session s = sessionFactory.openSession();
         Transaction tx = null;
         try{
             tx = s.beginTransaction();
-            String hql = "FROM Curriculum WHERE pk_id_cv = :pk_id_cv";                  
+            String hql = "FROM Horario WHERE idHorario = :idHorario";                  
             Query query = s.createQuery(hql);
-            query.setParameter("pk_id_cv",pk_id_cv);
-            result = (Curriculum)query.uniqueResult();
+            query.setParameter("idHorario",idHorario);
+            result = (Horario)query.uniqueResult();
             tx.commit();
         }catch(Exception e){
             if(tx != null)
@@ -158,26 +155,8 @@ public class CurriculumDAO {
             s.close();
         }
         return result;
-    }    
+    }
        
-       public Curriculum getCurriculumF(int fk_id_profesor) {
-        Curriculum result = null;
-        Session s = sessionFactory.openSession();
-        Transaction tx = null;
-        try{
-            tx = s.beginTransaction();
-            String hql = "FROM Curriculum WHERE fk_id_profesor = :fk_id_profesor";                  
-            Query query = s.createQuery(hql);
-            query.setParameter("fk_id_profesor",fk_id_profesor);
-            result = (Curriculum)query.uniqueResult();
-            tx.commit();
-        }catch(Exception e){
-            if(tx != null)
-                tx.rollback();
-            e.printStackTrace();
-        }finally{
-            s.close();
-        }
-        return result;
-    }       
+          
+    
 }

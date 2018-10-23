@@ -1,11 +1,4 @@
-<style>
-    header{
-        text-align: center;
-    }
-</style>
-<footer class="android-footer mdl-mega-footer">
-    
-    <header>
+                <footer class="android-footer mdl-mega-footer">
                     <div class="mdl-mega-footer--middle-section">
                         <p class="mdl-typography--font-light">KAAB MX: 2018 Facultad de Ciencias, UNAM</p>
                         <p class="mdl-typography--font-light">Software en desarrollo.</p>
@@ -14,7 +7,6 @@
                     <div class="mdl-mega-footer--bottom-section">
                         <a class="android-link mdl-typography--font-light" href="">Políticas de Privacidad</a>
                     </div>
-</header>
 
                 </footer>
             </div>

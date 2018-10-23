@@ -6,17 +6,14 @@
 package mx.unam.ciencias.is.sistemacolaborativo.modelo;
 
 import java.util.List;
-import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Curriculum;
+import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Tema;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
-/**
- *
- * @author hectorsama
- */
-public class CurriculumDAO {
+
+public class TemaDAO {
     
     /*Sesion para conectarnos a la base de datos*/
     private SessionFactory sessionFactory;
@@ -29,15 +26,15 @@ public class CurriculumDAO {
         this.sessionFactory = sessionFactory;
     }
 
-    public void guardar(Curriculum cv) {
+    public void guardar(Tema tema) {
         //se inicia la sesion
         Session session = sessionFactory.openSession();
         //la transaccion a relizar
         Transaction tx = null;
         try {
             tx = session.beginTransaction();
-            //guardamos el usuario
-            session.persist(cv);
+            //guardamos el Tema
+            session.persist(tema);
            
             tx.commit();
         }
@@ -55,17 +52,17 @@ public class CurriculumDAO {
         
         
             /**
-     * Elimina el usuario de la base de datos
-     * @param usuario el usuario a eliminar
+     * Elimina el Tema de la base de datos
+     * @param tema el Tema a eliminar
      */
-    public void eliminar(Curriculum cv) {
+    public void eliminar(Tema tema) {
         Session session = sessionFactory.openSession();
         //la transaccion a relizar
         Transaction tx = null;
         try {
             tx = session.beginTransaction();
-            //eliminamos el usuario
-            session.delete(cv);
+            //eliminamos el Tema
+            session.delete(tema);
            
             tx.commit();
         }
@@ -86,17 +83,17 @@ public class CurriculumDAO {
     
     
     /**
-     * Actualiza el usuario en la base de datos
-     * @param curriculum con los nuevos valores 
+     * Actualiza el Tema en la base de datos
+     * @param tema con los nuevos valores 
      */
-    public void actualizar(Curriculum cv) {
+    public void actualizar(Tema tema) {
         Session session = sessionFactory.openSession();
         //la transaccion a relizar
         Transaction tx = null;
         try {
             tx = session.beginTransaction();
-            //actualizar el usuario
-            session.update(cv);
+            //actualizar el Tema
+            session.update(tema);
            
             tx.commit();
         }
@@ -115,18 +112,18 @@ public class CurriculumDAO {
     
     
         /**
-     * Regresa la lista de todos los usuarios en la base de datos
-     * @return la lista que contiene a todos los usuarios de la base de datos
+     * Regresa la lista de todos los Temas en la base de datos
+     * @return la lista que contiene a todos los Temas de la base de datos
      */
-    public List<Curriculum> getCurriculums(){
-        List<Curriculum> result= null;
+    public List<Tema> getTemas(){
+        List<Tema> result= null;
         Session session = sessionFactory.openSession();
         Transaction tx=null;
         try{
             tx=session.beginTransaction();
-            String hql= "FROM Curriculum";
+            String hql= "FROM Tema";
             Query query =session.createQuery(hql);
-            result=(List<Curriculum>)query.list();
+            result=(List<Tema>)query.list();
             tx.commit();
         }catch (Exception e){
             if(tx != null)
@@ -139,16 +136,16 @@ public class CurriculumDAO {
     }
     
     
-       public Curriculum getCurriculum(int pk_id_cv) {
-        Curriculum result = null;
+       public Tema getTema(int idTema) {
+        Tema result = null;
         Session s = sessionFactory.openSession();
         Transaction tx = null;
         try{
             tx = s.beginTransaction();
-            String hql = "FROM Curriculum WHERE pk_id_cv = :pk_id_cv";                  
+            String hql = "FROM Tema WHERE idTema = :idTema";                  
             Query query = s.createQuery(hql);
-            query.setParameter("pk_id_cv",pk_id_cv);
-            result = (Curriculum)query.uniqueResult();
+            query.setParameter("idTema",idTema);
+            result = (Tema)query.uniqueResult();
             tx.commit();
         }catch(Exception e){
             if(tx != null)
@@ -158,26 +155,8 @@ public class CurriculumDAO {
             s.close();
         }
         return result;
-    }    
+    }
        
-       public Curriculum getCurriculumF(int fk_id_profesor) {
-        Curriculum result = null;
-        Session s = sessionFactory.openSession();
-        Transaction tx = null;
-        try{
-            tx = s.beginTransaction();
-            String hql = "FROM Curriculum WHERE fk_id_profesor = :fk_id_profesor";                  
-            Query query = s.createQuery(hql);
-            query.setParameter("fk_id_profesor",fk_id_profesor);
-            result = (Curriculum)query.uniqueResult();
-            tx.commit();
-        }catch(Exception e){
-            if(tx != null)
-                tx.rollback();
-            e.printStackTrace();
-        }finally{
-            s.close();
-        }
-        return result;
-    }       
+          
+    
 }
