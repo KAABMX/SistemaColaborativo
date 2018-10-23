@@ -5,6 +5,6 @@
 </jsp:include>
 <p>nombre: ${profesor.getUsuario().getNombreC()}</p>
 <p>precio por hora: ${profesor.getCosto_x_hora()}</p>
-<button type="button" class="btn btn-primary btn-lg" onclick="${pageContext.request.contextPath}/alumno/pedirclase">Pedir clase</button>
+<button id="button"  class="btn btn-primary btn-lg btn-block login-button" onclick="window.location.href = '${pageContext.request.contextPath}/alumno/pedirclase?idprofesor=${profesor.getPk_id_profesor()}';">pedir clase</button>
 
 <%@include file='footer.jsp'%>

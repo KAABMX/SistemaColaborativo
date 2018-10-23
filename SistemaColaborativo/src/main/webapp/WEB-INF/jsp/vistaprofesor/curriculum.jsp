@@ -3,7 +3,7 @@
     Created on : 3/10/2018, 03:04:12 PM
     Author     : Moctezuma19
 --%>
-<jsp:include page='header.jsp'>
+<jsp:include page='headerProfesores.jsp'>
     <jsp:param name="title" value="Tu curriculum"/>
 </jsp:include>
 <div align='center' style="padding-top:50px;">

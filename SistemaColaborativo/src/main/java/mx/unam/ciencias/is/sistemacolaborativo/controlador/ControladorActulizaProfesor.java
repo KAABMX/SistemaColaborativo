@@ -152,6 +152,6 @@ public class ControladorActulizaProfesor {
     
 
         
-        return  "/profesor/actualizaprofesor";
+        return  "redirect:/profesor/inicio";
     }
 }

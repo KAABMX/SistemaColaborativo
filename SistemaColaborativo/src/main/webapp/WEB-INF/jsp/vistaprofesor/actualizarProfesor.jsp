@@ -3,7 +3,7 @@
     Created on : 3/10/2018, 03:04:12 PM
     Author     : Luis
 --%>
-<jsp:include page='header.jsp'>
+<jsp:include page='headerProfesores.jsp'>
     <jsp:param name="title" value="Profesor - Actualizar datos"/>
 </jsp:include>
 <div align='center' style="padding-top:50px;">

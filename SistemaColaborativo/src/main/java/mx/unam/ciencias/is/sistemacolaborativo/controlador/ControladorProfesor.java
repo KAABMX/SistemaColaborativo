@@ -105,7 +105,16 @@ public class ControladorProfesor {
 
     @RequestMapping(value = "/profesor/curriculum", method = RequestMethod.GET)
     public ModelAndView curriculum(HttpServletRequest request, ModelMap model, Principal principal) {
-        return new ModelAndView("curriculum", model);
+        return new ModelAndView("vistaprofesor/curriculum", model);
+    }
+    
+    @RequestMapping(value = "/profesor/vermiperfilprofesor", method = RequestMethod.GET)
+    public String verMiPerfilProfesor(HttpServletRequest request, ModelMap model, Principal principal) {
+        Usuario usuario = usuario_bd.getUsuario(principal.getName());
+        Profesor p = profesor_bd.getProfesor(usuario);        
+        model.addAttribute("usuario", usuario);
+        model.addAttribute("profesor", p);
+        return "vistaprofesor/miPerfilProfesor";
     }
 
     @RequestMapping(value = "/activar-cuenta", method = RequestMethod.GET)
@@ -151,6 +160,7 @@ public class ControladorProfesor {
         String fecha_fin = request.getParameter("fecha_fin");
         String estudio = request.getParameter("estudios");
         es.setCurriculum(cv);
+        es.setEstudio(estudio);
         try {
             Date startDate = new SimpleDateFormat("yyyy-MM-dd").parse(fecha_inicio);
             Date finalDate = new SimpleDateFormat("yyyy-MM-dd").parse(fecha_fin);
