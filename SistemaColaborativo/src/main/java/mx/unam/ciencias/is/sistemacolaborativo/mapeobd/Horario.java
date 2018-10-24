@@ -31,84 +31,63 @@ public class Horario  implements Serializable {
     @Column(name = "idHorario")
      private int idHorario;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "fk_id_profesor")        
-     private Profesor fk_id_profesor;
-    @Column(name = "dia")     
-     private String dia;
-    @Column(name = "horaInicio")     
-     private Time horaInicio;
-    @Column(name = "horaFin")     
-     private Time horaFin;
+    @JoinColumn(name = "iddia")        
+     private Dia iddia;
+    @Column(name = "hora")     
+     private Time hora;
+
+
+    public Horario() {
+    }
+
+
+    public int getIdHorario() {
+        return idHorario;
+    }
+
+    public void setIdHorario(int idHorario) {
+        this.idHorario = idHorario;
+    }
+
+    public Dia getIddia() {
+        return iddia;
+    }
+
+    public void setIddia(Dia iddia) {
+        this.iddia = iddia;
+    }
+
+    public Time getHora() {
+        return hora;
+    }
+
+    public void setHora(Time hora) {
+        this.hora = hora;
+    }
+
+    public Boolean getDisponible() {
+        return disponible;
+    }
+
+    public void setDisponible(Boolean disponible) {
+        this.disponible = disponible;
+    }
+
+    public List<Asesorar> getAsesorar() {
+        return asesorar;
+    }
+
+    public void setAsesorar(List<Asesorar> asesorar) {
+        this.asesorar = asesorar;
+    }
     @Column(name = "disponible")     
      private Boolean disponible;
     @OneToMany(mappedBy = "idhorario", fetch = FetchType.EAGER )    
      private List<Asesorar> asesorar =  new ArrayList<>();
 
 
-    public Horario() {
-    }
 
-	
 
-    public Horario(int idHorario, Profesor idProfesor, String dia, Time horaInicio, Time horaFin, Boolean disponible) {
-       this.idHorario = idHorario;
-       this.fk_id_profesor = idProfesor;
-       this.dia = dia;
-       this.horaInicio = horaInicio;
-       this.horaFin = horaFin;
-       this.disponible = disponible;
-    }
-   
-    public int getIdHorario() {
-        return this.idHorario;
-    }
-    
-    public void setIdHorario(int idHorario) {
-        this.idHorario = idHorario;
-    }
-    public Profesor getProfesor() {
-        return this.fk_id_profesor;
-    }
-    
-    public void setProfesor(Profesor idProfesor) {
-        this.fk_id_profesor = idProfesor;
-    }
-    public String getDia() {
-        return this.dia;
-    }
-    
-    public void setDia(String dia) {
-        this.dia = dia;
-    }
-    public Time getHoraInicio() {
-        return this.horaInicio;
-    }
-    
-    public void setHoraInicio(Time horaInicio) {
-        this.horaInicio = horaInicio;
-    }
-    public Time getHoraFin() {
-        return this.horaFin;
-    }
-    
-    public void setHoraFin(Time horaFin) {
-        this.horaFin = horaFin;
-    }
-    public Boolean getDisponible() {
-        return this.disponible;
-    }
-    
-    public void setDisponible(Boolean disponible) {
-        this.disponible = disponible;
-    }
-
-    public List<Asesorar> getAsesorar() {
-        return this.asesorar;
-    }
-    
-    public void setAsesorar(List<Asesorar> asesorar) {
-        this.asesorar = asesorar;
-    } 
 
 
 

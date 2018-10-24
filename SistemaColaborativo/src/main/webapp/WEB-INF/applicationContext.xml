@@ -40,6 +40,7 @@
                 <value>mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Nivelprofesor</value>                
                 <value>mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Resena</value>                
                 <value>mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Denuncia</value>                
+                <value>mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Dia</value>                
                 
             </list>
         </property>
@@ -71,6 +72,7 @@
     <bean id="NivelprofesorDAO" class="mx.unam.ciencias.is.sistemacolaborativo.modelo.NivelprofesorDAO" p:sessionFactory-ref="hibernate4AnnotatedSessionFactory"/>
     <bean id="ResenaDAO" class="mx.unam.ciencias.is.sistemacolaborativo.modelo.ResenaDAO" p:sessionFactory-ref="hibernate4AnnotatedSessionFactory"/>
     <bean id="DenunciaDAO" class="mx.unam.ciencias.is.sistemacolaborativo.modelo.DenunciaDAO" p:sessionFactory-ref="hibernate4AnnotatedSessionFactory"/>
+    <bean id="DiaDAO" class="mx.unam.ciencias.is.sistemacolaborativo.modelo.DiaDAO" p:sessionFactory-ref="hibernate4AnnotatedSessionFactory"/>
     
 
   

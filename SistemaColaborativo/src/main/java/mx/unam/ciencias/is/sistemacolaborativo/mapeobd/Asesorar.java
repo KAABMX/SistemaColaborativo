@@ -23,6 +23,8 @@ public class Asesorar  implements java.io.Serializable {
     @Id@GeneratedValue(strategy =GenerationType.IDENTITY ) 
     @Column(name="idasesorar")
      private int idasesorar;
+    @Column(name="duracion")
+     private int duracion;
     @Column(name="costo")
      private double costo;
     @Column(name="comentario")
@@ -122,6 +124,14 @@ public class Asesorar  implements java.io.Serializable {
     
     public void setHorario(Horario idhorario) {
         this.idhorario = idhorario;
+    }
+
+    public int getDuracion() {
+        return duracion;
+    }
+
+    public void setDuracion(int duracion) {
+        this.duracion = duracion;
     }
 
 

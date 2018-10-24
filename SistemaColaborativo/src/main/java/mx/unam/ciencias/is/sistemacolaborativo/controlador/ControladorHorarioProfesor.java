@@ -13,6 +13,7 @@ import java.util.List;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.Part;
+import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Dia;
 //import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Complementarios;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Profesor;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Usuario;
@@ -21,6 +22,7 @@ import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Nivel;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Nivelprofesor;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Tema;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Temaprofesor;
+import mx.unam.ciencias.is.sistemacolaborativo.modelo.DiaDAO;
 import mx.unam.ciencias.is.sistemacolaborativo.modelo.HorarioDAO;
 import mx.unam.ciencias.is.sistemacolaborativo.modelo.NivelDAO;
 import mx.unam.ciencias.is.sistemacolaborativo.modelo.NivelprofesorDAO;
@@ -54,14 +56,25 @@ public class ControladorHorarioProfesor {
     private NivelprofesorDAO nievelprofesor_bd;
     @Autowired
     private NivelDAO nivel_bd;
+    @Autowired
+    private DiaDAO dia_bd;
     
     
     @RequestMapping(value = "/profesor/mostrarhorario")
     public String mostrarHorario(HttpServletRequest request, ModelMap model, Principal principal){
     Usuario usuario = usuario_bd.getUsuario(principal.getName());
     Profesor p = profesor_bd.getProfesor(usuario);
+        //dias
+        List<Dia> dias=p.getDia();
+        model.addAttribute("dias",dias);
+        model.addAttribute("todosdias", dia_bd.getDias());        
         //horarios
-        List<Horario> horarios=p.getHorario();
+        List<Horario> horarios=new ArrayList<>();
+        for (Dia dia : dias) {
+           for (Horario horario : dia.getHorarios()) {
+               horarios.add(horario);
+           }
+        }
         model.addAttribute("horarios",horarios);
         //niveles
         List<Nivelprofesor> nivelp=p.getNivelprofesor();
@@ -98,21 +111,28 @@ public class ControladorHorarioProfesor {
     
 
     
+    @RequestMapping(value = "/profesor/guardardia")
+    public String guardarDia(HttpServletRequest request, ModelMap model, Principal principal){
+    Usuario usuario = usuario_bd.getUsuario(principal.getName());
+    Profesor p = profesor_bd.getProfesor(usuario);
+    Dia dia=new Dia();
+    dia.setDia(request.getParameter("dia"));
+    dia.setFk_id_profesor(p);
+    dia_bd.guardar(dia);
+        return  "redirect:/profesor/mostrarhorario";
+    }
+
     @RequestMapping(value = "/profesor/guardarhorario")
     public String guardarHorario(HttpServletRequest request, ModelMap model, Principal principal){
     Usuario usuario = usuario_bd.getUsuario(principal.getName());
     Profesor p = profesor_bd.getProfesor(usuario);
-    String horaInicio=request.getParameter("horaInicio")+":00";
-    String horaFin=request.getParameter("horaFin")+":00";
-    String dia=request.getParameter("dia");
+    Dia dia=dia_bd.getDia(Integer.valueOf(request.getParameter("diase")));
+    String hora=request.getParameter("hora")+":00";
     Horario horario=new Horario();
-    horario.setDia(dia);
-    Time hi=Time.valueOf(horaInicio);
-    Time hf=Time.valueOf(horaFin);
-    horario.setHoraInicio(hi);
-    horario.setHoraFin(hf);
+    Time hi=Time.valueOf(hora);
+    horario.setHora(hi);
     horario.setDisponible(Boolean.TRUE);
-    horario.setProfesor(p);
+    horario.setIddia(dia);
     horario_bd.guardar(horario);
         return  "redirect:/profesor/mostrarhorario";
     }

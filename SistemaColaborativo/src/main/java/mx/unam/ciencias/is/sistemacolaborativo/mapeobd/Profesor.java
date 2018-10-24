@@ -40,7 +40,7 @@ public class Profesor {
     private boolean estaActivo;
     @OneToMany(mappedBy = "fk_id_profesor")    
     @LazyCollection(LazyCollectionOption.FALSE)
-    private List<Horario> horario =  new ArrayList<>();
+    private List<Dia> dia =  new ArrayList<>();
     @OneToMany(mappedBy = "fk_id_profesor")  
     @LazyCollection(LazyCollectionOption.FALSE)    
     private List<Temaprofesor> temaprofesor =  new ArrayList<>();
@@ -91,14 +91,15 @@ public class Profesor {
     public void setEstaActivo(boolean estaActivo) {
         this.estaActivo = estaActivo;
     }
-    
-    public List<Horario> getHorario() {
-        return this.horario;
+
+    public List<Dia> getDia() {
+        return dia;
+    }
+
+    public void setDia(List<Dia> dia) {
+        this.dia = dia;
     }
     
-    public void setHorario(List<Horario> horario) {
-        this.horario = horario;
-    }    
 
     public List<Temaprofesor> getTemaprofesor() {
         return this.temaprofesor;

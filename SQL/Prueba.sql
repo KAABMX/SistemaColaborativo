@@ -104,16 +104,26 @@ CREATE TABLE Denuncia (
 		    ON UPDATE CASCADE);
 
 
-CREATE TABLE Horario (
-  dia VARCHAR(20) NOT NULL,
-  horaInicio TIME NOT NULL,
-  horaFin TIME NOT NULL,
-  disponible VARCHAR(20) NOT NULL DEFAULT true,
-  idHorario SERIAL NOT NULL,
+CREATE TABLE Dia (
+  dia VARCHAR(255) NOT NULL,
+  iddia SERIAL NOT NULL,
   fk_id_profesor INT NOT NULL,
-  PRIMARY KEY (idHorario),
+  PRIMARY KEY (iddia),
     FOREIGN KEY (fk_id_profesor)
     	REFERENCES profesor (pk_id_profesor)
+		    ON DELETE CASCADE
+		    ON UPDATE CASCADE);
+
+
+
+CREATE TABLE Horario (
+  hora TIME NOT NULL,
+  disponible VARCHAR(20) NOT NULL DEFAULT true,
+  idHorario SERIAL NOT NULL,
+  iddia INT NOT NULL,
+  PRIMARY KEY (idHorario),
+    FOREIGN KEY (iddia)
+    	REFERENCES dia (iddia)
     		ON DELETE CASCADE
     		ON UPDATE CASCADE);
 
@@ -144,7 +154,7 @@ CREATE TABLE Tema(
 	idnivel INT NOT NULL,
 	PRIMARY KEY (idTema),
 	FOREIGN KEY(idnivel)
-		REFERENCES Nivel (idnivel)
+		REFERENCES Nivel(idnivel)
 		    ON DELETE CASCADE
     		ON UPDATE CASCADE	
 	);
@@ -170,6 +180,7 @@ CREATE TABLE TemaProfesor(
  	costo float NOT NULL DEFAULT 0.0,
  	aceptada VARCHAR(20) NOT NULL DEFAULT false,
  	comentario VARCHAR(120), 
+ 	duracion INT NOT NULL,
 	idTema INT NOT NULL,
 	idHorario INT NOT NULL,
 	fk_id_profesor INT NOT NULL,
