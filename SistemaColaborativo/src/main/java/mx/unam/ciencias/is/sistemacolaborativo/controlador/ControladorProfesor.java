@@ -5,25 +5,17 @@
  */
 package mx.unam.ciencias.is.sistemacolaborativo.controlador;
 
-import java.io.InputStream;
+import java.io.IOException;
 import java.math.BigInteger;
 import java.security.Principal;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Random;
-import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.Part;
-import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Complementarios;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Curriculum;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Estudios;
-import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Experiencia;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Profesor;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Usuario;
-import mx.unam.ciencias.is.sistemacolaborativo.modelo.ComplementariosDAO;
 import mx.unam.ciencias.is.sistemacolaborativo.modelo.CurriculumDAO;
 import mx.unam.ciencias.is.sistemacolaborativo.modelo.EstudiosDAO;
-import mx.unam.ciencias.is.sistemacolaborativo.modelo.ExperienciaDAO;
 import mx.unam.ciencias.is.sistemacolaborativo.modelo.ProfesorDAO;
 import mx.unam.ciencias.is.sistemacolaborativo.modelo.UsuarioDAO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +24,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -39,7 +33,6 @@ import org.springframework.web.servlet.ModelAndView;
  * @author hectorsama, luis
  */
 @Controller
-@MultipartConfig
 public class ControladorProfesor {
 
     @Autowired
@@ -49,32 +42,31 @@ public class ControladorProfesor {
     @Autowired
     private CurriculumDAO cv_bd;
     @Autowired
-    private ComplementariosDAO complementarios_bd;
-    @Autowired
-    private ExperienciaDAO experiencia_bd;
-    @Autowired
     private EstudiosDAO estudios_bd;
     //Identificador del usuario que inicio sesión.
     private int idUsuario = 9;
 
     @RequestMapping(value = "/registraProfesor", method = RequestMethod.POST)
-    public ModelAndView peticion(HttpServletRequest request, ModelMap model) {
+    public ModelAndView peticion(HttpServletRequest request, ModelMap model, @RequestParam("file") MultipartFile file) {
         try {
             Usuario usuario = new Usuario();
             usuario.setCorreo(request.getParameter("correo"));//previamente se revisa
+            if (usuario_bd.getUsuario(usuario.getCorreo()) != null) {
+                model.addAttribute("error", "Correo ya registrado!");
+                return new ModelAndView("registerProfesor", model);
+            }
             usuario.setNombre(request.getParameter("nombre"));
             usuario.setApellido_p(request.getParameter("paterno"));
             usuario.setApellido_m(request.getParameter("materno"));
-            usuario.setTelefono(request.getParameter("telefono"));
             BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
             String contrasenya = request.getParameter("contrasenya");
             String hashedPassword = passwordEncoder.encode(contrasenya);
             usuario.setContrasenia(hashedPassword);
             String ca = obtenerCadenaAleatoria();
             usuario.setCodigo_activacion(ca);
-            //InputStream foto = new FileInputStream(request.getParameter("foto"));
-            //convertir la foto a bytes y agregarlo al usuario
-            usuario.setSexo(request.getParameter("sexo"));
+            if (!file.isEmpty()) {
+                usuario.setFoto(file.getBytes());
+            }
             usuario.setRol("ROLE_PROFESOR");
             usuario_bd.guardar(usuario);
             Profesor p = new Profesor();
@@ -87,7 +79,6 @@ public class ControladorProfesor {
         }
         return new ModelAndView("index", model);
     }
-
 
     /**
      * Genera una cadena aleatoria para usarse como código de activación.
@@ -125,7 +116,7 @@ public class ControladorProfesor {
     }
 
     @RequestMapping(value = "/profesor/guardacv", method = RequestMethod.POST)
-    public ModelAndView guardaCV(HttpServletRequest request, ModelMap model, Principal principal) {
+    public ModelAndView guardaCV(HttpServletRequest request, ModelMap model, Principal principal, @RequestParam("file") MultipartFile file) throws IOException {
         Usuario usuario = usuario_bd.getUsuario(principal.getName());
         Profesor p = profesor_bd.getProfesor(usuario);
         p.setCosto_x_hora(request.getParameter("costo"));
@@ -159,14 +150,8 @@ public class ControladorProfesor {
         }
         p.setNiveles_educativos(hab);
 
-        try {
-            Part file = request.getPart("file");
-            InputStream is = file.getInputStream();
-            byte[] ident = new byte[is.available()];
-            is.read(ident);
-            p.setIdentificacion(ident);
-        } catch (Exception e) {
-
+        if (!file.isEmpty()) {
+            p.setIdentificacion(file.getBytes());
         }
         //agregar a la base
         profesor_bd.actualizar(p);
@@ -177,38 +162,10 @@ public class ControladorProfesor {
         cv_bd.guardar(cv);
         //agregar a la base
         Estudios es = new Estudios();
-        String fecha_inicio = request.getParameter("fecha_inicio");
-        String fecha_fin = request.getParameter("fecha_fin");
         String estudio = request.getParameter("estudios");
         es.setCurriculum(cv);
-        try {
-            Date startDate = new SimpleDateFormat("yyyy-MM-dd").parse(fecha_inicio);
-            Date finalDate = new SimpleDateFormat("yyyy-MM-dd").parse(fecha_fin);
-            es.setFecha_inicio(startDate);
-            es.setFecha_fin(finalDate);
-        } catch (Exception e) {
-
-        }
         es.setUniversidad(request.getParameter("universidad"));
         estudios_bd.guardar(es);
-
-        Experiencia exp = new Experiencia();
-        exp.setEmpresa(request.getParameter("empresa"));
-        String fecha_inicio_experiencia = request.getParameter("fecha_inicio_trabajo");
-        String fecha_fin_experiencia = request.getParameter("fecha_fin_trabajo");
-        try {
-            Date startDateexp = new SimpleDateFormat("yyyy-MM-dd").parse(fecha_inicio_experiencia);
-            Date finalDateexp = new SimpleDateFormat("yyyy-MM-dd").parse(fecha_fin_experiencia);
-            exp.setFecha_inicio(startDateexp);
-            exp.setFecha_fin(finalDateexp);
-        } catch (Exception e) {
-
-        }
-        exp.setCurriculum(cv);
-        exp.setFuncion_trabajo(request.getParameter("funcion_trabajo"));
-        exp.setTarea_trabajo(request.getParameter("tarea_trabajo"));
-        experiencia_bd.guardar(exp);
-
         return new ModelAndView("inicioProfesor", model);
     }
 

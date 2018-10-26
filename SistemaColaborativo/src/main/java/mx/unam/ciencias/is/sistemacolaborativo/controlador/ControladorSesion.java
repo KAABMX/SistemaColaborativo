@@ -82,7 +82,10 @@ public class ControladorSesion {
         return new ModelAndView("inicioProfesor", model);
 
     }
-
+    @RequestMapping(value = "/pago", method = RequestMethod.GET)
+    public ModelAndView pago(HttpServletRequest request, ModelMap model, Principal principal) {
+        return new ModelAndView("pago", model);
+    }
     @RequestMapping(value = "/error403", method = RequestMethod.GET)
     public String error403() {
         return "error403";

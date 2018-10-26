@@ -31,8 +31,6 @@
                 <value>mx.unam.ciencias.is.sistemacolaborativo.mapeobd.InteresAcademico</value>
                 <value>mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Curriculum</value>
                 <value>mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Estudios</value>
-                <value>mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Experiencia</value>
-                <value>mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Complementarios</value>
                 <value>mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Horario</value>                
                 <value>mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Tema</value>                
                 <value>mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Temaprofesor</value>                
@@ -55,8 +53,6 @@
     <bean id="UsuarioDAO" class="mx.unam.ciencias.is.sistemacolaborativo.modelo.UsuarioDAO" p:sessionFactory-ref="hibernate4AnnotatedSessionFactory"/>
     <bean id="AlumnoDAO" class="mx.unam.ciencias.is.sistemacolaborativo.modelo.AlumnoDAO" p:sessionFactory-ref="hibernate4AnnotatedSessionFactory"/>
     <bean id="InteresAcademicoDAO" class="mx.unam.ciencias.is.sistemacolaborativo.modelo.InteresAcademicoDAO" p:sessionFactory-ref="hibernate4AnnotatedSessionFactory"/>
-    <bean id="ExperienciaDAO" class="mx.unam.ciencias.is.sistemacolaborativo.modelo.ExperienciaDAO" p:sessionFactory-ref="hibernate4AnnotatedSessionFactory"/>
-    <bean id="ComplementariosDAO" class="mx.unam.ciencias.is.sistemacolaborativo.modelo.ComplementariosDAO" p:sessionFactory-ref="hibernate4AnnotatedSessionFactory"/>
     <bean id="EstudiosDAO" class="mx.unam.ciencias.is.sistemacolaborativo.modelo.EstudiosDAO" p:sessionFactory-ref="hibernate4AnnotatedSessionFactory"/>
     <bean id="CurriculumDAO" class="mx.unam.ciencias.is.sistemacolaborativo.modelo.CurriculumDAO" p:sessionFactory-ref="hibernate4AnnotatedSessionFactory"/>
     <bean id="ProfesorDAO" class="mx.unam.ciencias.is.sistemacolaborativo.modelo.ProfesorDAO" p:sessionFactory-ref="hibernate4AnnotatedSessionFactory"/>

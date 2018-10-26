@@ -70,42 +70,6 @@
             <div class="mdl-textfield mdl-js-textfield">
                 <input class="mdl-textfield__input" type="date" id="date" name="fecha_inicio" required>
             </div>
-            <div class="mdl-card__supporting-text" >
-                <span class="mdl-typography--font-light">Fecha de inicio de tus estudios</span>
-            </div>
-            <div class="mdl-textfield mdl-js-textfield">
-                <input class="mdl-textfield__input"  type="date" id="date" name="fecha_fin" required>
-            </div>
-            <div class="mdl-card__supporting-text" >
-                <span class="mdl-typography--font-light">Fecha de fin de tus estudios</span>
-            </div>
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <i><label class="mdl-card__title">Experiencia Laboral</label></i>
-            </div>
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" name = "empresa" required>
-                <label class="mdl-textfield__label" for="sample3">Empresa</label>
-            </div>
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" name = "funcion_trabajo" required>
-                <label class="mdl-textfield__label" for="sample3">Función realizada</label>
-            </div>
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" name = "tarea_trabajo" required>
-                <label class="mdl-textfield__label" for="sample3">Tarea realizada</label>
-            </div>
-            <div class="mdl-textfield mdl-js-textfield">
-                <input class="mdl-textfield__input" type="date" id="date" name="fecha_inicio_trabajo" required>
-            </div>
-            <div class="mdl-card__supporting-text" >
-                <span class="mdl-typography--font-light">Fecha de inicio de tus labores</span>
-            </div>
-            <div class="mdl-textfield mdl-js-textfield">
-                <input class="mdl-textfield__input" type="date" id="date" name="fecha_fin_trabajo" required>
-            </div>
-            <div class="mdl-card__supporting-text" >
-                <span class="mdl-typography--font-light">Fecha de fin de tus labores</span>
-            </div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                 <input class="mdl-textfield__input" type="number" id="costo" name="costo" required>
                 <label class="mdl-textfield__label" for="sample3">Costo por hora (MXN)</label>
