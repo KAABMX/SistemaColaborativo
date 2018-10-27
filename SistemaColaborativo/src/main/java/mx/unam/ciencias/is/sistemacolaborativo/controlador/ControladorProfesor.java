@@ -54,6 +54,8 @@ public class ControladorProfesor {
     private ExperienciaDAO experiencia_bd;
     @Autowired
     private EstudiosDAO estudios_bd;
+    @Autowired
+    private CurriculumDAO curriculum_bd;
     //Identificador del usuario que inicio sesión.
     private int idUsuario = 9;
 
@@ -245,11 +247,24 @@ public class ControladorProfesor {
         usuario_bd.actualizar(user);
         return new ModelAndView("activar-cuenta", model);
     }
+    
+    @RequestMapping(value="/profesor/perfil-completo-profesor", method = RequestMethod.GET)
+    public ModelAndView muestraProfesor(HttpServletRequest request, ModelMap model, Principal principal){
+        Usuario usuario = usuario_bd.getUsuario(principal.getName());
+        Profesor p = profesor_bd.getProfesor(usuario);
+        model.addAttribute("nombre", usuario.getNombre());
+        model.addAttribute("correo", usuario.getCorreo());
+        model.addAttribute("telefono", usuario.getTelefono());
+        model.addAttribute("niveles-educativos",p.getNiveles_educativos());
+        return new ModelAndView("perfilCV", model);
+    }
 
     @RequestMapping(value = "/profesor/guardacv", method = RequestMethod.POST)
     public ModelAndView guardaCV(HttpServletRequest request, ModelMap model, Principal principal) {
         Usuario usuario = usuario_bd.getUsuario(principal.getName());
         Profesor p = profesor_bd.getProfesor(usuario);
+        int id_profe= p.getPk_id_profesor();
+        Curriculum cu = curriculum_bd.getCurriculum(id_profe);
         p.setCosto_x_hora(request.getParameter("costo"));
         p.setUsuario(usuario);
         p.setHabilidades(request.getParameter("habilidades"));
@@ -330,6 +345,17 @@ public class ControladorProfesor {
         exp.setFuncion_trabajo(request.getParameter("funcion_trabajo"));
         exp.setTarea_trabajo(request.getParameter("tarea_trabajo"));
         experiencia_bd.guardar(exp);
+        model.addAttribute("username",usuario);
+        model.addAttribute("nombre", usuario.getNombre());
+        model.addAttribute("apellidoP", usuario.getApellido_p());
+        model.addAttribute("apellidoM", usuario.getApellido_m());
+        model.addAttribute("correo", usuario.getCorreo());
+        model.addAttribute("telefono", usuario.getTelefono());
+        model.addAttribute("nivel", p.getNiveles_educativos());
+        model.addAttribute("lugar", cu.getLugar_de_nacimiento());
+        model.addAttribute("empresa", exp.getEmpresa());
+        model.addAttribute("funcion", exp.getFuncion_trabajo());
+        model.addAttribute("tarea", exp.getTarea_trabajo());
 
         return new ModelAndView("inicioProfesor", model);
     }
