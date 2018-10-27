@@ -2,7 +2,11 @@ package mx.unam.ciencias.is.sistemacolaborativo.controlador;
 
 import java.security.Principal;
 import javax.servlet.http.HttpServletRequest;
+import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Curriculum;
+import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Profesor;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Usuario;
+import mx.unam.ciencias.is.sistemacolaborativo.modelo.CurriculumDAO;
+import mx.unam.ciencias.is.sistemacolaborativo.modelo.ProfesorDAO;
 import mx.unam.ciencias.is.sistemacolaborativo.modelo.UsuarioDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,6 +24,12 @@ public class ControladorSesion {
 
     @Autowired
     UsuarioDAO usuario_db;
+    
+    @Autowired
+    ProfesorDAO profesor_db;
+    
+    @Autowired
+    CurriculumDAO curriculum_db;
 
     @RequestMapping(value = "/inicio", method = RequestMethod.GET)
     public String loggea(HttpServletRequest request, Principal principal) {
@@ -77,8 +87,14 @@ public class ControladorSesion {
     public ModelAndView inicioP(HttpServletRequest request, ModelMap model, Principal principal) {
         String u = principal.getName();
         Usuario usuario = usuario_db.getUsuario(u);
+        Profesor profe = profesor_db.getProfesor(usuario);
+        int p = profe.getPk_id_profesor();
         model.addAttribute("username", u);
         model.addAttribute("nombre", usuario.getNombre());
+        model.addAttribute("apellidoP", usuario.getApellido_p());
+        model.addAttribute("apellidoM", usuario.getApellido_m());
+        model.addAttribute("correo", usuario.getCorreo());
+        model.addAttribute("telefono", usuario.getTelefono());
         return new ModelAndView("inicioProfesor", model);
 
     }
