@@ -7,6 +7,7 @@ package mx.unam.ciencias.is.sistemacolaborativo.modelo;
 
 import java.util.List;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Alumno;
+import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Usuario;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -118,7 +119,7 @@ public class AlumnoDAO {
      * Regresa la lista de todos los usuarios en la base de datos
      * @return la lista que contiene a todos los usuarios de la base de datos
      */
-    public List<Alumno> getUsuarios(){
+    public List<Alumno> getAlumnos(){
         List<Alumno> result= null;
         Session session = sessionFactory.openSession();
         Transaction tx=null;
@@ -160,7 +161,26 @@ public class AlumnoDAO {
         return result;
     }
        
-          
+       public Alumno getAlumno(Usuario u) {
+        Alumno result = null;
+        Session s = sessionFactory.openSession();
+        Transaction tx = null;
+        try{
+            tx = s.beginTransaction();
+            String hql = "FROM Alumno WHERE fk_id_usuario= :fk_id_usuario";                  
+            Query query = s.createQuery(hql);
+            query.setParameter("fk_id_usuario",u);
+            result = (Alumno)query.uniqueResult();
+            tx.commit();
+        }catch(Exception e){
+            if(tx != null)
+                tx.rollback();
+            e.printStackTrace();
+        }finally{
+            s.close();
+        }
+        return result;
+    }          
     
 }
 

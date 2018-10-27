@@ -18,7 +18,7 @@ problematico VARCHAR(30) DEFAULT false
 
 CREATE TABLE Alumno(
 pk_id_alumno SERIAL NOT NULL  PRIMARY KEY,
-fk_id_usuario SERIAL NOT NULL,
+fk_id_usuario INT NOT NULL,
 ultimo_nivel_educativo VARCHAR(120),
 FOREIGN KEY (fk_id_usuario) 
 	REFERENCES Usuario(pk_id_usuario)
@@ -27,7 +27,7 @@ FOREIGN KEY (fk_id_usuario)
 
 CREATE TABLE Interes_academico(
 pk_id_interes SERIAL  PRIMARY KEY,
-fk_id_alumno SERIAL,
+fk_id_alumno INT,
 interes VARCHAR(90),
 FOREIGN KEY (fk_id_alumno) 
 	REFERENCES Alumno(pk_id_alumno)
@@ -36,7 +36,7 @@ FOREIGN KEY (fk_id_alumno)
 
 CREATE TABLE Profesor(
 pk_id_profesor SERIAL NOT NULL  PRIMARY KEY,
-fk_id_usuario SERIAL NOT NULL,
+fk_id_usuario INT NOT NULL,
 identificacion_identidad VARCHAR(90),
 costo_x_hora VARCHAR(120),
 identificacion varchar(90),
@@ -48,7 +48,7 @@ estaactivo character varying(30) DEFAULT false,
 
 CREATE TABLE Curriculum(
 pk_id_cv SERIAL NOT NULL  PRIMARY KEY,
-fk_id_profesor SERIAL NOT NULL,
+fk_id_profesor INT NOT NULL,
 lugar_de_nacimiento VARCHAR(90),
 FOREIGN KEY (fk_id_profesor) 
 	REFERENCES Profesor(pk_id_profesor)
@@ -57,7 +57,7 @@ FOREIGN KEY (fk_id_profesor)
 
 CREATE TABLE Experiencia(
 pk_id_experiencia SERIAL NOT NULL  PRIMARY KEY,
-fk_id_cv SERIAL,
+fk_id_cv INT,
 fecha_inicio DATE,
 fecha_fin DATE,
 empresa VARCHAR(90),
@@ -70,7 +70,7 @@ FOREIGN KEY (fk_id_cv)
 
 CREATE TABLE Estudios(
 pk_id_estudios SERIAL NOT NULL  PRIMARY KEY,
-fk_id_cv SERIAL,
+fk_id_cv INT,
 estudio VARCHAR(90),
 fecha_inicio DATE,
 fecha_fin DATE,
@@ -82,9 +82,9 @@ FOREIGN KEY (fk_id_cv)
 
 
 CREATE TABLE Resena (
+  idResena SERIAL NOT NULL,
   comentario VARCHAR(255),
   calificacion INT NOT NULL,
-  idResena SERIAL NOT NULL,
   fk_id_usuario INT NOT NULL,
   PRIMARY KEY (idResena),
     FOREIGN KEY (fk_id_usuario)
@@ -94,8 +94,8 @@ CREATE TABLE Resena (
 
 
 CREATE TABLE Denuncia (
-  motivo VARCHAR(255) NOT NULL,
   idDenuncia SERIAL NOT NULL,
+  motivo VARCHAR(255) NOT NULL,
   fk_id_usuario INT NOT NULL,
   PRIMARY KEY (idDenuncia),
     FOREIGN KEY (fk_id_usuario)
@@ -105,8 +105,8 @@ CREATE TABLE Denuncia (
 
 
 CREATE TABLE Dia (
-  dia VARCHAR(255) NOT NULL,
   iddia SERIAL NOT NULL,
+  dia VARCHAR(255) NOT NULL,
   fk_id_profesor INT NOT NULL,
   PRIMARY KEY (iddia),
     FOREIGN KEY (fk_id_profesor)
@@ -117,9 +117,9 @@ CREATE TABLE Dia (
 
 
 CREATE TABLE Horario (
+  idHorario SERIAL NOT NULL,
   hora TIME NOT NULL,
   disponible VARCHAR(20) NOT NULL DEFAULT true,
-  idHorario SERIAL NOT NULL,
   iddia INT NOT NULL,
   PRIMARY KEY (idHorario),
     FOREIGN KEY (iddia)
@@ -177,10 +177,10 @@ CREATE TABLE TemaProfesor(
 	
  CREATE TABLE Asesorar(
  	idAsesorar SERIAL NOT NULL,
- 	costo float NOT NULL DEFAULT 0.0,
- 	aceptada VARCHAR(20) NOT NULL DEFAULT false,
+ 	costo float  DEFAULT 0.0,
+ 	aceptada VARCHAR(20) DEFAULT false,
  	comentario VARCHAR(120), 
- 	duracion INT NOT NULL,
+ 	duracion INT ,
 	idTema INT NOT NULL,
 	idHorario INT NOT NULL,
 	fk_id_profesor INT NOT NULL,

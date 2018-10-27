@@ -97,8 +97,8 @@ public class ControladorAlumno {
                 g.setAlumno(al);
                 interes_bd.guardar(g);
             }
-            CorreoActivacion caa = new CorreoActivacion();
-            caa.CorreoActivacion(request, usuario);
+            //CorreoActivacion caa = new CorreoActivacion();
+            //caa.CorreoActivacion(request, usuario);
         } catch (Exception e) {
 
         }

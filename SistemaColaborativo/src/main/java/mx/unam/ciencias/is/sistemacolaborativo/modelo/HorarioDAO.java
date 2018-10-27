@@ -136,7 +136,7 @@ public class HorarioDAO {
     }
     
     
-       public Horario getHorario(String idHorario) {
+       public Horario getHorario(int idHorario) {
         Horario result = null;
         Session s = sessionFactory.openSession();
         Transaction tx = null;
