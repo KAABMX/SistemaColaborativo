@@ -3,7 +3,7 @@
     Created on : 3/10/2018, 03:04:12 PM
     Author     : Moctezuma19
 --%>
-<jsp:include page='header.jsp'>
+<jsp:include page='headerProfesores.jsp'>
     <jsp:param name="title" value="Tu curriculum"/>
 </jsp:include>
 <div align='center' style="padding-top:50px;">
@@ -63,10 +63,6 @@
                 <input class="mdl-textfield__input" type="text" name = "universidad" required>
                 <label class="mdl-textfield__label" for="sample3">Universidad</label>
             </div>
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" name = "habilidades" required>
-                <label class="mdl-textfield__label" for="sample3">Área(s) de especialidad</label>
-            </div>
             <div class="mdl-textfield mdl-js-textfield">
                 <input class="mdl-textfield__input" type="date" id="date" name="fecha_inicio" required>
             </div>
@@ -83,10 +79,10 @@
             </div>
             <div class="mdl-card__actions" style="padding-bottom:30px;">
                 <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" style="background-color:#66b04f;width:70%;">
-                    Listo
+                    Enviar
                 </button>
             </div>
-        </form>
+        </form>            
     </div>
 </div>
 <%@include file='footer.jsp'%>

@@ -8,9 +8,9 @@
 
     </div>
     <ul class="list-group list-group-flush">
-        <c:forEach items="${temas}" var="tema">
+        <c:forEach items="${niveles}" var="nivel">
             <li class="list-group-item">
-                <a href="${pageContext.request.contextPath}/alumno/verprofesor?idtema=${tema.getIdtema()}">${tema.getTema()}</a>
+                <a href="${pageContext.request.contextPath}/alumno/vermaterias?idnivel=${nivel.getIdnivel()}">${nivel.getNivel()}</a>
             </li>          
         </c:forEach>
 

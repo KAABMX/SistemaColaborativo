@@ -3,7 +3,7 @@
     Created on : 3/10/2018, 03:04:12 PM
     Author     : Luis
 --%>
-<jsp:include page='header.jsp'>
+<jsp:include page='headerProfesores.jsp'>
     <jsp:param name="title" value="Profesor - Actualizar datos"/>
 </jsp:include>
 <div align='center' style="padding-top:50px;">
@@ -83,16 +83,8 @@
                 <i><label class="mdl-card__title">Formación Académica</label></i>
             </div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" name = "estudios" value="${complementarios.getEstudio()}" required>
-                <label class="mdl-textfield__label" for="sample3">Estudios</label>
-            </div>
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                 <input class="mdl-textfield__input" type="text" name = "universidad" value="${estudios.getUniversidad()}" >
                 <label class="mdl-textfield__label" for="sample3">Universidad</label>
-            </div>
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" name = "habilidades" value="${profesor.getHabilidades()}">
-                <label class="mdl-textfield__label" for="sample3">Área(s) de especialidad</label>
             </div>
             <div class="mdl-textfield mdl-js-textfield">
                 <input class="mdl-textfield__input" type="date" id="date" name="fecha_inicio" value="1996-08-01">

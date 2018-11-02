@@ -13,10 +13,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.Part;
-//import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Complementarios;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Profesor;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Usuario;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Curriculum;
@@ -35,7 +32,6 @@ import org.springframework.web.servlet.ModelAndView;
  * @author dani3
  */
 @Controller
-@MultipartConfig
 public class ControladorActulizaProfesor {
     @Autowired
     private UsuarioDAO usuario_bd;
@@ -58,7 +54,8 @@ public class ControladorActulizaProfesor {
     model.addAttribute("usuario",usuario);
     model.addAttribute("profesor",profesor);
     model.addAttribute("curriculum",curriculum);
-    model.addAttribute("estudios",estudios); 
+    model.addAttribute("estudios",estudios);
+    //model.addAttribute("experiencia",experiencia);
         return  "vistaprofesor/actualizarProfesor";
     }
    
@@ -67,6 +64,7 @@ public class ControladorActulizaProfesor {
     Usuario usuario = usuario_bd.getUsuario(principal.getName());
     Profesor profesor=profesor_bd.getProfesor(usuario);
     Curriculum curriculum =cv_bd.getCurriculumF(profesor.getPk_id_profesor());
+
     Estudios estudios=estudios_bd.getEstudios(curriculum.getPk_id_cv());
     
 	String correo = request.getParameter("correo");
@@ -89,9 +87,8 @@ public class ControladorActulizaProfesor {
 	
         String lugar =request.getParameter("lugar");
         curriculum.setLugar_de_nacimiento(lugar);
-        
-	String estudiosg = request.getParameter("estudios");
-        
+
+	String estudiosg = request.getParameter("estudios");  
 	String universidad =request.getParameter("universidad");
         estudios.setUniversidad(universidad);
         
@@ -99,7 +96,7 @@ public class ControladorActulizaProfesor {
         profesor_bd.actualizar(profesor);
         cv_bd.actualizar(curriculum);
         estudios_bd.actualizar(estudios);
-
-        return  "/profesor/actualizaprofesor";
+  
+        return  "redirect:/profesor/inicio";
     }
 }

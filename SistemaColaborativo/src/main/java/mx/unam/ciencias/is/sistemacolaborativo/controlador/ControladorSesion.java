@@ -69,7 +69,7 @@ public class ControladorSesion {
         Usuario usuario = usuario_db.getUsuario(u);
         model.addAttribute("username", u);
         model.addAttribute("nombre", usuario.getNombre());
-        return new ModelAndView("indexusuario", model);
+        return new ModelAndView("vistaalumno/indexusuario", model);
 
     }
 
@@ -79,7 +79,7 @@ public class ControladorSesion {
         Usuario usuario = usuario_db.getUsuario(u);
         model.addAttribute("username", u);
         model.addAttribute("nombre", usuario.getNombre());
-        return new ModelAndView("inicioProfesor", model);
+        return new ModelAndView("vistaprofesor/inicioProfesor", model);
 
     }
     @RequestMapping(value = "/pago", method = RequestMethod.GET)

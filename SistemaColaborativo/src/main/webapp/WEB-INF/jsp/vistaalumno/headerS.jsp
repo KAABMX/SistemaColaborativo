@@ -46,7 +46,9 @@
             <div class="android-header mdl-layout__header mdl-layout__header--waterfall">
                 <div class="mdl-layout__header-row">
                     <span class="android-title mdl-layout-title">
+                        <a href="${pageContext.request.contextPath}/alumno/inicio">
                         <img class="android-logo-image" src="<c:url value = "/imagenes/android-logo.png"/>"> <!--Cambiar por el logo de la aplicacion-->
+                        </a>
                     </span>
                     <!-- Add spacer, to align navigation to the right in desktop -->
                     <div class="android-header-spacer mdl-layout-spacer"></div>

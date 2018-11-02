@@ -6,14 +6,14 @@
 package mx.unam.ciencias.is.sistemacolaborativo.modelo;
 
 import java.util.List;
-import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Horario;
+import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Resena;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 
-public class HorarioDAO {
+public class ResenaDAO {
     
     /*Sesion para conectarnos a la base de datos*/
     private SessionFactory sessionFactory;
@@ -26,15 +26,15 @@ public class HorarioDAO {
         this.sessionFactory = sessionFactory;
     }
 
-    public void guardar(Horario horario) {
+    public void guardar(Resena resena) {
         //se inicia la sesion
         Session session = sessionFactory.openSession();
         //la transaccion a relizar
         Transaction tx = null;
         try {
             tx = session.beginTransaction();
-            //guardamos el Horario
-            session.persist(horario);
+            //guardamos el Resena
+            session.persist(resena);
            
             tx.commit();
         }
@@ -52,17 +52,17 @@ public class HorarioDAO {
         
         
             /**
-     * Elimina el Horario de la base de datos
-     * @param horario el Horario a eliminar
+     * Elimina el Resena de la base de datos
+     * @param resena el Resena a eliminar
      */
-    public void eliminar(Horario horario) {
+    public void eliminar(Resena resena) {
         Session session = sessionFactory.openSession();
         //la transaccion a relizar
         Transaction tx = null;
         try {
             tx = session.beginTransaction();
-            //eliminamos el Horario
-            session.delete(horario);
+            //eliminamos el Resena
+            session.delete(resena);
            
             tx.commit();
         }
@@ -83,17 +83,17 @@ public class HorarioDAO {
     
     
     /**
-     * Actualiza el Horario en la base de datos
-     * @param horario con los nuevos valores 
+     * Actualiza el Resena en la base de datos
+     * @param resena con los nuevos valores 
      */
-    public void actualizar(Horario horario) {
+    public void actualizar(Resena resena) {
         Session session = sessionFactory.openSession();
         //la transaccion a relizar
         Transaction tx = null;
         try {
             tx = session.beginTransaction();
-            //actualizar el Horario
-            session.update(horario);
+            //actualizar el Resena
+            session.update(resena);
            
             tx.commit();
         }
@@ -112,18 +112,18 @@ public class HorarioDAO {
     
     
         /**
-     * Regresa la lista de todos los Horarios en la base de datos
-     * @return la lista que contiene a todos los Horarios de la base de datos
+     * Regresa la lista de todos los Resenas en la base de datos
+     * @return la lista que contiene a todos los Resenas de la base de datos
      */
-    public List<Horario> getHorarios(){
-        List<Horario> result= null;
+    public List<Resena> getResenas(){
+        List<Resena> result= null;
         Session session = sessionFactory.openSession();
         Transaction tx=null;
         try{
             tx=session.beginTransaction();
-            String hql= "FROM Horario";
+            String hql= "FROM Resena";
             Query query =session.createQuery(hql);
-            result=(List<Horario>)query.list();
+            result=(List<Resena>)query.list();
             tx.commit();
         }catch (Exception e){
             if(tx != null)
@@ -136,16 +136,16 @@ public class HorarioDAO {
     }
     
     
-       public Horario getHorario(int idHorario) {
-        Horario result = null;
+       public Resena getResena(int idResena) {
+        Resena result = null;
         Session s = sessionFactory.openSession();
         Transaction tx = null;
         try{
             tx = s.beginTransaction();
-            String hql = "FROM Horario WHERE idHorario = :idHorario";                  
+            String hql = "FROM Resena WHERE idResena = :idResena";                  
             Query query = s.createQuery(hql);
-            query.setParameter("idHorario",idHorario);
-            result = (Horario)query.uniqueResult();
+            query.setParameter("idResena",idResena);
+            result = (Resena)query.uniqueResult();
             tx.commit();
         }catch(Exception e){
             if(tx != null)

@@ -100,7 +100,16 @@ public class ControladorProfesor {
 
     @RequestMapping(value = "/profesor/curriculum", method = RequestMethod.GET)
     public ModelAndView curriculum(HttpServletRequest request, ModelMap model, Principal principal) {
-        return new ModelAndView("curriculum", model);
+        return new ModelAndView("vistaprofesor/curriculum", model);
+    }
+    
+    @RequestMapping(value = "/profesor/vermiperfilprofesor", method = RequestMethod.GET)
+    public String verMiPerfilProfesor(HttpServletRequest request, ModelMap model, Principal principal) {
+        Usuario usuario = usuario_bd.getUsuario(principal.getName());
+        Profesor p = profesor_bd.getProfesor(usuario);        
+        model.addAttribute("usuario", usuario);
+        model.addAttribute("profesor", p);
+        return "vistaprofesor/miPerfilProfesor";
     }
 
     @RequestMapping(value = "/activar-cuenta", method = RequestMethod.GET)
@@ -121,34 +130,8 @@ public class ControladorProfesor {
         Profesor p = profesor_bd.getProfesor(usuario);
         p.setCosto_x_hora(request.getParameter("costo"));
         p.setUsuario(usuario);
-        p.setHabilidades(request.getParameter("habilidades"));
         //varios niveles
         p.setEstaActivo(true);
-        String prim = request.getParameter("primaria");
-        String sec = request.getParameter("secundaria");
-        String bach = request.getParameter("bachillerato");
-        String uni = request.getParameter("licenciatura");
-        String pos = request.getParameter("posgrado");
-        String hab = "";
-        if (prim != null && prim.equals("on")) {
-            hab += "primaria,";
-        }
-        if (sec != null && sec.equals("on")) {
-            hab += "secundaria,";
-        }
-        if (bach != null && bach.equals("on")) {
-            hab += "bachillerato,";
-        }
-        if (uni != null && uni.equals("on")) {
-            hab += "licenciatura,";
-        }
-        if (pos != null && pos.equals("on")) {
-            hab += "posgrado,";
-        }
-        if (hab.length() != 0) {
-            hab = hab.substring(0, hab.length() - 1);
-        }
-        p.setNiveles_educativos(hab);
 
         if (!file.isEmpty()) {
             p.setIdentificacion(file.getBytes());
@@ -164,6 +147,7 @@ public class ControladorProfesor {
         Estudios es = new Estudios();
         String estudio = request.getParameter("estudios");
         es.setCurriculum(cv);
+        es.setEstudio(estudio);
         es.setUniversidad(request.getParameter("universidad"));
         estudios_bd.guardar(es);
         return new ModelAndView("inicioProfesor", model);
