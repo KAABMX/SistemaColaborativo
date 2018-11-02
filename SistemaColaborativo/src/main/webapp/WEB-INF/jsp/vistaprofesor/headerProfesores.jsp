@@ -62,7 +62,7 @@
                     <div class="android-navigation-container">
                         <nav class="android-navigation mdl-navigation">
                             <a class="mdl-navigation__link mdl-typography--text-uppercase" href="${pageContext.request.contextPath}/profesor/vermiperfilprofesor">Mi Perfil</a>
-                            <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Ver mis Asesorias</a>
+                            <a class="mdl-navigation__link mdl-typography--text-uppercase" href="${pageContext.request.contextPath}/profesor/mostrarasesorias">Ver mis Asesorias</a>
                             <a class="mdl-navigation__link mdl-typography--text-uppercase" href="${pageContext.request.contextPath}/logout">Cerrar Sesión</a><!--Quitarse al estar logueado en el sistema-->
                         </nav>
                     </div>
