@@ -152,7 +152,7 @@ public class ExperienciaDAO {
         return result;
     }
     
-    public Experiencia getExperienciaCV(int fk_id_cv) {
+    public Experiencia getExperienciaF(int fk_id_cv) {
         Experiencia result = null;
         Session s = sessionFactory.openSession();
         Transaction tx = null;
@@ -172,5 +172,5 @@ public class ExperienciaDAO {
             s.close();
         }
         return result;
-    }
+    }    
 }

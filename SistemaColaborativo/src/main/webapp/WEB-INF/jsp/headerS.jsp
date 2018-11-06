@@ -64,11 +64,10 @@
                             <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Asesorías</a>
                             <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Asesores</a>
                             <a class="mdl-navigation__link mdl-typography--text-uppercase" href="${pageContext.request.contextPath}/verProfesores">Información</a>
-                            <a class="mdl-navigation__link mdl-typography--text-uppercase" href="${pageContext.request.contextPath}/logout">Cerrar Sesión</a><!--Quitarse al estar logueado en el sistema-->
                         </nav>
                     </div>
                     <span class="android-mobile-title mdl-layout-title">
-                        <img class="android-logo-image" src="<c:url value = "/imagenes/android-logo.png"/>">
+                        <img class="android-logo-image" src="<c:url value = "/imagenes/educa.png"/>">
                     </span>
                     <button class="android-more-button mdl-button mdl-js-button mdl-button--icon mdl-js-ripple-effect" id="more-button">
                         <i class="material-icons">more_vert</i>

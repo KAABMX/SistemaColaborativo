@@ -6,6 +6,7 @@
 package mx.unam.ciencias.is.sistemacolaborativo.controlador;
 
 import java.math.BigInteger;
+import java.security.Principal;
 import java.util.Random;
 import javax.servlet.http.HttpServletRequest;
 import mx.unam.ciencias.is.sistemacolaborativo.modelo.UsuarioDAO;
@@ -96,8 +97,8 @@ public class ControladorAlumno {
                 g.setAlumno(al);
                 interes_bd.guardar(g);
             }
-            CorreoActivacion caa = new CorreoActivacion();
-            caa.CorreoActivacion(request, usuario);
+            //CorreoActivacion caa = new CorreoActivacion();
+            //caa.CorreoActivacion(request, usuario);
         } catch (Exception e) {
 
         }
@@ -131,9 +132,9 @@ public class ControladorAlumno {
      * @return 
      */
     @RequestMapping(value = "/actualizarAlumno", method = RequestMethod.POST)
-    public ModelAndView actualizarAlumno(HttpServletRequest request, ModelMap model) {                   
+    public ModelAndView actualizarAlumno(HttpServletRequest request, ModelMap model,Principal principal) {                   
         try {            
-            Usuario usuarioActualizado = usuario_bd.getUsuario(idUsuario);
+            Usuario usuarioActualizado = usuario_bd.getUsuario(principal.getName());
             
             if(request.getParameter("correo") != null){
               usuarioActualizado.setCorreo(request.getParameter("correo"));   
@@ -213,4 +214,5 @@ public class ControladorAlumno {
 
 
     }
+
 }

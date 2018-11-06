@@ -61,7 +61,6 @@
                     <div class="android-navigation-container">
                         <nav class="android-navigation mdl-navigation">
                             <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Asesorías</a>
-                            <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Asesores</a>
                             <a class="mdl-navigation__link mdl-typography--text-uppercase" href="${pageContext.request.contextPath}/verProfesores">Información</a>
                             <a class="mdl-navigation__link mdl-typography--text-uppercase" href="${pageContext.request.contextPath}/opcion">Registrarse</a><!--Quitarse al estar logueado en el sistema-->
                             <a class="mdl-navigation__link mdl-typography--text-uppercase" href="${pageContext.request.contextPath}/loggea">Iniciar Sesión</a><!--Quitarse al estar logueado en el sistema-->
@@ -82,26 +81,4 @@
                     </ul>-->
                 </div>
             </div>
-
-            <div class="android-drawer mdl-layout__drawer">
-                <span class="mdl-layout-title">
-                    <img class="android-logo-image" src=" <c:url value = "/imagenes/android-logo-white.png"/>"> <!--Cambiar por el logo de la aplicacion-->
-                </span>
-                <nav class="mdl-navigation">
-                    <div class="android-drawer-separator"></div>
-                    <span class="mdl-navigation__link" href="">Perfil</span>
-                    <a class="mdl-navigation__link" href="">Ver Perfil</a>
-                    <a class="mdl-navigation__link" href="">Editar Perfil</a>
-                    <div class="android-drawer-separator"></div>
-                    <span class="mdl-navigation__link" href="">Asesorías</span>
-                    <a class="mdl-navigation__link" href="">Recomendaciones</a>
-                    <a class="mdl-navigation__link" href="">Ver Mis Asesorías</a>
-                    <div class="android-drawer-separator"></div>
-                    <span class="mdl-navigation__link" href="">Ayuda</span>
-                    <a class="mdl-navigation__link" href="">Realizar Denuncia</a>
-                    <span class="mdl-navigation__link" href="">Sesión</span>
-                    <a class="mdl-navigation__link" href="">Salir</a>
-                </nav>
-            </div>
-            <div class="android-content mdl-layout__content">
                 <a name="top"></a>

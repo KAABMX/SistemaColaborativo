@@ -10,18 +10,15 @@ Author     : hectorsama
     <jsp:param name="title" value="Ver Profesores"/>
 </jsp:include>
 <html>
-
     <div class="box1">
-            <h3 class="section-heading">Los nombres son: </h3>
-
+        <h3 class="section-heading">Los nombres son: </h3>
         <c:forEach items="${profeLista}" var="item">
             <pre>
              <li><a href="https://example.com"> ${item} </a></li>
+             <prev> 
+                 <h4 style="color:#A9ABA6"> ${correo}</h4>
+            </prev>
             </pre>
         </c:forEach>
-
-
     </div>
-
-
 </html>

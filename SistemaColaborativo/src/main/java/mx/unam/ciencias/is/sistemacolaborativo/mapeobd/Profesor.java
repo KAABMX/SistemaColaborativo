@@ -5,19 +5,22 @@
  */
 package mx.unam.ciencias.is.sistemacolaborativo.mapeobd;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
-/**
- *
- * @author hectorsama
- */
+
 @Entity
 @Table(name = "Profesor")
 public class Profesor {
@@ -33,12 +36,21 @@ public class Profesor {
     private byte[] identificacion;
     @Column(name = "costo_x_hora")
     private String costo_x_hora;
-    @Column(name = "niveles_educativos")
-    private String niveles_educativos;
-    @Column(name = "habilidades")
-    private String habilidades;
     @Column(name = "estaActivo")
     private boolean estaActivo;
+    @OneToMany(mappedBy = "fk_id_profesor")    
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<Dia> dia =  new ArrayList<>();
+    @OneToMany(mappedBy = "fk_id_profesor")  
+    @LazyCollection(LazyCollectionOption.FALSE)    
+    private List<Temaprofesor> temaprofesor =  new ArrayList<>();
+    @OneToMany(mappedBy = "fk_id_profesor")  
+    @LazyCollection(LazyCollectionOption.FALSE)    
+    private List<Nivelprofesor> nivelprofesor =  new ArrayList<>();
+    @OneToMany(mappedBy = "fk_id_profesor")    
+    @LazyCollection(LazyCollectionOption.FALSE)    
+    private List<Asesorar> asesorar =  new ArrayList<>();
+
 
     public Usuario getUsuario() {
         return usuario;
@@ -64,22 +76,6 @@ public class Profesor {
         this.costo_x_hora = costo_x_hora;
     }
 
-    public String getNiveles_educativos() {
-        return niveles_educativos;
-    }
-
-    public void setNiveles_educativos(String niveles_educativos) {
-        this.niveles_educativos = niveles_educativos;
-    }
-
-    public String getHabilidades() {
-        return habilidades;
-    }
-
-    public void setHabilidades(String habilidades) {
-        this.habilidades = habilidades;
-    }
-
     public byte[] getIdentificacion() {
         return identificacion;
     }
@@ -94,6 +90,39 @@ public class Profesor {
 
     public void setEstaActivo(boolean estaActivo) {
         this.estaActivo = estaActivo;
+    }
+
+    public List<Dia> getDia() {
+        return dia;
+    }
+
+    public void setDia(List<Dia> dia) {
+        this.dia = dia;
+    }
+    
+
+    public List<Temaprofesor> getTemaprofesor() {
+        return this.temaprofesor;
+    }
+    
+    public void setTemaprofesor(List<Temaprofesor> temaprofesor) {
+        this.temaprofesor = temaprofesor;
+    } 
+
+    public List<Asesorar> getAsesorar() {
+        return this.asesorar;
+    }
+    
+    public void setAsesorar(List<Asesorar> asesorar) {
+        this.asesorar = asesorar;
+    } 
+
+    public List<Nivelprofesor> getNivelprofesor() {
+        return nivelprofesor;
+    }
+
+    public void setNivelprofesor(List<Nivelprofesor> nivelprofesor) {
+        this.nivelprofesor = nivelprofesor;
     }
 
 }

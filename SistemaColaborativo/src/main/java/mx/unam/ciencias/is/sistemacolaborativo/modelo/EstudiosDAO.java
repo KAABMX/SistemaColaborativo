@@ -137,7 +137,7 @@ public class EstudiosDAO {
         Transaction tx = null;
         try {
             tx = s.beginTransaction();
-            String hql = "FROM Experiencia WHERE pk_id_estudios = :pk_id_estudios";
+            String hql = "FROM Estudios WHERE pk_id_estudios = :pk_id_estudios";
             Query query = s.createQuery(hql);
             query.setParameter("pk_id_estudios", pk_id_estudios);
             result = (Estudios) query.uniqueResult();
@@ -152,14 +152,13 @@ public class EstudiosDAO {
         }
         return result;
     }
-    
-    public Estudios getEstudiosCV(int fk_id_cv) {
+    public Estudios getEstudiosF(int fk_id_cv) {
         Estudios result = null;
         Session s = sessionFactory.openSession();
         Transaction tx = null;
         try {
             tx = s.beginTransaction();
-            String hql = "FROM ESTUDIOS WHERE fk_id_cv = :fk_id_cv";
+            String hql = "FROM Estudios WHERE fk_id_cv = :fk_id_cv";
             Query query = s.createQuery(hql);
             query.setParameter("fk_id_cv", fk_id_cv);
             result = (Estudios) query.uniqueResult();
@@ -174,4 +173,5 @@ public class EstudiosDAO {
         }
         return result;
     }
+
 }

@@ -160,7 +160,7 @@ public class CurriculumDAO {
         return result;
     }    
        
-    public Curriculum getCurriculumProfesor(int fk_id_profesor) {
+       public Curriculum getCurriculumF(int fk_id_profesor) {
         Curriculum result = null;
         Session s = sessionFactory.openSession();
         Transaction tx = null;
@@ -179,5 +179,5 @@ public class CurriculumDAO {
             s.close();
         }
         return result;
-    }    
+    }       
 }
