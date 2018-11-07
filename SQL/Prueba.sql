@@ -1,4 +1,4 @@
-﻿--CREATE DATABASE SISTEMACOLABORATIVO;
+--CREATE DATABASE SISTEMACOLABORATIVO;
 CREATE TABLE Usuario(
 pk_id_usuario SERIAL NOT NULL  PRIMARY KEY,
 nombre VARCHAR(90),
@@ -181,7 +181,7 @@ CREATE TABLE TemaProfesor(
  	aceptada VARCHAR(20) DEFAULT false,
  	estado VARCHAR(20) DEFAULT 'solicitada',
  	comentario VARCHAR(120), 
- 	comentariorespuesta VARCHAR(120), 
+ 	comentariorespuesta VARCHAR(120),  	
  	duracion INT ,
 	idTema INT NOT NULL,
 	idHorario INT NOT NULL,
