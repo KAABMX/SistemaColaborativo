@@ -11,6 +11,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import org.hibernate.annotations.LazyCollection;
@@ -34,6 +36,10 @@ public class Tema  implements java.io.Serializable {
     @OneToMany(mappedBy="idtema")
     @LazyCollection(LazyCollectionOption.FALSE)    
      private List<Temaprofesor> temaprofesors = new ArrayList<>();
+    @ManyToOne()
+    @LazyCollection(LazyCollectionOption.FALSE)    
+    @JoinColumn(name="idnivel")
+     private Nivel idnivel;     
 
     public Tema() {
     }
@@ -82,6 +88,14 @@ public class Tema  implements java.io.Serializable {
     
     public void setTemaprofesors(List<Temaprofesor> temaprofesors) {
         this.temaprofesors = temaprofesors;
+    }
+
+    public Nivel getIdnivel() {
+        return idnivel;
+    }
+
+    public void setIdnivel(Nivel idnivel) {
+        this.idnivel = idnivel;
     }
 
 

@@ -6,14 +6,14 @@
 package mx.unam.ciencias.is.sistemacolaborativo.modelo;
 
 import java.util.List;
-import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Horario;
+import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Denuncia;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 
-public class HorarioDAO {
+public class DenunciaDAO {
     
     /*Sesion para conectarnos a la base de datos*/
     private SessionFactory sessionFactory;
@@ -26,15 +26,15 @@ public class HorarioDAO {
         this.sessionFactory = sessionFactory;
     }
 
-    public void guardar(Horario horario) {
+    public void guardar(Denuncia denuncia) {
         //se inicia la sesion
         Session session = sessionFactory.openSession();
         //la transaccion a relizar
         Transaction tx = null;
         try {
             tx = session.beginTransaction();
-            //guardamos el Horario
-            session.persist(horario);
+            //guardamos el Denuncia
+            session.persist(denuncia);
            
             tx.commit();
         }
@@ -52,17 +52,17 @@ public class HorarioDAO {
         
         
             /**
-     * Elimina el Horario de la base de datos
-     * @param horario el Horario a eliminar
+     * Elimina el Denuncia de la base de datos
+     * @param Denuncia el Denuncia a eliminar
      */
-    public void eliminar(Horario horario) {
+    public void eliminar(Denuncia denuncia) {
         Session session = sessionFactory.openSession();
         //la transaccion a relizar
         Transaction tx = null;
         try {
             tx = session.beginTransaction();
-            //eliminamos el Horario
-            session.delete(horario);
+            //eliminamos el Denuncia
+            session.delete(denuncia);
            
             tx.commit();
         }
@@ -83,17 +83,17 @@ public class HorarioDAO {
     
     
     /**
-     * Actualiza el Horario en la base de datos
-     * @param horario con los nuevos valores 
+     * Actualiza el Denuncia en la base de datos
+     * @param Denuncia con los nuevos valores 
      */
-    public void actualizar(Horario horario) {
+    public void actualizar(Denuncia denuncia) {
         Session session = sessionFactory.openSession();
         //la transaccion a relizar
         Transaction tx = null;
         try {
             tx = session.beginTransaction();
-            //actualizar el Horario
-            session.update(horario);
+            //actualizar el Denuncia
+            session.update(denuncia);
            
             tx.commit();
         }
@@ -112,18 +112,18 @@ public class HorarioDAO {
     
     
         /**
-     * Regresa la lista de todos los Horarios en la base de datos
-     * @return la lista que contiene a todos los Horarios de la base de datos
+     * Regresa la lista de todos los Denuncias en la base de datos
+     * @return la lista que contiene a todos los Denuncias de la base de datos
      */
-    public List<Horario> getHorarios(){
-        List<Horario> result= null;
+    public List<Denuncia> getDenuncias(){
+        List<Denuncia> result= null;
         Session session = sessionFactory.openSession();
         Transaction tx=null;
         try{
             tx=session.beginTransaction();
-            String hql= "FROM Horario";
+            String hql= "FROM Denuncia";
             Query query =session.createQuery(hql);
-            result=(List<Horario>)query.list();
+            result=(List<Denuncia>)query.list();
             tx.commit();
         }catch (Exception e){
             if(tx != null)
@@ -136,16 +136,16 @@ public class HorarioDAO {
     }
     
     
-       public Horario getHorario(int idHorario) {
-        Horario result = null;
+       public Denuncia getDenuncia(int idDenuncia) {
+        Denuncia result = null;
         Session s = sessionFactory.openSession();
         Transaction tx = null;
         try{
             tx = s.beginTransaction();
-            String hql = "FROM Horario WHERE idHorario = :idHorario";                  
+            String hql = "FROM Denuncia WHERE idDenuncia = :idDenuncia";                  
             Query query = s.createQuery(hql);
-            query.setParameter("idHorario",idHorario);
-            result = (Horario)query.uniqueResult();
+            query.setParameter("idDenuncia",idDenuncia);
+            result = (Denuncia)query.uniqueResult();
             tx.commit();
         }catch(Exception e){
             if(tx != null)

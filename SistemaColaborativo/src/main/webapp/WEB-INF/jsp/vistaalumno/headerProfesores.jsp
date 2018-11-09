@@ -1,3 +1,10 @@
+<%-- 
+    Document   : headerProfesores
+    Created on : 15/10/2018, 11:28:16 AM
+    Author     : hectorsama
+--%>
+
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -14,11 +21,6 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.min.css">
-                
-
-        <link rel="stylesheet" href="//storage.googleapis.com/code.getmdl.io/1.0.1/material.teal-red.min.css" />
-        <script src="//storage.googleapis.com/code.getmdl.io/1.0.1/material.min.js"></script>
-        
         <link rel="stylesheet"  type = "text/css" href="<c:url value="/css/styles.css"/>"/>
         <link rel="stylesheet" type="text/css" href="<c:url value="/css/register.css"/>"> 
         <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -45,7 +47,7 @@
             <div class="android-header mdl-layout__header mdl-layout__header--waterfall">
                 <div class="mdl-layout__header-row">
                     <span class="android-title mdl-layout-title">
-                        <a href="${pageContext.request.contextPath}/">
+                        <a href="${pageContext.request.contextPath}/alumno/inicio">
                         <img class="android-logo-image" src="<c:url value = "/imagenes/kaab.png"/>">
                         </a>                    </span>
                     <!-- Add spacer, to align navigation to the right in desktop -->
@@ -54,15 +56,11 @@
                     <!-- Navigation -->
                     <div class="android-navigation-container">
                         <nav class="android-navigation mdl-navigation">
-                            <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Asesorías</a>
-                            <a class="mdl-navigation__link mdl-typography--text-uppercase" href="${pageContext.request.contextPath}/verProfesores">Información</a>
-                            <a class="mdl-navigation__link mdl-typography--text-uppercase" href="${pageContext.request.contextPath}/opcion">Registrarse</a><!--Quitarse al estar logueado en el sistema-->
-                            <a class="mdl-navigation__link mdl-typography--text-uppercase" href="${pageContext.request.contextPath}/loggea">Iniciar Sesión</a><!--Quitarse al estar logueado en el sistema-->
+                            <a class="mdl-navigation__link mdl-typography--text-uppercase" href="${pageContext.request.contextPath}/alumno/verasesorias">Asesorías</a>
+                            <a class="mdl-navigation__link mdl-typography--text-uppercase" href="${pageContext.request.contextPath}/alumno/vermisasesorias">Ver mis Asesorias</a>
+                            <a class="mdl-navigation__link mdl-typography--text-uppercase" href="${pageContext.request.contextPath}/logout">Cerrar Sesión</a>                       
                         </nav>
                     </div>
-                    <span class="android-mobile-title mdl-layout-title">
-                        <img class="android-logo-image" src="<c:url value = "/imagenes/educa.jpg"/>">
-                    </span>
 
                     <!--
                     <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right mdl-js-ripple-effect" for="more-button">
@@ -73,4 +71,5 @@
                     </ul>-->
                 </div>
             </div>
+            <div class="android-content mdl-layout__content">
                 <a name="top"></a>

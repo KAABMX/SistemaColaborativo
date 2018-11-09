@@ -16,9 +16,12 @@ import javax.servlet.http.Part;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Profesor;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Usuario;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Horario;
+import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Nivel;
+import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Nivelprofesor;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Tema;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Temaprofesor;
 import mx.unam.ciencias.is.sistemacolaborativo.modelo.HorarioDAO;
+import mx.unam.ciencias.is.sistemacolaborativo.modelo.NivelDAO;
 import mx.unam.ciencias.is.sistemacolaborativo.modelo.ProfesorDAO;
 import mx.unam.ciencias.is.sistemacolaborativo.modelo.TemaDAO;
 import mx.unam.ciencias.is.sistemacolaborativo.modelo.TemaprofesorDAO;
@@ -45,15 +48,26 @@ public class ControladorVerAsesorias {
     private TemaprofesorDAO temaprofesor_bd;
     @Autowired
     private TemaDAO tema_bd;
+    @Autowired
+    private NivelDAO nivel_bd;
     
     
     @RequestMapping(value = "/alumno/verasesorias")
     public String mostrarListaAsesorias(HttpServletRequest request, ModelMap model, Principal principal){
-        List<Tema> temas=tema_bd.getTemas();
-        model.addAttribute("temas", temas);
-        return  "vistaalumno/temas";
+        List<Nivel> niveles=nivel_bd.getNivels();
+        model.addAttribute("niveles", niveles);
+        return  "vistaalumno/niveles";
     }
     
+    @RequestMapping(value = "/alumno/vermaterias")
+    public String mostrarListaMaterias(HttpServletRequest request, ModelMap model, Principal principal){
+        int idNivel=Integer.parseInt(request.getParameter("idnivel"));
+        Nivel nivel=nivel_bd.getNivel(idNivel);
+        List<Tema> temas=nivel.getTemas();
+        model.addAttribute("temas",temas);
+        return  "vistaalumno/temas";
+    }
+
     @RequestMapping(value = "/alumno/verprofesor")
     public String mostrarListaProfesores(HttpServletRequest request, ModelMap model, Principal principal){
         int idTema=Integer.parseInt(request.getParameter("idtema"));

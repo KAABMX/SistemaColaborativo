@@ -92,14 +92,6 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
           <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>${nivel}<span class="w3-tag w3-teal w3-round"></span></h6>
           <hr>
         </div>
-        <div class="w3-container">
-          <h5 class="w3-opacity"><b>Experiencia</b></h5>
-          <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Mar 2012 - Dec 2014</h6>
-          <p>Empresa: ${empresa}</p>
-          <p>Funcionalidad: ${funcion}</p>
-          <p>Tareas: ${tarea}</p>
-          <hr>
-        </div>
       </div>
 
     <!-- End Right Column -->

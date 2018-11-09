@@ -6,149 +6,157 @@
 package mx.unam.ciencias.is.sistemacolaborativo.modelo;
 
 import java.util.List;
-import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Experiencia;
+import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Resena;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
-/**
- *
- * @author Moctezuma19
- */
-public class ExperienciaDAO {
 
+public class ResenaDAO {
+    
     /*Sesion para conectarnos a la base de datos*/
     private SessionFactory sessionFactory;
 
     public SessionFactory getSessionFactory() {
         return sessionFactory;
     }
-
+    
     public void setSessionFactory(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
 
-    public void guardar(Experiencia experiencia) {
+    public void guardar(Resena resena) {
         //se inicia la sesion
         Session session = sessionFactory.openSession();
         //la transaccion a relizar
         Transaction tx = null;
         try {
             tx = session.beginTransaction();
-            //guardamos el usuario
-            session.persist(experiencia);
-
+            //guardamos el Resena
+            session.persist(resena);
+           
             tx.commit();
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             //Se regresa a un estado consistente 
-            if (tx != null) {
+            if (tx!=null){ 
                 tx.rollback();
             }
-            e.printStackTrace();
+            e.printStackTrace(); 
         } finally {
             //cerramos simpre la sesion
             session.close();
         }
     }
-
-    /**
-     * Elimina el usuario de la base de datos
-     *
+        
+        
+            /**
+     * Elimina el Resena de la base de datos
+     * @param resena el Resena a eliminar
      */
-    public void eliminar(Experiencia experiencia) {
+    public void eliminar(Resena resena) {
         Session session = sessionFactory.openSession();
         //la transaccion a relizar
         Transaction tx = null;
         try {
             tx = session.beginTransaction();
-            //eliminamos el usuario
-            session.delete(experiencia);
-
+            //eliminamos el Resena
+            session.delete(resena);
+           
             tx.commit();
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             //Se regresa a un estado consistente 
-            if (tx != null) {
+            if (tx!=null){ 
                 tx.rollback();
             }
-            e.printStackTrace();
-        } finally {
+            e.printStackTrace(); 
+        }
+        finally {
             //cerramos siempre la sesion
             session.close();
         }
     }
-
+    
+    
+    
+    
     /**
-     * Actualiza el usuario en la base de datos
-     *
+     * Actualiza el Resena en la base de datos
+     * @param resena con los nuevos valores 
      */
-    public void actualizar(Experiencia experiencia) {
+    public void actualizar(Resena resena) {
         Session session = sessionFactory.openSession();
         //la transaccion a relizar
         Transaction tx = null;
         try {
             tx = session.beginTransaction();
-            //actualizar el usuario
-            session.update(experiencia);
-
+            //actualizar el Resena
+            session.update(resena);
+           
             tx.commit();
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             //Se regresa a un estado consistente 
-            if (tx != null) {
+            if (tx!=null){ 
                 tx.rollback();
             }
-            e.printStackTrace();
-        } finally {
+            e.printStackTrace(); 
+        }
+        finally {
             //cerramos siempre la sesion
             session.close();
         }
-    }
-
-    /**
-     * Regresa la lista de todos los usuarios en la base de datos
-     *
-     * @return la lista que contiene a todos los usuarios de la base de datos
+}
+    
+    
+        /**
+     * Regresa la lista de todos los Resenas en la base de datos
+     * @return la lista que contiene a todos los Resenas de la base de datos
      */
-    public List<Experiencia> getExperiencia() {
-        List<Experiencia> result = null;
+    public List<Resena> getResenas(){
+        List<Resena> result= null;
         Session session = sessionFactory.openSession();
-        Transaction tx = null;
-        try {
-            tx = session.beginTransaction();
-            String hql = "FROM Experiencia";
-            Query query = session.createQuery(hql);
-            result = (List<Experiencia>) query.list();
+        Transaction tx=null;
+        try{
+            tx=session.beginTransaction();
+            String hql= "FROM Resena";
+            Query query =session.createQuery(hql);
+            result=(List<Resena>)query.list();
             tx.commit();
-        } catch (Exception e) {
-            if (tx != null) {
+        }catch (Exception e){
+            if(tx != null)
                 tx.rollback();
-            }
-            e.printStackTrace();
-        } finally {
+            e.printStackTrace();      
+        }finally{
             session.close();
         }
         return result;
     }
-
-    public Experiencia getExperiencia(int pk_id_experiencia) {
-        Experiencia result = null;
+    
+    
+       public Resena getResena(int idResena) {
+        Resena result = null;
         Session s = sessionFactory.openSession();
         Transaction tx = null;
-        try {
+        try{
             tx = s.beginTransaction();
-            String hql = "FROM Experiencia WHERE pk_id_experiencia = :pk_id_experiencia";
+            String hql = "FROM Resena WHERE idResena = :idResena";                  
             Query query = s.createQuery(hql);
-            query.setParameter("pk_id_experiencia", pk_id_experiencia);
-            result = (Experiencia) query.uniqueResult();
+            query.setParameter("idResena",idResena);
+            result = (Resena)query.uniqueResult();
             tx.commit();
-        } catch (Exception e) {
-            if (tx != null) {
+        }catch(Exception e){
+            if(tx != null)
                 tx.rollback();
-            }
             e.printStackTrace();
-        } finally {
+        }finally{
             s.close();
         }
         return result;
     }
+       
+          
+    
 }

@@ -3,14 +3,14 @@
 <jsp:include page='headerProfesores.jsp'>
     <jsp:param name="title" value="horarios"/>
 </jsp:include>
-<div class="card" style="width: 100%">
+<div class="card" style="width:100%">
     <div class="card-header">
 
     </div>
     <ul class="list-group list-group-flush">
-        <c:forEach items="${profesores}" var="profesor">
+        <c:forEach items="${niveles}" var="nivel">
             <li class="list-group-item">
-                <a href="${pageContext.request.contextPath}/alumno/verperfirprofesor?idprofesor=${profesor.getPk_id_profesor()}">${profesor.getUsuario().getNombreC()}</a>
+                <a href="${pageContext.request.contextPath}/alumno/vermaterias?idnivel=${nivel.getIdnivel()}">${nivel.getNivel()}</a>
             </li>          
         </c:forEach>
 

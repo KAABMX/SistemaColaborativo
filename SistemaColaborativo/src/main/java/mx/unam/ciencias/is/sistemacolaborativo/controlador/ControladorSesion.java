@@ -4,12 +4,10 @@ import java.security.Principal;
 import javax.servlet.http.HttpServletRequest;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Curriculum;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Estudios;
-import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Experiencia;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Profesor;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Usuario;
 import mx.unam.ciencias.is.sistemacolaborativo.modelo.CurriculumDAO;
 import mx.unam.ciencias.is.sistemacolaborativo.modelo.EstudiosDAO;
-import mx.unam.ciencias.is.sistemacolaborativo.modelo.ExperienciaDAO;
 import mx.unam.ciencias.is.sistemacolaborativo.modelo.ProfesorDAO;
 import mx.unam.ciencias.is.sistemacolaborativo.modelo.UsuarioDAO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,8 +36,6 @@ public class ControladorSesion {
     @Autowired
     EstudiosDAO estudios_db;
     
-    @Autowired
-    ExperienciaDAO experiencia_db;
 
     @RequestMapping(value = "/inicio", method = RequestMethod.GET)
     public String loggea(HttpServletRequest request, Principal principal) {
@@ -99,20 +95,11 @@ public class ControladorSesion {
         Usuario usuario = usuario_db.getUsuario(u);
         Profesor profe = profesor_db.getProfesor(usuario);
         int id_profe = profe.getPk_id_profesor();
-        Curriculum cu = curriculum_db.getCurriculum(id_profe);
-        Estudios es = estudios_db.getEstudios(id_profe);
-        Experiencia exp = experiencia_db.getExperiencia(id_profe);
         model.addAttribute("username", u);
         model.addAttribute("nombre", usuario.getNombre());
         model.addAttribute("apellidoP", usuario.getApellido_p());
         model.addAttribute("apellidoM", usuario.getApellido_m());
         model.addAttribute("correo", usuario.getCorreo());
-        model.addAttribute("telefono", usuario.getTelefono());
-        model.addAttribute("nivel", profe.getNiveles_educativos());
-        model.addAttribute("lugar", cu.getLugar_de_nacimiento());
-        model.addAttribute("empresa", exp.getEmpresa());
-        model.addAttribute("funcion", exp.getFuncion_trabajo());
-        model.addAttribute("tarea", exp.getTarea_trabajo());
         return new ModelAndView("inicioProfesor", model);
 
     }
