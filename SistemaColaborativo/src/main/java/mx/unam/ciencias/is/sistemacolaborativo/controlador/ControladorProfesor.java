@@ -68,14 +68,12 @@ public class ControladorProfesor {
                 usuario.setFoto(file.getBytes());
             }
             usuario.setRol("ROLE_PROFESOR");
-            usuario.setActivado(true);
             usuario_bd.guardar(usuario);
             Profesor p = new Profesor();
             p.setUsuario(usuario);
-            
             profesor_bd.guardar(p);
-           // CorreoActivacion caa = new CorreoActivacion();
-            //caa.CorreoActivacion(request, usuario);
+            CorreoActivacion caa = new CorreoActivacion();
+            caa.CorreoActivacion(request, usuario);
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -143,7 +141,7 @@ public class ControladorProfesor {
         //borrar y ver como se guardan las fechas
         Curriculum cv = new Curriculum();
         cv.setProfesor(p);
-        //cv.setLugar_de_nacimiento(request.getParameter("lugar"));
+        cv.setLugar_de_nacimiento(request.getParameter("lugar"));
         cv_bd.guardar(cv);
         //agregar a la base
         Estudios es = new Estudios();
@@ -152,7 +150,6 @@ public class ControladorProfesor {
         es.setEstudio(estudio);
         es.setUniversidad(request.getParameter("universidad"));
         estudios_bd.guardar(es);
-        model.addAttribute("username",usuario);
         model.addAttribute("nombre", usuario.getNombre());
         model.addAttribute("apellidoP", usuario.getApellido_p());
         model.addAttribute("apellidoM", usuario.getApellido_m());

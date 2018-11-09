@@ -2,13 +2,7 @@ package mx.unam.ciencias.is.sistemacolaborativo.controlador;
 
 import java.security.Principal;
 import javax.servlet.http.HttpServletRequest;
-import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Curriculum;
-import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Estudios;
-import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Profesor;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Usuario;
-import mx.unam.ciencias.is.sistemacolaborativo.modelo.CurriculumDAO;
-import mx.unam.ciencias.is.sistemacolaborativo.modelo.EstudiosDAO;
-import mx.unam.ciencias.is.sistemacolaborativo.modelo.ProfesorDAO;
 import mx.unam.ciencias.is.sistemacolaborativo.modelo.UsuarioDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,16 +20,6 @@ public class ControladorSesion {
 
     @Autowired
     UsuarioDAO usuario_db;
-    
-    @Autowired
-    ProfesorDAO profesor_db;
-    
-    @Autowired
-    CurriculumDAO curriculum_db;
-    
-    @Autowired
-    EstudiosDAO estudios_db;
-    
 
     @RequestMapping(value = "/inicio", method = RequestMethod.GET)
     public String loggea(HttpServletRequest request, Principal principal) {
@@ -85,7 +69,7 @@ public class ControladorSesion {
         Usuario usuario = usuario_db.getUsuario(u);
         model.addAttribute("username", u);
         model.addAttribute("nombre", usuario.getNombre());
-        return new ModelAndView("indexusuario", model);
+        return new ModelAndView("vistaalumno/indexusuario", model);
 
     }
 
@@ -93,17 +77,18 @@ public class ControladorSesion {
     public ModelAndView inicioP(HttpServletRequest request, ModelMap model, Principal principal) {
         String u = principal.getName();
         Usuario usuario = usuario_db.getUsuario(u);
-        Profesor profe = profesor_db.getProfesor(usuario);
-        int id_profe = profe.getPk_id_profesor();
         model.addAttribute("username", u);
         model.addAttribute("nombre", usuario.getNombre());
         model.addAttribute("apellidoP", usuario.getApellido_p());
         model.addAttribute("apellidoM", usuario.getApellido_m());
         model.addAttribute("correo", usuario.getCorreo());
-        return new ModelAndView("inicioProfesor", model);
+        return new ModelAndView("vistaprofesor/inicioProfesor", model);
 
     }
-
+    @RequestMapping(value = "/pago", method = RequestMethod.GET)
+    public ModelAndView pago(HttpServletRequest request, ModelMap model, Principal principal) {
+        return new ModelAndView("pago", model);
+    }
     @RequestMapping(value = "/error403", method = RequestMethod.GET)
     public String error403() {
         return "error403";
