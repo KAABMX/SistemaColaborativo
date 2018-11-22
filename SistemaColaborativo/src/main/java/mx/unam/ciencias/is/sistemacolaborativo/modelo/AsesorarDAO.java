@@ -136,7 +136,7 @@ public class AsesorarDAO {
     }
     
     
-       public Asesorar getAsesorar(String idAsesorar) {
+       public Asesorar getAsesorar(int idAsesorar) {
         Asesorar result = null;
         Session s = sessionFactory.openSession();
         Transaction tx = null;

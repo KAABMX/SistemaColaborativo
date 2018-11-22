@@ -35,14 +35,6 @@
                 <label class="mdl-textfield__label" for="sample3">Correo</label>
             </div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="tel" name = "telefono" value="${usuario.getTelefono()}">
-                <label class="mdl-textfield__label" for="sample3">Telefono</label>
-            </div>
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" name = "sexo" value="${usuario.getSexo()}">
-                <label class="mdl-textfield__label" for="sample3">Sexo</label>
-            </div>
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                 <select class="mdl-textfield__input" id="lugar" name="lugar" value="${curriculum.getLugar_de_nacimiento()}">
                     <option value="Aguascalientes">Aguascalientes</option>
                     <option value="Baja California">Baja California</option>

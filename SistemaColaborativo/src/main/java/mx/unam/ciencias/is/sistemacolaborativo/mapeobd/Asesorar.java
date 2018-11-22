@@ -31,6 +31,10 @@ public class Asesorar  implements java.io.Serializable {
      private double costo;
     @Column(name="comentario")
      private String comentario;
+    @Column(name="estado")
+     private String estado;
+    @Column(name="comentariorespuesta")
+     private String comentariorespuesta;
     @Column(name="aceptada")
      private Boolean aceptada;
     @ManyToOne()
@@ -140,9 +144,27 @@ public class Asesorar  implements java.io.Serializable {
         this.duracion = duracion;
     }
 
+    public String toString(){
+    return Integer.toString(this.getIdasesorar());
+    }
 
+    public String getEstado() {
+        return estado;
+    }
 
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
 
+    public String getComentariorespuesta() {
+        return comentariorespuesta;
+    }
+
+    public void setComentariorespuesta(String comentariorespuesta) {
+        this.comentariorespuesta = comentariorespuesta;
+    }
+
+    
 
 }
 

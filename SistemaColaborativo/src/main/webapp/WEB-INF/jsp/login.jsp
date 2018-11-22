@@ -27,5 +27,23 @@ Author     : hectorsama, luis
             <button class="btn btn-primary tn-lg btn-block" id="Login" type="" style="width: 100%">Iniciar Sesión</button>
         </form>
     </div>
+<hgroup>
+  <h1>Bienvenido</h1>
+</hgroup>
+                <div class="login">
+                 <form action="${pageContext.request.contextPath}/login" method="POST" class="login-form">
+              <p><input type="text" name="username" value="" placeholder="Correo"></p>
+              <p><input type="password" name="password" value="" placeholder="Contraseña"></p>
+              <p class="remember_me">
+                <label>
+                  <input type="checkbox" name="remember_me" id="remember_me">
+                 ¡No me olvides!
+                </label>
+
+              </p>
+              <button class="btn btn-primary tn-lg btn-block" id="Login" type="" style="width: 100%">       Login        </button>
+              <!--<p class="submit"><input type="submit" name="commit" value="Login"></p>-->
+
+            </form>
+              </div>
 </html>
->>>>>>> 77964a9f7c

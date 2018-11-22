@@ -1,10 +1,10 @@
 <%-- 
     Document   : curriculum
     Created on : 3/10/2018, 03:04:12 PM
-    Author     : Luis
+    Author     : Moctezuma19
 --%>
 <jsp:include page='header.jsp'>
-    <jsp:param name="title" value="Profesor - Actualizar datos"/>
+    <jsp:param name="title" value="Tu curriculum"/>
 </jsp:include>
 <div align='center' style="padding-top:50px;">
     <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp center-block" style="width:500px">
@@ -12,37 +12,9 @@
             <!--h4 class="mdl-card__title-text" style='color:white;'>Información Académica y Laboral</h4-->
         </div>
         <div class="mdl-card__supporting-text">
-            <span class="mdl-typography--font-light mdl-typography--subhead">Actualizar datos</span>
+            <span class="mdl-typography--font-light mdl-typography--subhead">Platicanos más sobre tu experiencia.</span>
         </div>
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <i><label class="mdl-card__title">Datos generales</label></i>
-        </div>        
-        <form id="sample3" method="post" style="width:500px" enctype="multipart/form-data" action="${pageContext.request.contextPath}/actualizaProfesor">
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" name = "nombre" >
-                <label class="mdl-textfield__label" for="sample3">Nombre</label>
-            </div>
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" name = "paterno" >
-                <label class="mdl-textfield__label" for="sample3">Apellido paterno</label>
-            </div>
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" name = "materno" >
-                <label class="mdl-textfield__label" for="sample3">Apellido materno</label>
-            </div>
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="email" name = "correo" >
-                <label class="mdl-textfield__label" for="sample3">Correo</label>
-            </div>
-            
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" name = "sexo" >
-                <label class="mdl-textfield__label" for="sample3">Sexo</label>
-            </div>
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="password" name = "contrasenya" >
-                <label class="mdl-textfield__label" for="sample3">Contraseña</label>
-            </div>
+        <form id="sample3" method="post" style="width:500px" enctype="multipart/form-data" action="${pageContext.request.contextPath}/profesor/guardacv">
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                 <select class="mdl-textfield__input" id="lugar" name="lugar">
                     <option value="Aguascalientes">Aguascalientes</option>
@@ -84,25 +56,25 @@
                 <i><label class="mdl-card__title">Formación Académica</label></i>
             </div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" name = "estudios" >
+                <input class="mdl-textfield__input" type="text" name = "estudios" required>
                 <label class="mdl-textfield__label" for="sample3">Estudios</label>
             </div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" name = "universidad" >
+                <input class="mdl-textfield__input" type="text" name = "universidad" required>
                 <label class="mdl-textfield__label" for="sample3">Universidad</label>
             </div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" name = "habilidades" >
+                <input class="mdl-textfield__input" type="text" name = "habilidades" required>
                 <label class="mdl-textfield__label" for="sample3">Área(s) de especialidad</label>
             </div>
             <div class="mdl-textfield mdl-js-textfield">
-                <input class="mdl-textfield__input" type="date" id="date" name="fecha_inicio" >
+                <input class="mdl-textfield__input" type="date" id="date" name="fecha_inicio" required>
             </div>
             <div class="mdl-card__supporting-text" >
                 <span class="mdl-typography--font-light">Fecha de inicio de tus estudios</span>
             </div>
             <div class="mdl-textfield mdl-js-textfield">
-                <input class="mdl-textfield__input"  type="date" id="date" name="fecha_fin" >
+                <input class="mdl-textfield__input"  type="date" id="date" name="fecha_fin" required>
             </div>
             <div class="mdl-card__supporting-text" >
                 <span class="mdl-typography--font-light">Fecha de fin de tus estudios</span>
@@ -111,35 +83,35 @@
                 <i><label class="mdl-card__title">Experiencia Laboral</label></i>
             </div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" name = "empresa" >
+                <input class="mdl-textfield__input" type="text" name = "empresa" required>
                 <label class="mdl-textfield__label" for="sample3">Empresa</label>
             </div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" name = "funcion_trabajo" >
+                <input class="mdl-textfield__input" type="text" name = "funcion_trabajo" required>
                 <label class="mdl-textfield__label" for="sample3">Función realizada</label>
             </div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" name = "tarea_trabajo" >
+                <input class="mdl-textfield__input" type="text" name = "tarea_trabajo" required>
                 <label class="mdl-textfield__label" for="sample3">Tarea realizada</label>
             </div>
             <div class="mdl-textfield mdl-js-textfield">
-                <input class="mdl-textfield__input" type="date" id="date" name="fecha_inicio_trabajo" >
+                <input class="mdl-textfield__input" type="date" id="date" name="fecha_inicio_trabajo" required>
             </div>
             <div class="mdl-card__supporting-text" >
                 <span class="mdl-typography--font-light">Fecha de inicio de tus labores</span>
             </div>
             <div class="mdl-textfield mdl-js-textfield">
-                <input class="mdl-textfield__input" type="date" id="date" name="fecha_fin_trabajo" >
+                <input class="mdl-textfield__input" type="date" id="date" name="fecha_fin_trabajo" required>
             </div>
             <div class="mdl-card__supporting-text" >
                 <span class="mdl-typography--font-light">Fecha de fin de tus labores</span>
             </div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="number" id="number" name="costo" >
+                <input class="mdl-textfield__input" type="number" id="costo" name="costo" required>
                 <label class="mdl-textfield__label" for="sample3">Costo por hora (MXN)</label>
             </div>
             <div class="mdl-textfield mdl-js-textfield">
-                <input class="mdl-textfield__input" id="file" type="text" name="identificacion" style="left:0;" placeholder="Tu identificación"  readonly>
+                <input class="mdl-textfield__input" id="file" type="text" name="identificacion" style="left:0;" placeholder="Tu identificación" required readonly>
                 <Label class="input-custom-file mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" style="right:0;background-color:#66b04f;">
                     Subir
                     <input type="file" id="boton" accept="image/jpeg, image/png" style="display:none;">
@@ -204,7 +176,7 @@
             </div>
             <div class="mdl-card__actions" style="padding-bottom:30px;">
                 <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" style="background-color:#66b04f;width:70%;">
-                    Actualizar
+                    Listo
                 </button>
             </div>
         </form>

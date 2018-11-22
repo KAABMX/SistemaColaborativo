@@ -4,11 +4,6 @@
  * and open the template in the editor.
  */
 package mx.unam.ciencias.is.sistemacolaborativo.controlador;
-
-/**
- *
- * @author dani3
- */
 import java.security.Principal;
 import java.sql.Time;
 import java.util.ArrayList;
@@ -44,7 +39,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @MultipartConfig
-public class ControladorPedirClase {
+public class ControladorVerMisAsesorias {
     @Autowired
     private UsuarioDAO usuario_bd;
     @Autowired
@@ -67,83 +62,18 @@ public class ControladorPedirClase {
     private AsesorarDAO asesorar_bd;
 
     
-    @RequestMapping(value = "/alumno/pedirclase")
-    public String pedirClase(HttpServletRequest request, ModelMap model, Principal principal){
-        String idProfesor=request.getParameter("idprofesor");
-        int id=Integer.valueOf(idProfesor);
-        Profesor p=profesor_bd.getProfesor(id);
-        model.addAttribute("idprofesor", p.getPk_id_profesor());
-        //dias
-        List<Dia> dias=p.getDia();
-        model.addAttribute("dias", dias);
-        //horas
-        List<Horario> horarios;
-        if (request.getParameter("diasse")==null) {
-            horarios=new ArrayList<>();
-            model.addAttribute("horarios", horarios);
-            
-        }else {
-        String diasse=request.getParameter("diasse");
-        Dia dia= dia_bd.getDia(Integer.valueOf(diasse));
-        System.out.println(dia.getDia());
-        horarios= dia.getHorarios();
-        model.addAttribute("horarios", horarios);
-        model.addAttribute("diasse", diasse);
-        }
-        
-        
-        //temas
-        List<Temaprofesor> temap=p.getTemaprofesor();
-        List<Tema> temas = new ArrayList<>();
-        for (Temaprofesor tema : temap) {
-            temas.add(tema.getTema());
-        }
-        model.addAttribute("temas", temas);
-        
-        return  "vistaalumno/pedirclase";
-    }
-    
-    @RequestMapping(value = "/alumno/guardarclase")
-    public String guardarAsesoria(HttpServletRequest request, ModelMap model, Principal principal){
-       //String idProfesor=request.getParameter("idprofesorr");
-       //int idp=Integer.valueOf(idProfesor);
-       Profesor p=profesor_bd.getProfesor(1);
-        
+
+    @RequestMapping(value = "/alumno/vermisasesorias")
+    public String guardarAsesoria(HttpServletRequest request, ModelMap model, Principal principal){        
         Usuario usuario = usuario_bd.getUsuario(principal.getName());
         Alumno a = alumno_bd.getAlumno(usuario);
-        System.out.println("idalumno"+a.getUsuario().getCorreo());
-        
-        
-        
-        String idTema=request.getParameter("tema");
-        int idt=Integer.valueOf(idTema);
-        Tema t= tema_bd.getTema(idt);
-        System.out.println("idtema "+t.getTema());
-        
-        String idHorario=request.getParameter("hora");
-        int idh=Integer.valueOf(idHorario);
-        Horario h= horario_bd.getHorario(idh);
-    
-        Asesorar nuevo=new Asesorar();
-        nuevo.setProfesor(p);
-        nuevo.setAlumno(a);
-        nuevo.setTema(t);
-        nuevo.setComentario(request.getParameter("comentario"));
-        nuevo.setHorario(h);
-        nuevo.setAceptada(Boolean.FALSE);
-        nuevo.setDuracion(0);
-        nuevo.setCosto(0.0);
-        nuevo.setEstado("solicitada");
-        //System.out.println("asesoras"+nuevo.getAlumno().getPk_id_alumno());
-        asesorar_bd.guardar(nuevo);
-
-        model.addAttribute("asesoria", nuevo);
+        List<Asesorar> asesorias= a.getAsesorar();
+        model.addAttribute("asesorias", asesorias);
     
     
-        return  "vistaalumno/mostrarnuevaclase";
+        return  "vistaalumno/vermisasesorias";
     }
-    
-    
+
+
+  
 }
-
-
