@@ -8,13 +8,17 @@ package mx.unam.ciencias.is.sistemacolaborativo.controlador;
 import java.io.IOException;
 import java.math.BigInteger;
 import java.security.Principal;
+import java.util.List;
 import java.util.Random;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Curriculum;
+import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Denuncia;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Estudios;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Profesor;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Usuario;
 import mx.unam.ciencias.is.sistemacolaborativo.modelo.CurriculumDAO;
+import mx.unam.ciencias.is.sistemacolaborativo.modelo.DenunciaDAO;
 import mx.unam.ciencias.is.sistemacolaborativo.modelo.EstudiosDAO;
 import mx.unam.ciencias.is.sistemacolaborativo.modelo.ProfesorDAO;
 import mx.unam.ciencias.is.sistemacolaborativo.modelo.UsuarioDAO;
@@ -46,6 +50,9 @@ public class ControladorProfesor {
     //Identificador del usuario que inicio sesión.
     private int idUsuario = 9;
 
+    
+    @Autowired
+    private DenunciaDAO denuncia_bd;
     @RequestMapping(value = "/registraProfesor", method = RequestMethod.POST)
     public ModelAndView peticion(HttpServletRequest request, ModelMap model, @RequestParam("file") MultipartFile file) {
         try {
@@ -156,5 +163,37 @@ public class ControladorProfesor {
         model.addAttribute("correo", usuario.getCorreo());
         return new ModelAndView("inicioProfesor", model);
     }
-
+        
+    @RequestMapping(value = "/denuncia", method = RequestMethod.POST)
+    public String denuncia(HttpServletRequest request, ModelMap model, Principal principal) {
+        HttpSession session = request.getSession();
+        Profesor profe = (Profesor) session.getAttribute("profesor");
+        Usuario usuario = usuario_bd.getUsuario(principal.getName());
+        model.addAttribute("profesor", profe);
+        String motivo = request.getParameter("motivo");
+        System.out.println(motivo + "\nProfe: "+ profe.getPk_id_profesor() + "\nAlumno: "+ usuario.getPk_id_usuario() );
+        Denuncia den = new Denuncia();
+        den.setUsuario(usuario);
+        den.setProfesor(profe);
+        den.setMotivo(motivo);
+        denuncia_bd.guardar(den);
+        return  "vistaalumno/perfilprofesor";
+    }
+    
+    @RequestMapping(value = "/denuncia/admin")
+    public String adm_denuncia(HttpServletRequest request, ModelMap model, Principal principal) {
+        List<Denuncia> den = denuncia_bd.getDenuncias();
+        model.addAttribute("denuncias", den);
+        return  "verdenuncias";
+    }
+    @RequestMapping(value = "/elimina")
+    public String adm_elimina(HttpServletRequest request, ModelMap model, Principal principal) {
+        String idprofe = request.getParameter("idprofesor");
+        System.out.println(idprofe);
+        Profesor p = profesor_bd.getProfesor(Integer.parseInt(idprofe));
+//        profesor_bd.eliminar(p);
+        List<Denuncia> den = denuncia_bd.getDenuncias();
+        model.addAttribute("denuncias", den);
+        return  adm_denuncia(request, model, principal);
+    }
 }

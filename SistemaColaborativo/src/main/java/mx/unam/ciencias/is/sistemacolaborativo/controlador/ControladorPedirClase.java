@@ -72,6 +72,7 @@ public class ControladorPedirClase {
         String idProfesor=request.getParameter("idprofesor");
         int id=Integer.valueOf(idProfesor);
         Profesor p=profesor_bd.getProfesor(id);
+        model.addAttribute("profesor", p);
         model.addAttribute("idprofesor", p.getPk_id_profesor());
         //dias
         List<Dia> dias=p.getDia();
@@ -120,9 +121,9 @@ public class ControladorPedirClase {
         Tema t= tema_bd.getTema(idt);
         System.out.println("idtema "+t.getTema());
         
-        String idHorario=request.getParameter("hora");
-        int idh=Integer.valueOf(idHorario);
-        Horario h= horario_bd.getHorario(idh);
+//        String idHorario=request.getParameter("hora");
+//        int idh=Integer.valueOf(idHorario);
+        Horario h= horario_bd.getHorario(1);
     
         Asesorar nuevo=new Asesorar();
         nuevo.setProfesor(p);

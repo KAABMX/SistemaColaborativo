@@ -11,7 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
+import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Denuncia;
 //import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Complementarios;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Profesor;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Usuario;
@@ -20,6 +22,7 @@ import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Nivel;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Nivelprofesor;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Tema;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Temaprofesor;
+import mx.unam.ciencias.is.sistemacolaborativo.modelo.DenunciaDAO;
 import mx.unam.ciencias.is.sistemacolaborativo.modelo.HorarioDAO;
 import mx.unam.ciencias.is.sistemacolaborativo.modelo.NivelDAO;
 import mx.unam.ciencias.is.sistemacolaborativo.modelo.ProfesorDAO;
@@ -50,6 +53,10 @@ public class ControladorVerAsesorias {
     private TemaDAO tema_bd;
     @Autowired
     private NivelDAO nivel_bd;
+    @Autowired
+    private DenunciaDAO denuncia_bd;
+    
+    
     
     
     @RequestMapping(value = "/alumno/verasesorias")
@@ -83,10 +90,21 @@ public class ControladorVerAsesorias {
     }    
     
     @RequestMapping(value = "/alumno/verperfirprofesor")
-    public String mostrarPerfilProfesor(HttpServletRequest request, ModelMap model, Principal principal){
+    public String mostrarPerfilProfesor(HttpServletRequest request, ModelMap model, Principal principal){   
+        HttpSession session = request.getSession();
         int idProfeor=Integer.parseInt(request.getParameter("idprofesor"));
         Profesor profesor=profesor_bd.getProfesor(idProfeor);
-        model.addAttribute("profesor", profesor);
+        Usuario usuario = usuario_bd.getUsuario(principal.getName());
+           model.addAttribute("profesor", profesor);
+        session.setAttribute("profesor", profesor);
+    
+//        List<Denuncia> denuncias = denuncia_bd.getDenuncias();
+//        for(Denuncia den : denuncias){
+//            System.out.println(den.toString() + "\n");
+//        }
+//        if(denun != null)
+//            session.setAttribute("denunciar", "true");
+        
         return  "vistaalumno/perfilprofesor";
     }      
 }
