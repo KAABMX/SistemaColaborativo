@@ -31,6 +31,10 @@ public class Asesorar  implements java.io.Serializable {
      private double costo;
     @Column(name="comentario")
      private String comentario;
+    @Column(name="estado")
+     private String estado;
+    @Column(name="comentariorespuesta")
+     private String comentariorespuesta;
     @Column(name="aceptada")
      private Boolean aceptada;
     @ManyToOne()
@@ -45,16 +49,13 @@ public class Asesorar  implements java.io.Serializable {
     @LazyCollection(LazyCollectionOption.FALSE)
     @JoinColumn(name="idtema")
      private Tema idtema;
-    @ManyToOne()
-    @LazyCollection(LazyCollectionOption.FALSE)
-    @JoinColumn(name="idhorario")
-     private Horario idhorario;
+
 
     public Asesorar() {
     }
 
 	
-    public Asesorar(int idasesorar, Alumno fk_id_alumno, Profesor fk_id_profesor, Tema idtema, double costo, Boolean aceptada, String comentario, Horario idhorario) {
+    public Asesorar(int idasesorar, Alumno fk_id_alumno, Profesor fk_id_profesor, Tema idtema, double costo, Boolean aceptada, String comentario) {
        this.idasesorar = idasesorar;
        this.fk_id_alumno = fk_id_alumno;
        this.fk_id_profesor = fk_id_profesor;
@@ -62,7 +63,6 @@ public class Asesorar  implements java.io.Serializable {
        this.costo = costo;
        this.aceptada = aceptada;
        this.comentario = comentario;
-       this.idhorario = idhorario;
     }
    
     public int getIdasesorar() {
@@ -123,14 +123,6 @@ public class Asesorar  implements java.io.Serializable {
         this.comentario = comentario;
     }
 
-    
-    public Horario getHorario() {
-        return this.idhorario;
-    }
-    
-    public void setHorario(Horario idhorario) {
-        this.idhorario = idhorario;
-    }
 
     public int getDuracion() {
         return duracion;
@@ -140,9 +132,27 @@ public class Asesorar  implements java.io.Serializable {
         this.duracion = duracion;
     }
 
+    public String toString(){
+    return Integer.toString(this.getIdasesorar());
+    }
 
+    public String getEstado() {
+        return estado;
+    }
 
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
 
+    public String getComentariorespuesta() {
+        return comentariorespuesta;
+    }
+
+    public void setComentariorespuesta(String comentariorespuesta) {
+        this.comentariorespuesta = comentariorespuesta;
+    }
+
+    
 
 }
 

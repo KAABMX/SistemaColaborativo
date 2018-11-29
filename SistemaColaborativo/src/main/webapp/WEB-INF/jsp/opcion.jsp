@@ -32,9 +32,7 @@
                     </a>
             </div>
         </div>
-    </div>
-
-    <div class="android-card-container mdl-grid">
+                        
         <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp">
             <div class="mdl-card__media">
                 <img src="<c:url value="/imagenes/profesor.jpg"/>">

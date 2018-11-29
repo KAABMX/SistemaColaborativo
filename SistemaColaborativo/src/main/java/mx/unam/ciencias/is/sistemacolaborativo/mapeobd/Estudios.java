@@ -32,10 +32,6 @@ public class Estudios {
     private Curriculum curriculum;
     @Column(name = "estudio")
     private String estudio;
-    @Column(name = "fecha_inicio")
-    private Date fecha_inicio;
-    @Column(name = "fecha_fin")
-    private Date fecha_fin;
     @Column(name = "universidad")
     private String universidad;
 
@@ -61,22 +57,6 @@ public class Estudios {
 
     public void setEstudio(String estudio) {
         this.estudio = estudio;
-    }
-
-    public Date getFecha_inicio() {
-        return fecha_inicio;
-    }
-
-    public void setFecha_inicio(Date fecha_inicio) {
-        this.fecha_inicio = fecha_inicio;
-    }
-
-    public Date getFecha_fin() {
-        return fecha_fin;
-    }
-
-    public void setFecha_fin(Date fecha_fin) {
-        this.fecha_fin = fecha_fin;
     }
 
     public String getUniversidad() {

@@ -97,7 +97,7 @@ input:focus ~ label, input.used ~ label {
     width: 0;
     bottom: 1px; 
     position: absolute;
-    background: #4a89dc; 
+    background: #0dcdf6; 
     -webkit-transition:all 0.2s ease; 
     transition: all 0.2s ease;
 }
@@ -163,7 +163,7 @@ input:focus ~ .highlight {
   letter-spacing: 1px;
   background: transparent;
   border: 0;
-  border-bottom: 2px solid #3160B6;
+  border-bottom: 2px solid #0dcdf6;
   cursor: pointer;
   -webkit-transition:all 0.15s ease;
   transition: all 0.15s ease;

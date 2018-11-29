@@ -41,10 +41,6 @@ public class Usuario {
     private String correo;
     @Column(name = "foto")
     private byte[] foto;
-    @Column(name = "telefono")
-    private String telefono;
-    @Column(name = "sexo")
-    private String sexo;
     @Column(name = "contrasenia")
     private String contrasenia;
     @Column(name = "rol")
@@ -53,6 +49,7 @@ public class Usuario {
     private String codigo_activacion;
     @Column(name = "activado")
     private boolean activado;
+
     @Column(name = "calificacion")
     private double calificacion;
     @Column(name = "problematico")
@@ -63,7 +60,6 @@ public class Usuario {
     @OneToMany(mappedBy = "fk_id_usuario")    
     @LazyCollection(LazyCollectionOption.FALSE)    
     private List<Denuncia> denuncia =  new ArrayList<>();    
-        
     public boolean getActivado() {
         return activado;
     }
@@ -136,22 +132,6 @@ public class Usuario {
 
     public void setFoto(byte[] foto) {
         this.foto = foto;
-    }
-
-    public String getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
-    }
-
-    public String getSexo() {
-        return sexo;
-    }
-
-    public void setSexo(String sexo) {
-        this.sexo = sexo;
     }
 
     public String getCodigo_activacion() {

@@ -14,8 +14,7 @@
         <div class="mdl-card__supporting-text">
             <span class="mdl-typography--font-light mdl-typography--subhead">Platicanos más sobre tu experiencia.</span>
         </div>
-        <form id="sample3" method="post" style="width:500px" enctype="multipart/form-data" action="${pageContext.request.contextPath}/profesor/guardacv">
-        <form id="sample3" style="width:500px">
+        <form method="post" style="width:500px" enctype="multipart/form-data" action="${pageContext.request.contextPath}/profesor/guardacv">
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                 <select class="mdl-textfield__input" id="lugar" name="lugar">
                     <option value="Aguascalientes">Aguascalientes</option>
@@ -57,61 +56,22 @@
                 <i><label class="mdl-card__title">Formación Académica</label></i>
             </div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" name = "estudios" required>
-                <label class="mdl-textfield__label" for="sample3">Estudios</label>
+                <input class="mdl-textfield__input" type="text" id = "estudios" name = "estudios" required>
+                <label class="mdl-textfield__label" for="estudios">Estudios</label>
             </div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" name = "universidad" required>
-                <label class="mdl-textfield__label" for="sample3">Universidad</label>
-            </div>
-            <div class="mdl-textfield mdl-js-textfield">
-                <input class="mdl-textfield__input" type="date" id="date" name="fecha_inicio" required>
-            </div>
-            <div class="mdl-card__supporting-text" >
-                <span class="mdl-typography--font-light">Fecha de inicio de tus estudios</span>
-            </div>
-            <div class="mdl-textfield mdl-js-textfield">
-                <input class="mdl-textfield__input"  type="date" id="date" name="fecha_fin" required>
-            </div>
-            <div class="mdl-card__supporting-text" >
-                <span class="mdl-typography--font-light">Fecha de fin de tus estudios</span>
-            </div>
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <i><label class="mdl-card__title">Experiencia Laboral</label></i>
-            </div>
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" name = "empresa" required>
-                <label class="mdl-textfield__label" for="sample3">Empresa</label>
-            </div>
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" name = "funcion_trabajo" required>
-                <label class="mdl-textfield__label" for="sample3">Función realizada</label>
-            </div>
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" name = "tarea_trabajo" required>
-                <label class="mdl-textfield__label" for="sample3">Tarea realizada</label>
-            </div>
-            <div class="mdl-textfield mdl-js-textfield">
-                <input class="mdl-textfield__input" type="date" id="date" name="fecha_inicio_trabajo" required>
-            </div>
-            <div class="mdl-card__supporting-text" >
-                <span class="mdl-typography--font-light">Fecha de inicio de tus labores</span>
-            </div>
-            <div class="mdl-textfield mdl-js-textfield">
-                <input class="mdl-textfield__input" type="date" id="date" name="fecha_fin_trabajo" required>
-            </div>
-            <div class="mdl-card__supporting-text" >
-                <span class="mdl-typography--font-light">Fecha de fin de tus labores</span>
+                <input class="mdl-textfield__input" type="text" id = "universidad" name = "universidad" required>
+                <label class="mdl-textfield__label" for="universidad">Universidad</label>
             </div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                 <input class="mdl-textfield__input" type="number" id="costo" name="costo" required>
-                <label class="mdl-textfield__label" for="sample3">Costo por hora (MXN)</label>
+                <label class="mdl-textfield__label" for="costo">Costo por hora (MXN)</label>
             </div>
             <div class="mdl-textfield mdl-js-textfield">
                 <input class="mdl-textfield__input" id="file" type="text" name="identificacion" style="left:0;" placeholder="Tu identificación" required readonly>
                 <Label class="input-custom-file mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" style="right:0;background-color:#66b04f;">
                     Subir
-                    <input type="file" id="boton" accept="image/jpeg, image/png" style="display:none;">
+                    <input type="file" id="boton" name="boton" accept="image/jpeg, image/png" style="display:none;">
                 </label>
             </div>
             <div class="mdl-card__actions" style="padding-bottom:30px;">

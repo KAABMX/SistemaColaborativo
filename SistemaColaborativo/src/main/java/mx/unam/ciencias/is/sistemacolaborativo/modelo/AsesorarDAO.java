@@ -6,22 +6,23 @@
 package mx.unam.ciencias.is.sistemacolaborativo.modelo;
 
 import java.util.List;
+import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Alumno;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Asesorar;
+import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Profesor;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
-
 public class AsesorarDAO {
-    
+
     /*Sesion para conectarnos a la base de datos*/
     private SessionFactory sessionFactory;
 
     public SessionFactory getSessionFactory() {
         return sessionFactory;
     }
-    
+
     public void setSessionFactory(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
@@ -35,24 +36,23 @@ public class AsesorarDAO {
             tx = session.beginTransaction();
             //guardamos el Asesorar
             session.persist(asesorar);
-           
+
             tx.commit();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             //Se regresa a un estado consistente 
-            if (tx!=null){ 
+            if (tx != null) {
                 tx.rollback();
             }
-            e.printStackTrace(); 
+            e.printStackTrace();
         } finally {
             //cerramos simpre la sesion
             session.close();
         }
     }
-        
-        
-            /**
+
+    /**
      * Elimina el Asesorar de la base de datos
+     *
      * @param asesorar el Asesorar a eliminar
      */
     public void eliminar(Asesorar asesorar) {
@@ -63,28 +63,24 @@ public class AsesorarDAO {
             tx = session.beginTransaction();
             //eliminamos el Asesorar
             session.delete(asesorar);
-           
+
             tx.commit();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             //Se regresa a un estado consistente 
-            if (tx!=null){ 
+            if (tx != null) {
                 tx.rollback();
             }
-            e.printStackTrace(); 
-        }
-        finally {
+            e.printStackTrace();
+        } finally {
             //cerramos siempre la sesion
             session.close();
         }
     }
-    
-    
-    
-    
+
     /**
      * Actualiza el Asesorar en la base de datos
-     * @param asesorar con los nuevos valores 
+     *
+     * @param asesorar con los nuevos valores
      */
     public void actualizar(Asesorar asesorar) {
         Session session = sessionFactory.openSession();
@@ -94,69 +90,89 @@ public class AsesorarDAO {
             tx = session.beginTransaction();
             //actualizar el Asesorar
             session.update(asesorar);
-           
+
             tx.commit();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             //Se regresa a un estado consistente 
-            if (tx!=null){ 
+            if (tx != null) {
                 tx.rollback();
             }
-            e.printStackTrace(); 
-        }
-        finally {
+            e.printStackTrace();
+        } finally {
             //cerramos siempre la sesion
             session.close();
         }
-}
-    
-    
-        /**
+    }
+
+    /**
      * Regresa la lista de todos los Asesorars en la base de datos
+     *
      * @return la lista que contiene a todos los Asesorars de la base de datos
      */
-    public List<Asesorar> getAsesorars(){
-        List<Asesorar> result= null;
+    public List<Asesorar> getAsesorars() {
+        List<Asesorar> result = null;
         Session session = sessionFactory.openSession();
-        Transaction tx=null;
-        try{
-            tx=session.beginTransaction();
-            String hql= "FROM Asesorar";
-            Query query =session.createQuery(hql);
-            result=(List<Asesorar>)query.list();
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+            String hql = "FROM Asesorar";
+            Query query = session.createQuery(hql);
+            result = (List<Asesorar>) query.list();
             tx.commit();
-        }catch (Exception e){
-            if(tx != null)
+        } catch (Exception e) {
+            if (tx != null) {
                 tx.rollback();
-            e.printStackTrace();      
-        }finally{
+            }
+            e.printStackTrace();
+        } finally {
             session.close();
         }
         return result;
     }
-    
-    
-       public Asesorar getAsesorar(String idAsesorar) {
+
+    public Asesorar getAsesorar(int idAsesorar) {
         Asesorar result = null;
         Session s = sessionFactory.openSession();
         Transaction tx = null;
-        try{
+        try {
             tx = s.beginTransaction();
-            String hql = "FROM Asesorar WHERE idAsesorar = :idAsesorar";                  
+            String hql = "FROM Asesorar WHERE idAsesorar = :idAsesorar";
             Query query = s.createQuery(hql);
-            query.setParameter("idAsesorar",idAsesorar);
-            result = (Asesorar)query.uniqueResult();
+            query.setParameter("idAsesorar", idAsesorar);
+            result = (Asesorar) query.uniqueResult();
             tx.commit();
-        }catch(Exception e){
-            if(tx != null)
+        } catch (Exception e) {
+            if (tx != null) {
                 tx.rollback();
+            }
             e.printStackTrace();
-        }finally{
+        } finally {
             s.close();
         }
         return result;
     }
-       
-          
-    
+
+    public Asesorar getAsesorar(Profesor p, Alumno a) {
+        Asesorar result = null;
+        Session s = sessionFactory.openSession();
+        Transaction tx = null;
+        try {
+            tx = s.beginTransaction();
+            String hql = "FROM Asesorar WHERE fk_id_profesor=:fk_id_profesor AND fk_id_alumno=:fk_id_alumno";
+            Query query = s.createQuery(hql);
+            query.setParameter("fk_id_profesor", p);
+            query.setParameter("fk_id_alumno", a);
+            result = (Asesorar) query.uniqueResult();
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            s.close();
+        }
+        return result;
+    }
+
 }
