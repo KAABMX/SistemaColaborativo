@@ -10,7 +10,6 @@ import java.security.Principal;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
-import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.Part;
 //import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Complementarios;
@@ -37,7 +36,6 @@ import org.springframework.web.servlet.ModelAndView;
  * @author dani3
  */
 @Controller
-@MultipartConfig
 public class ControladorHorarioProfesor {
     @Autowired
     private UsuarioDAO usuario_bd;

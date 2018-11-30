@@ -20,7 +20,7 @@
                 <script>
                     function myFunction() {
                         var x = document.getElementById("dia").value;
-                        window.location.href ='${pageContext.request.contextPath}/alumno/pedirclase?idprofesor=1&diasse='+x;
+                        window.location.href ='${pageContext.request.contextPath}/alumno/pedirclase?idprofesor=${profesor.getUsuario().getPk_id_usuario()}&diasse='+x;
                     }
                 </script>                
                 <label class="mdl-textfield__label" for="dia">Dia</label>
