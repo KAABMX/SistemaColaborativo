@@ -54,13 +54,23 @@
                     <div class="android-header-spacer mdl-layout-spacer"></div>
 
                     <!-- Navigation -->
-                    <div class="android-navigation-container">
-                        <nav class="android-navigation mdl-navigation">
-                            <a class="mdl-navigation__link mdl-typography--text-uppercase" href="${pageContext.request.contextPath}/alumno/verasesorias">Asesorías</a>
+                <div class="android-navigation-container">
+                    <nav class="android-navigation mdl-navigation">
+                    <c:choose>
+                        <c:when test="${log}">
+                            <a class="mdl-navigation__link mdl-typography--text-uppercase" href="${pageContext.request.contextPath}/verasesorias">Asesorias</a>
+                            <a class="mdl-navigation__link mdl-typography--text-uppercase" href="${pageContext.request.contextPath}/loggea">Iniciar Sesión</a><!--Quitarse al estar logueado en el sistema-->
+                        </c:when> 
+
+                        <c:otherwise>
+                            <a class="mdl-navigation__link mdl-typography--text-uppercase" href="${pageContext.request.contextPath}/verasesorias">Asesorías</a>
                             <a class="mdl-navigation__link mdl-typography--text-uppercase" href="${pageContext.request.contextPath}/alumno/vermisasesorias">Ver mis Asesorias</a>
                             <a class="mdl-navigation__link mdl-typography--text-uppercase" href="${pageContext.request.contextPath}/logout">Cerrar Sesión</a>                       
-                        </nav>
-                    </div>
+                        </c:otherwise>
+                    </c:choose>                    
+
+                    </nav>
+                </div>
 
                     <!--
                     <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right mdl-js-ripple-effect" for="more-button">

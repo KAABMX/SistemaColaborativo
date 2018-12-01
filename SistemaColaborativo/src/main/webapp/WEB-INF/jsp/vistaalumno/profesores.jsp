@@ -10,7 +10,7 @@
     <ul class="list-group list-group-flush">
         <c:forEach items="${profesores}" var="profesor">
             <li class="list-group-item">
-                <a href="${pageContext.request.contextPath}/alumno/verperfirprofesor?idprofesor=${profesor.getPk_id_profesor()}">${profesor.getUsuario().getNombreC()}</a>
+                <a href="${pageContext.request.contextPath}/verperfirprofesor?idprofesor=${profesor.getPk_id_profesor()}">${profesor.getUsuario().getNombreC()}</a>
             </li>          
         </c:forEach>
 

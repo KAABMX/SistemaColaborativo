@@ -13,18 +13,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.Part;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Alumno;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Asesorar;
-import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Dia;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Profesor;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Usuario;
-import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Horario;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Nivel;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Nivelprofesor;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Tema;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Temaprofesor;
 import mx.unam.ciencias.is.sistemacolaborativo.modelo.AlumnoDAO;
 import mx.unam.ciencias.is.sistemacolaborativo.modelo.AsesorarDAO;
-import mx.unam.ciencias.is.sistemacolaborativo.modelo.DiaDAO;
-import mx.unam.ciencias.is.sistemacolaborativo.modelo.HorarioDAO;
 import mx.unam.ciencias.is.sistemacolaborativo.modelo.NivelDAO;
 import mx.unam.ciencias.is.sistemacolaborativo.modelo.NivelprofesorDAO;
 import mx.unam.ciencias.is.sistemacolaborativo.modelo.ProfesorDAO;
@@ -46,10 +42,6 @@ public class ControladorVerMisAsesorias {
     private ProfesorDAO profesor_bd;
     @Autowired
     private AlumnoDAO alumno_bd;
-    @Autowired
-    private HorarioDAO horario_bd;
-    @Autowired
-    private DiaDAO dia_bd;
     @Autowired
     private TemaprofesorDAO temaprofesor_bd;
     @Autowired

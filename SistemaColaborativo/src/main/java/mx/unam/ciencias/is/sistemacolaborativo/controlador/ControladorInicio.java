@@ -69,4 +69,8 @@ public class ControladorInicio {
     public String cv(){
         return "curriculum";
     }
+        @RequestMapping(value = "/informacion", method = RequestMethod.GET)
+    public String info(){
+        return "informacion";
+    }
 }

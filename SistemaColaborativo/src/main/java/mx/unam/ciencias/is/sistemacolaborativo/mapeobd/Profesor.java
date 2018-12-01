@@ -38,9 +38,6 @@ public class Profesor {
     private String costo_x_hora;
     @Column(name = "estaActivo")
     private boolean estaActivo;
-    @OneToMany(mappedBy = "fk_id_profesor")    
-    @LazyCollection(LazyCollectionOption.FALSE)
-    private List<Dia> dia =  new ArrayList<>();
     @OneToMany(mappedBy = "fk_id_profesor")  
     @LazyCollection(LazyCollectionOption.FALSE)    
     private List<Temaprofesor> temaprofesor =  new ArrayList<>();
@@ -91,15 +88,7 @@ public class Profesor {
     public void setEstaActivo(boolean estaActivo) {
         this.estaActivo = estaActivo;
     }
-
-    public List<Dia> getDia() {
-        return dia;
-    }
-
-    public void setDia(List<Dia> dia) {
-        this.dia = dia;
-    }
-    
+ 
 
     public List<Temaprofesor> getTemaprofesor() {
         return this.temaprofesor;

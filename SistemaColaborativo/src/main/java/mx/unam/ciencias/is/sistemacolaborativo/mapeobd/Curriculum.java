@@ -5,10 +5,7 @@
  */
 package mx.unam.ciencias.is.sistemacolaborativo.mapeobd;
 
-/**
- *
- * @author hectorsama
- */
+
  
 import javax.persistence.Column;
 import javax.persistence.Entity;

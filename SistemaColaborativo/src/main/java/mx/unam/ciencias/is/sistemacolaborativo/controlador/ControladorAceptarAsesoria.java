@@ -13,18 +13,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.Part;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Alumno;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Asesorar;
-import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Dia;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Profesor;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Usuario;
-import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Horario;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Nivel;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Nivelprofesor;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Tema;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Temaprofesor;
 import mx.unam.ciencias.is.sistemacolaborativo.modelo.AlumnoDAO;
 import mx.unam.ciencias.is.sistemacolaborativo.modelo.AsesorarDAO;
-import mx.unam.ciencias.is.sistemacolaborativo.modelo.DiaDAO;
-import mx.unam.ciencias.is.sistemacolaborativo.modelo.HorarioDAO;
 import mx.unam.ciencias.is.sistemacolaborativo.modelo.NivelDAO;
 import mx.unam.ciencias.is.sistemacolaborativo.modelo.NivelprofesorDAO;
 import mx.unam.ciencias.is.sistemacolaborativo.modelo.ProfesorDAO;
@@ -46,10 +42,7 @@ public class ControladorAceptarAsesoria {
     private ProfesorDAO profesor_bd;
     @Autowired
     private AlumnoDAO alumno_bd;
-    @Autowired
-    private HorarioDAO horario_bd;
-    @Autowired
-    private DiaDAO dia_bd;
+
     @Autowired
     private TemaprofesorDAO temaprofesor_bd;
     @Autowired
@@ -70,6 +63,7 @@ public class ControladorAceptarAsesoria {
         List<Asesorar> asesorias= p.getAsesorar();
         System.out.println("lista " +asesorias);
         model.addAttribute("asesorias", asesorias);
+        
     
     
         return  "vistaprofesor/misasesorias";
@@ -79,10 +73,13 @@ public class ControladorAceptarAsesoria {
     @RequestMapping(value = "/profesor/aceptarasesoria")
     public String aceptarAsesoria(HttpServletRequest request, ModelMap model, Principal principal){        
         Asesorar aceptada=asesorar_bd.getAsesorar(Integer.valueOf(request.getParameter("idaa")));
+        Profesor p=aceptada.getProfesor();
         aceptada.setComentariorespuesta(request.getParameter("comentariorespuestaa"));
         aceptada.setDuracion(Integer.valueOf(request.getParameter("duracion")));
         aceptada.setEstado("aceptada");
         aceptada.setAceptada(Boolean.TRUE);
+        double costo=aceptada.getDuracion()*Double.parseDouble(p.getCosto_x_hora());
+        aceptada.setCosto(costo);
         asesorar_bd.actualizar(aceptada);
         return  "redirect:/profesor/mostrarasesorias";
     }

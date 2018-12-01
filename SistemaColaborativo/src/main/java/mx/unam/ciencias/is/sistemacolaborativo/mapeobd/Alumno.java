@@ -32,8 +32,8 @@ public class Alumno implements java.io.Serializable {
     private Usuario fk_id_usuario;
     @Column(name = "ultimo_nivel_educativo")
     private String ultimo_nivel_educativo;
-    @OneToMany(mappedBy = "alumno")
-    private List<InteresAcademico> intereses;
+    @Column(name = "intereses")
+    private String intereses;
     @OneToMany(mappedBy = "fk_id_alumno")    
     @LazyCollection(LazyCollectionOption.FALSE)    
     private List<Asesorar> asesorar =  new ArrayList<>();
@@ -62,13 +62,6 @@ public class Alumno implements java.io.Serializable {
         this.ultimo_nivel_educativo = ultimo_nivel_educativo;
     }
 
-    public List<InteresAcademico> getIntereses() {
-        return intereses;
-    }
-
-    public void setIntereses(List<InteresAcademico> intereses) {
-        this.intereses = intereses;
-    }
 
     public List<Asesorar> getAsesorar() {
         return asesorar;
@@ -76,6 +69,14 @@ public class Alumno implements java.io.Serializable {
 
     public void setAsesorar(List<Asesorar> asesorar) {
         this.asesorar = asesorar;
+    }
+
+    public String getIntereses() {
+        return intereses;
+    }
+
+    public void setIntereses(String intereses) {
+        this.intereses = intereses;
     }
 
     

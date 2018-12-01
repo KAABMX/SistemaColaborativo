@@ -37,16 +37,7 @@
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                 <input class="mdl-textfield__input" type="email" name = "correo">
                 <label class="mdl-textfield__label" for="sample3">Correo</label>
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <select class="mdl-textfield__input" id="sexo" name="sexo" required>
-                    <option value="Masculino">Masculino</option>
-                    <option value="Femenino">Femenino</option>
-                </select>       
-                <label class="mdl-textfield__label" for="sexo">sexo</label>
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="number" name = "telefono">
-                <label class="mdl-textfield__label" for="sample3">telefono</label>
-            </div>            
+            </div>       
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                 <input class="mdl-textfield__input" type="password" name = "contrasenya" id="password">
                 <label class="mdl-textfield__label" for="password">Contraseña</label>

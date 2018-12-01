@@ -5,10 +5,14 @@
  */
 package mx.unam.ciencias.is.sistemacolaborativo.controlador;
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.io.IOException;
 import java.math.BigInteger;
 import java.security.Principal;
 import java.util.Random;
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Curriculum;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Estudios;
@@ -64,11 +68,20 @@ public class ControladorProfesor {
             usuario.setContrasenia(hashedPassword);
             String ca = obtenerCadenaAleatoria();
             usuario.setCodigo_activacion(ca);
+            //usuario.setActivado(true);
             if (!file.isEmpty()) {
                 usuario.setFoto(file.getBytes());
             }
+
+
+            
             usuario.setRol("ROLE_PROFESOR");
             usuario_bd.guardar(usuario);
+            Usuario us= usuario_bd.getUsuario(usuario.getCorreo());
+            String ruta="/Users/francisco/Documents/fciencias/noveno/inge2/frankprueba/SistemaColaborativo/SistemaColaborativo/src/main/webapp/imagenes";            
+            BufferedImage img = ImageIO.read(new ByteArrayInputStream(us.getFoto()));
+            String nombrear=Integer.toString(usuario.getPk_id_usuario());
+            ImageIO.write(img,"png",new File(ruta+"/"+nombrear+".jpg"));             
             Profesor p = new Profesor();
             p.setUsuario(usuario);
             profesor_bd.guardar(p);
@@ -103,14 +116,7 @@ public class ControladorProfesor {
         return new ModelAndView("vistaprofesor/curriculum", model);
     }
     
-    @RequestMapping(value = "/profesor/vermiperfilprofesor", method = RequestMethod.GET)
-    public String verMiPerfilProfesor(HttpServletRequest request, ModelMap model, Principal principal) {
-        Usuario usuario = usuario_bd.getUsuario(principal.getName());
-        Profesor p = profesor_bd.getProfesor(usuario);        
-        model.addAttribute("usuario", usuario);
-        model.addAttribute("profesor", p);
-        return "vistaprofesor/miPerfilProfesor";
-    }
+
 
     @RequestMapping(value = "/activar-cuenta", method = RequestMethod.GET)
     public ModelAndView activacion(HttpServletRequest request, ModelMap model, Principal principal) {
@@ -125,7 +131,7 @@ public class ControladorProfesor {
     }
 
     @RequestMapping(value = "/profesor/guardacv", method = RequestMethod.POST)
-    public ModelAndView guardaCV(HttpServletRequest request, ModelMap model, Principal principal, @RequestParam("file") MultipartFile file) throws IOException {
+    public String guardaCV(HttpServletRequest request, ModelMap model, Principal principal, @RequestParam("boton") MultipartFile file) throws IOException {
         Usuario usuario = usuario_bd.getUsuario(principal.getName());
         Profesor p = profesor_bd.getProfesor(usuario);
         p.setCosto_x_hora(request.getParameter("costo"));
@@ -154,7 +160,7 @@ public class ControladorProfesor {
         model.addAttribute("apellidoP", usuario.getApellido_p());
         model.addAttribute("apellidoM", usuario.getApellido_m());
         model.addAttribute("correo", usuario.getCorreo());
-        return new ModelAndView("inicioProfesor", model);
+        return "redirect:/profesor/inicio";
     }
 
 }

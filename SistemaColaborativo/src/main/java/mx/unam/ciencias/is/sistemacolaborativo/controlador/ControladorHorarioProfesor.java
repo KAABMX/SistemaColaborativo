@@ -10,17 +10,16 @@ import java.security.Principal;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
-import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Dia;
+import javax.servlet.http.Part;
+//import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Complementarios;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Profesor;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Usuario;
-import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Horario;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Nivel;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Nivelprofesor;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Tema;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Temaprofesor;
-import mx.unam.ciencias.is.sistemacolaborativo.modelo.DiaDAO;
-import mx.unam.ciencias.is.sistemacolaborativo.modelo.HorarioDAO;
 import mx.unam.ciencias.is.sistemacolaborativo.modelo.NivelDAO;
 import mx.unam.ciencias.is.sistemacolaborativo.modelo.NivelprofesorDAO;
 import mx.unam.ciencias.is.sistemacolaborativo.modelo.ProfesorDAO;
@@ -31,19 +30,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 /**
  *
  * @author dani3
  */
 @Controller
+@MultipartConfig
 public class ControladorHorarioProfesor {
     @Autowired
     private UsuarioDAO usuario_bd;
     @Autowired
     private ProfesorDAO profesor_bd;
-    @Autowired
-    private HorarioDAO horario_bd;
     @Autowired
     private TemaprofesorDAO temaprofesor_bd;
     @Autowired
@@ -52,26 +51,17 @@ public class ControladorHorarioProfesor {
     private NivelprofesorDAO nievelprofesor_bd;
     @Autowired
     private NivelDAO nivel_bd;
-    @Autowired
-    private DiaDAO dia_bd;
+
     
     
-    @RequestMapping(value = "/profesor/mostrarhorario")
+    @RequestMapping(value = "/profesor/inicio")
     public String mostrarHorario(HttpServletRequest request, ModelMap model, Principal principal){
     Usuario usuario = usuario_bd.getUsuario(principal.getName());
-    Profesor p = profesor_bd.getProfesor(usuario);
-        //dias
-        List<Dia> dias=p.getDia();
-        model.addAttribute("dias",dias);
-        model.addAttribute("todosdias", dia_bd.getDias());        
-        //horarios
-        List<Horario> horarios=new ArrayList<>();
-        for (Dia dia : dias) {
-           for (Horario horario : dia.getHorarios()) {
-               horarios.add(horario);
-           }
-        }
-        model.addAttribute("horarios",horarios);
+
+        Profesor p = profesor_bd.getProfesor(usuario);
+    
+        model.addAttribute("usuario", usuario);
+        model.addAttribute("profesor", p);
         //niveles
         List<Nivelprofesor> nivelp=p.getNivelprofesor();
         List<Nivel> niveles = new ArrayList<>();
@@ -80,6 +70,8 @@ public class ControladorHorarioProfesor {
         }
         model.addAttribute("niveles", niveles);
         model.addAttribute("todosniveles", nivel_bd.getNivels());
+        System.out.println(nivel_bd.getNivels());
+
 
         //temas
         List<Temaprofesor> temap=p.getTemaprofesor();
@@ -95,42 +87,19 @@ public class ControladorHorarioProfesor {
                 todostemas.add(teman);
             }
         }       
-        
+        model.addAttribute("rol", usuario.getRol());
+        model.addAttribute("nombre", usuario.getNombre());
+        model.addAttribute("apellido", usuario.getApellido_p());
+        model.addAttribute("apellidoM", usuario.getApellido_m());
+        model.addAttribute("correo", usuario.getCorreo());        
         
         model.addAttribute("todostemas", todostemas);
-        
+        String nombrear=Integer.toString(usuario.getPk_id_usuario())+".jpg";
+        model.addAttribute("foto","../imagenes/"+nombrear);        
         
 
         
-        return  "vistaprofesor/horario";
-    }
-    
-
-    
-    @RequestMapping(value = "/profesor/guardardia")
-    public String guardarDia(HttpServletRequest request, ModelMap model, Principal principal){
-    Usuario usuario = usuario_bd.getUsuario(principal.getName());
-    Profesor p = profesor_bd.getProfesor(usuario);
-    Dia dia=new Dia();
-    dia.setDia(request.getParameter("dia"));
-    dia.setFk_id_profesor(p);
-    dia_bd.guardar(dia);
-        return  "redirect:/profesor/mostrarhorario";
-    }
-
-    @RequestMapping(value = "/profesor/guardarhorario")
-    public String guardarHorario(HttpServletRequest request, ModelMap model, Principal principal){
-    Usuario usuario = usuario_bd.getUsuario(principal.getName());
-    Profesor p = profesor_bd.getProfesor(usuario);
-    Dia dia=dia_bd.getDia(Integer.valueOf(request.getParameter("diase")));
-    String hora=request.getParameter("hora")+":00";
-    Horario horario=new Horario();
-    Time hi=Time.valueOf(hora);
-    horario.setHora(hi);
-    horario.setDisponible(Boolean.TRUE);
-    horario.setIddia(dia);
-    horario_bd.guardar(horario);
-        return  "redirect:/profesor/mostrarhorario";
+        return  "vistaprofesor/inicioProfesor";
     }
     
     @RequestMapping(value = "/profesor/guardartema")
@@ -148,7 +117,7 @@ public class ControladorHorarioProfesor {
     temaprofesor_bd.guardar(nuevoTemaProfesor);
     
     
-        return  "redirect:/profesor/mostrarhorario";
+        return  "redirect:/profesor/inicio";
     }    
 
     @RequestMapping(value = "/profesor/guardarnivel")
@@ -156,6 +125,7 @@ public class ControladorHorarioProfesor {
     Usuario usuario = usuario_bd.getUsuario(principal.getName());
     Profesor p = profesor_bd.getProfesor(usuario);
     String nivel=request.getParameter("nivelseleccionado");
+    System.out.println("nivel"+nivel);
     int t = Integer.parseInt(nivel);
     Nivel nuevoNivel = new Nivel();
     nuevoNivel.setNivel("este es un nivel auxiliar");
@@ -166,6 +136,6 @@ public class ControladorHorarioProfesor {
     nievelprofesor_bd.guardar(nuevoNivelProfesor);
     
     
-        return  "redirect:/profesor/mostrarhorario";
+        return  "redirect:/profesor/inicio";
     }
 }

@@ -31,8 +31,16 @@ Author     : hectorsama, luis
                 <label class="mdl-textfield__label" for="sample3">Apellido paterno</label>
             </div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" name = "materno">
+                <input class="mdl-textfield__input" type="text" name = "materno" required>
                 <label class="mdl-textfield__label" for="sample3">Apellido materno</label>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" name = "intereses">
+                <label class="mdl-textfield__label" for="sample3">intereses</label>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" name = "nivel">
+                <label class="mdl-textfield__label" for="sample3">Ultimo nivel Educativo</label>
             </div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                 <input class="mdl-textfield__input" type="email" name = "correo">

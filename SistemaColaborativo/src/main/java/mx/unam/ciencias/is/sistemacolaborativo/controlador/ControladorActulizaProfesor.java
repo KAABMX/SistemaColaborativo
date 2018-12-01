@@ -48,7 +48,6 @@ public class ControladorActulizaProfesor {
     Usuario usuario = usuario_bd.getUsuario(principal.getName());
     Profesor profesor=profesor_bd.getProfesor(usuario);
     Curriculum curriculum =cv_bd.getCurriculumF(profesor.getPk_id_profesor());
-            System.out.println("hola");
     Estudios estudios=estudios_bd.getEstudios(curriculum.getPk_id_cv());
     
     model.addAttribute("usuario",usuario);
@@ -68,17 +67,14 @@ public class ControladorActulizaProfesor {
     Estudios estudios=estudios_bd.getEstudios(curriculum.getPk_id_cv());
     
 	String correo = request.getParameter("correo");
-	String nombre = request.getParameter("nombre");
-	String paterno = request.getParameter("paterno");
-	String materno = request.getParameter("materno");
-	String telefono = request.getParameter("telefono");
-	String sexo = request.getParameter("sexo");
-	
-	
-        usuario.setNombre(nombre);
-        usuario.setApellido_p(paterno);
-        usuario.setApellido_m(materno);
         usuario.setCorreo(correo);
+	String nombre = request.getParameter("nombre");
+        usuario.setNombre(nombre);
+	String paterno = request.getParameter("paterno");
+        usuario.setApellido_p(paterno);
+	String materno = request.getParameter("materno");
+        usuario.setApellido_m(materno);
+		
         
         
         String costo =request.getParameter("costo");
@@ -87,10 +83,12 @@ public class ControladorActulizaProfesor {
 	
         String lugar =request.getParameter("lugar");
         curriculum.setLugar_de_nacimiento(lugar);
-
-	String estudiosg = request.getParameter("estudios");  
+ 
 	String universidad =request.getParameter("universidad");
         estudios.setUniversidad(universidad);
+	String estudio =request.getParameter("estudio");
+        estudios.setEstudio(estudio);
+        
         
         usuario_bd.actualizar(usuario);
         profesor_bd.actualizar(profesor);

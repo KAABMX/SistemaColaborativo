@@ -13,10 +13,7 @@
     			<tr>
       			<th scope="col">profesor</th>
       			<th scope="col">materia</th>
-      			<th scope="col">dia</th>
-      			<th scope="col">hora</th>
       			<th scope="col">estado</th>
-      			<th scope="col">aceptada</th>
       			<th scope="col">duracion</th>
       			<th scope="col">costo</th>
     			</tr>
@@ -27,12 +24,9 @@
                             <tr>
                                 <td>${asesoria.getProfesor().getUsuario().getNombreC()}</td>
                                 <td>${asesoria.getTema().getTema()}</td>
-                                <td>${asesoria.getHorario().getIddia().getDia()}</td>
-                                <td>${asesoria.getHorario().getHora().toString()}</td>
                                 <td>${asesoria.getEstado()}</td>
-                                <td>${asesoria.getAceptada()}</td>
-                                <td>${asesoria.getDuracion()}</td>
-                                <td>${asesoria.getCosto()}</td>
+                                <td>${asesoria.getDuracion()} hrs</td>
+                                <td>${asesoria.getCosto()} (MXN)</td>
                             </tr>
                             </c:forEach>
                             

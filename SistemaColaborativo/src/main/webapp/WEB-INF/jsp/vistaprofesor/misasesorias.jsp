@@ -12,16 +12,12 @@
     			<tr>
       			<th scope="col">Nombre</th>
       			<th scope="col">Materia</th>
-      			<th scope="col">Dia</th>
-      			<th scope="col">Hora</th>
     			</tr>
   			</thead>
   			<tbody>
     			<tr>
       			<td>${asesoria.getAlumno().getUsuario().getNombreC()}</td>
       			<td>${asesoria.getTema().getTema()}</td>
-      			<td>${asesoria.getHorario().getIddia().getDia()}</td>
-      			<td>${asesoria.getHorario().getHora().toString()}</td>
   			</tbody>
 			</table>    
 	    	
@@ -34,13 +30,13 @@
     <div id="${asesoria.toString()}" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
       <div class="card-body">
     	<h4 class="card-title">Comentario</h4>
-    	<p class="card-text">${asesoria.getComentario()}</p>      	
-		<button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModalCenter">
+    	<p>${asesoria.getComentario()}</p>      	
+		<button type="button" class="btn btn-success" data-toggle="modal" data-target="#${asesoria.toString()}aceptar">
   			Aceptar Asesoria
 		</button>
 
 <!-- Modal -->
-			<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="${asesoria.toString()}aceptar" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="margin-top: 10%;">
   				<div class="modal-dialog modal-dialog-centered" role="document">
     				<div class="modal-content">
       					<div class="modal-header">
@@ -72,12 +68,12 @@
 
       
       
-		<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#declinar">
+		<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#${asesoria.toString()}declinar">
   			Declinar Asesoria
 		</button>
 
 <!-- Modal -->
-			<div class="modal fade" id="declinar" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="${asesoria.toString()}declinar" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="margin-top: 10%;">
   				<div class="modal-dialog modal-dialog-centered" role="document">
     				<div class="modal-content">
       					<div class="modal-header">

@@ -5,9 +5,13 @@
  */
 package mx.unam.ciencias.is.sistemacolaborativo.controlador;
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.math.BigInteger;
 import java.security.Principal;
 import java.util.Random;
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import mx.unam.ciencias.is.sistemacolaborativo.modelo.UsuarioDAO;
 import mx.unam.ciencias.is.sistemacolaborativo.modelo.AlumnoDAO;
@@ -16,8 +20,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Usuario;
 import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.Alumno;
-import mx.unam.ciencias.is.sistemacolaborativo.mapeobd.InteresAcademico;
-import mx.unam.ciencias.is.sistemacolaborativo.modelo.InteresAcademicoDAO;
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -36,8 +39,7 @@ public class ControladorAlumno {
     private UsuarioDAO usuario_bd;
     @Autowired
     private AlumnoDAO alumno_bd;
-    @Autowired
-    private InteresAcademicoDAO interes_bd;
+ 
     //Identificador del usuario que inicio sesión.
     private int idUsuario = 8;
 
@@ -62,10 +64,17 @@ public class ControladorAlumno {
             if (!file.isEmpty()) {
                 usuario.setFoto(file.getBytes());
             }
+            
             usuario_bd.guardar(usuario);
+            Usuario us= usuario_bd.getUsuario(usuario.getCorreo());
+            String ruta="/Users/francisco/Documents/fciencias/noveno/inge2/frankprueba/SistemaColaborativo/SistemaColaborativo/src/main/webapp/imagenes";            
+            BufferedImage img = ImageIO.read(new ByteArrayInputStream(us.getFoto()));
+            String nombrear=Integer.toString(usuario.getPk_id_usuario());
+            ImageIO.write(img,"png",new File(ruta+"/"+nombrear+".jpg"));            
             Alumno al = new Alumno();
             al.setUsuario(usuario);
             al.setUltimo_nivel_educativo(request.getParameter("nivel"));
+            al.setIntereses(request.getParameter("intereses"));
             alumno_bd.guardar(al);
             CorreoActivacion caa = new CorreoActivacion();
             caa.CorreoActivacion(request, usuario);
@@ -94,87 +103,6 @@ public class ControladorAlumno {
         return new BigInteger(tam, rnd).toString(base);
     }
 
-    /**
-     * Se actualiza un usuario partiendo de su identificador unico.
-     *
-     * @param request
-     * @param model
-     * @return
-     */
-    @RequestMapping(value = "/actualizarAlumno", method = RequestMethod.POST)
-    public ModelAndView actualizarAlumno(HttpServletRequest request, ModelMap model, Principal principal) {
-        try {
-            Usuario usuarioActualizado = usuario_bd.getUsuario(principal.getName());
-
-            if (request.getParameter("correo") != null) {
-                usuarioActualizado.setCorreo(request.getParameter("correo"));
-            }
-            if (request.getParameter("nombre") != null) {
-                usuarioActualizado.setNombre(request.getParameter("nombre"));
-            }
-            if (request.getParameter("paterno") != null) {
-                usuarioActualizado.setApellido_p(request.getParameter("paterno"));
-            }
-            if (request.getParameter("materno") != null) {
-                usuarioActualizado.setApellido_m(request.getParameter("materno"));
-            }
-            if (request.getParameter("contrasenya") != null) {
-                BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-                usuarioActualizado.setContrasenia(passwordEncoder.encode(request.getParameter("contrasenya")));
-                String contrasenaConf = request.getParameter("confirm");
-            }
-
-            //InputStream foto = new FileInputStream(request.getParameter("foto"));
-            //convertir la foto a bytes y agregarlo al usuario
-
-            usuario_bd.actualizar(usuarioActualizado);
-
-            Alumno alumnoActualizado = new Alumno();
-
-            alumnoActualizado.setUsuario(usuarioActualizado);
-            if (request.getParameter("nivel") != null) {
-                alumnoActualizado.setUltimo_nivel_educativo(request.getParameter("nivel"));
-            }
-
-            alumno_bd.actualizar(alumnoActualizado);
-
-            String matematicas = request.getParameter("matematicas");
-            String espanol = request.getParameter("espanol");
-            String geografia = request.getParameter("geografia");
-            String historia = request.getParameter("historia");
-
-            if (matematicas != null && matematicas.equals("on")) {
-                InteresAcademico g = new InteresAcademico();
-                g.setInteres("Matematicas");
-                g.setAlumno(alumnoActualizado);
-                interes_bd.actualizar(g);
-            }
-
-            if (espanol != null && espanol.equals("on")) {
-                InteresAcademico g = new InteresAcademico();
-                g.setInteres("Español");
-                g.setAlumno(alumnoActualizado);
-                interes_bd.actualizar(g);
-            }
-
-            if (geografia != null && geografia.equals("on")) {
-                InteresAcademico g = new InteresAcademico();
-                g.setInteres("Geografía");
-                g.setAlumno(alumnoActualizado);
-                interes_bd.actualizar(g);
-            }
-            if (historia != null && historia.equals("on")) {
-                InteresAcademico g = new InteresAcademico();
-                g.setInteres("Historia");
-                g.setAlumno(alumnoActualizado);
-                interes_bd.actualizar(g);
-            }
-
-        } catch (Exception e) {
-
-        }
-        return new ModelAndView("index", model);
-
-    }
+    
 
 }

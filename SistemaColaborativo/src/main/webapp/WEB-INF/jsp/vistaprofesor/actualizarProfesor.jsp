@@ -72,50 +72,12 @@
                 <label class="mdl-textfield__label" for="lugar">Estado de origen</label>
             </div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <i><label class="mdl-card__title">Formación Académica</label></i>
-            </div>
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                 <input class="mdl-textfield__input" type="text" name = "universidad" value="${estudios.getUniversidad()}" >
                 <label class="mdl-textfield__label" for="sample3">Universidad</label>
             </div>
-            <div class="mdl-textfield mdl-js-textfield">
-                <input class="mdl-textfield__input" type="date" id="date" name="fecha_inicio" value="1996-08-01">
-            </div>
-            <div class="mdl-card__supporting-text" >
-                <span class="mdl-typography--font-light">Fecha de inicio de tus estudios</span>
-            </div>
-            <div class="mdl-textfield mdl-js-textfield">
-                <input class="mdl-textfield__input"  type="date" id="date" name="fecha_fin" value="1996-08-01">
-            </div>
-            <div class="mdl-card__supporting-text" >
-                <span class="mdl-typography--font-light">Fecha de fin de tus estudios</span>
-            </div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <i><label class="mdl-card__title">Experiencia Laboral</label></i>
-            </div>
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" name = "empresa" value="${experiencia.getEmpresa()}">
-                <label class="mdl-textfield__label" for="sample3">Empresa</label>
-            </div>
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" name = "funcion_trabajo" value="${experiencia.getFuncion_trabajo()}">
-                <label class="mdl-textfield__label" for="sample3">Función realizada</label>
-            </div>
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" name = "tarea_trabajo" value="${experiencia.getTarea_trabajo()}">
-                <label class="mdl-textfield__label" for="sample3">Tarea realizada</label>
-            </div>
-            <div class="mdl-textfield mdl-js-textfield">
-                <input class="mdl-textfield__input" type="date" id="date" name="fecha_inicio_trabajo" value="1996-08-01">
-            </div>
-            <div class="mdl-card__supporting-text" >
-                <span class="mdl-typography--font-light">Fecha de inicio de tus labores</span>
-            </div>
-            <div class="mdl-textfield mdl-js-textfield">
-                <input class="mdl-textfield__input" type="date" id="date" name="fecha_fin_trabajo" value="1996-08-01">
-            </div>
-            <div class="mdl-card__supporting-text" >
-                <span class="mdl-typography--font-light">Fecha de fin de tus labores</span>
+                <input class="mdl-textfield__input" type="text" name = "estudio" value="${estudios.getEstudio()}" >
+                <label class="mdl-textfield__label" for="sample3">Estudios</label>
             </div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                 <input class="mdl-textfield__input" type="number" id="number" name="costo" value="${profesor.getCosto_x_hora().toString()}">
