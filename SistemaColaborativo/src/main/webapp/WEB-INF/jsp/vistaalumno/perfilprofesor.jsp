@@ -4,7 +4,7 @@
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page='headerProfesores.jsp'>
-    <jsp:param name="title" value="Página principal"/>
+    <jsp:param name="title" value="Pï¿½gina principal"/>
 </jsp:include>
 <html>
     <meta charset="UTF-8">

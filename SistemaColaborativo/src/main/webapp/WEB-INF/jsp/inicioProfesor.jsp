@@ -4,7 +4,7 @@
     Author     : juan
 --%>
 <jsp:include page='headerProfesores.jsp'>
-    <jsp:param name="title" value="Página principal"/>
+    <jsp:param name="title" value="Pï¿½gina principal"/>
 </jsp:include>
 <html>
     <meta charset="UTF-8">
@@ -64,7 +64,7 @@
                             <div class="w3-light-grey w3-round-xlarge">
                                 <div class="w3-round-xlarge w3-teal" style="height:24px;width:100%"></div>
                             </div>
-                            <p>Español</p>
+                            <p>Espaï¿½ol</p>
                             <div class="w3-light-grey w3-round-xlarge">
                                 <div class="w3-round-xlarge w3-teal" style="height:24px;width:55%"></div>
                             </div>
